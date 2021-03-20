@@ -12,3 +12,17 @@
     width: 80%;
     height: 100%;
 }
+
+@media only screen and (max-width: 400px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        background-color: #262626;
+    }
+
+    .sidebar,
+    .games-container {
+        width: 100%;
+    }
+}

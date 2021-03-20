@@ -12,7 +12,6 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:react-hooks/recommended',
     ],
-
     settings: {
         react: {
             version: 'detect',
@@ -45,6 +44,12 @@ module.exports = {
                     exceptions: ['*'],
                     balanced: true,
                 },
+            },
+        ],
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto',
             },
         ],
     },

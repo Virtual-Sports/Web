@@ -5,7 +5,7 @@ import Sidebar from '../Sidebar/Sidebar'
 
 function MainPage() {
     return (
-        <div className={styles['album-container']}>
+        <div className={styles['container']}>
             <div className={styles['sidebar']}>
                 <Sidebar />
             </div>

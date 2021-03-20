@@ -30,8 +30,10 @@ function Sidebar() {
 
             <hr />
 
-            <h2>Провайдеры</h2>
-            <div className={styles['providers']}>{renderAllProviders()}</div>
+            <div className={styles['providers']}>
+                <h2>Провайдеры</h2>
+                {renderAllProviders()}
+            </div>
         </div>
     )
 }

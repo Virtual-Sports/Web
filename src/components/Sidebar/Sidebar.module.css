@@ -1,8 +1,88 @@
 .container {
     width: 100%;
-    height: 100%;
+}
 
-    padding: 2%;
+h2,
+.categories,
+.providers {
+    padding: 7% 12%;
+}
 
-    background-color: red;
+.categories,
+.providers {
+    height: auto;
+    max-height: 50%;
+    overflow-y: auto;
+}
+
+.categories::-webkit-scrollbar,
+.providers::-webkit-scrollbar {
+    width: 10px;
+}
+
+.categories::-webkit-scrollbar-button,
+.providers::-webkit-scrollbar-button {
+    display: block;
+
+    width: 5px;
+    height: 0px;
+}
+
+.categories::-webkit-scrollbar-track,
+.providers::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.categories::-webkit-scrollbar-thumb,
+.providers::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #e4e3de;
+}
+
+.category {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    font-size: 0.8em;
+    opacity: 0.7;
+
+    margin: 20px 0;
+}
+
+.category:hover {
+    opacity: 1;
+}
+
+.category > img {
+    height: 18px;
+    width: 18px;
+    margin-right: 7px;
+}
+
+hr {
+    border: none;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+
+.provider {
+    width: 100%;
+    height: 40px;
+
+    margin: 7px 0;
+
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.provider > img {
+    height: 37px;
 }

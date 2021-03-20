@@ -3,105 +3,113 @@ export const CONFIG = {
         {
             id: 'jetx',
             displayName: 'JetX',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'slotegrator-betsolutions',
             displayName: 'Betsolutions',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'pm-tech',
             displayName: 'pm-tech',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'smartsoft',
             displayName: 'SmartSoft',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'spribe',
             displayName: 'Spribe',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'leap',
             displayName: 'Leap',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'bet-radar',
             displayName: 'Bet Radar',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'hub-scorum',
             displayName: 'Scorum',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'globalbet',
             displayName: 'Globalbet',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
         {
             id: 'hub-vs-highlight-games',
             displayName: 'Highlight Games',
-            icon: 'Golden Race',
-        },
-        {
-            id: 'goldenrace',
-            displayName: 'Golden Race',
-            icon: 'Golden Race',
-        },
-        {
-            id: 'unikrn',
-            displayName: 'Unikrn',
-            icon: 'Golden Race',
+            icon:
+                'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952',
         },
     ],
     categories: [
         {
             id: 'football',
             displayName: 'Football',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'basketball',
             displayName: 'Basketball',
             translationKey: 'Basketball',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'tennis',
             displayName: 'Tennis',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'h-racing',
             displayName: 'Horse Racing',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'g-racing',
             displayName: 'Greyhounds',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'racing',
             displayName: 'Racing',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'games',
             displayName: 'Games',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
         {
             id: 'cybersport',
             displayName: 'Cybersport',
-            icon: 'Golden Race',
+            icon:
+                'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png',
         },
     ],
     tags: [

@@ -13,7 +13,17 @@
     height: 100%;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 980px) {
+    .sidebar {
+        width: 30%;
+    }
+
+    .games-container {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
     .container {
         display: flex;
         flex-direction: column;

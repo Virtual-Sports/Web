@@ -1,0 +1,37 @@
+.container {
+    height: 45px;
+    padding: 1% 0;
+}
+
+.authorized,
+.unauthorized {
+    float: right;
+
+    display: flex;
+    align-items: center;
+
+    margin-right: 7%;
+}
+
+.authorized button,
+.unauthorized button {
+    cursor: pointer;
+
+    padding: 5% 10%;
+
+    outline: none;
+    border: none;
+
+    border-radius: 2px;
+
+    font-weight: 600;
+    color: #000;
+}
+
+.unauthorized button {
+    margin: 0 5px;
+}
+
+.registration-button {
+    background-color: #faff4b;
+}

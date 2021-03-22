@@ -1,47 +1,41 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './Header.module.css'
 
-// Header.propTypes = {
-//     initialize: PropTypes.func,
-// }
-
 function Header() {
     const isAuthorized = false
-    // const url = window.location.pathname
+    const isMainPage = false
+    const gameName = 'Football'
+
+    const renderMainPageHeader = () =>
+        isAuthorized ? (
+            <div className={styles['authorized']}>
+                <button className={styles['logout-button']}>Выход</button>
+            </div>
+        ) : (
+            <div className={styles['unauthorized']}>
+                <button className={styles['login-button']}>Вход</button>
+                <button className={styles['registration-button']}>
+                    Регистрация
+                </button>
+            </div>
+        )
+
+    const renderGamePageHeader = () => (
+        <div className={styles['game']}>
+            <Link to={'/'}>
+                <img src="./icons/back.svg" alt="back-arrow" />
+            </Link>
+            <p>{gameName}</p>
+        </div>
+    )
 
     return (
         <div className={styles['container']}>
-            {isAuthorized ? (
-                <div className={styles['authorized']}>
-                    <button className={styles['logout-button']}>Выход</button>
-                </div>
-            ) : (
-                <div className={styles['unauthorized']}>
-                    <button className={styles['login-button']}>Вход</button>
-                    <button className={styles['registration-button']}>
-                        Регистрация
-                    </button>
-                </div>
-            )}
+            {isMainPage ? renderMainPageHeader() : renderGamePageHeader()}
         </div>
     )
 }
-
-// const mapStateToProps = state => ({
-//     providers: state.providers,
-//     categories: state.categories,
-//     tags: state.tags,
-//     games: state.games,
-// })
-//
-// const mapDispatchToProps = dispatch => ({
-//     initialize: data => dispatch(INITIALIZE(data)),
-// })
-
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(Header)
 
 export default Header

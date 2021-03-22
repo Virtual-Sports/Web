@@ -20,6 +20,8 @@
 .categories,
 .providers {
     padding: 0 10%;
+    margin-right: 15px;
+
     overflow-y: auto;
 }
 

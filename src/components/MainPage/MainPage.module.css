@@ -13,6 +13,10 @@
     height: 100%;
 }
 
+.main-content {
+    display: flex;
+}
+
 @media only screen and (max-width: 980px) {
     .sidebar {
         width: 30%;

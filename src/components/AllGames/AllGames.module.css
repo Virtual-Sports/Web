@@ -1,0 +1,10 @@
+.container {
+    width: 100%;
+    height: calc(100vh - 45px);
+    /*height: 100%;*/
+
+    overflow-y: auto;
+
+    border-top-left-radius: 12px;
+    background-color: #262626;
+}

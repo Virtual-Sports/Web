@@ -6,6 +6,7 @@ import styles from './MainPage.module.css'
 
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
+import AllGames from '../AllGames/AllGames'
 
 import { INITIALIZE } from '../../store/actions'
 import { CONFIG } from '../../config'
@@ -28,11 +29,13 @@ function MainPage({ initialize }) {
         <div className={styles['container']}>
             <Header />
 
-            <div>
+            <div className={styles['main-content']}>
                 <div className={styles['sidebar']}>
                     <Sidebar categories={categories} providers={providers} />
                 </div>
-                <div className={styles['games-container']}></div>
+                <div className={styles['games-container']}>
+                    <AllGames />
+                </div>
             </div>
         </div>
     )

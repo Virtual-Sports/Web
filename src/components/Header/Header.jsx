@@ -5,7 +5,7 @@ import styles from './Header.module.css'
 
 function Header() {
     const isAuthorized = false
-    const isMainPage = false
+    const isMainPage = true
     const gameName = 'Football'
 
     const renderMainPageHeader = () =>

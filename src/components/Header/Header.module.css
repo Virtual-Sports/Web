@@ -41,6 +41,11 @@
     background-color: #faff4b;
 }
 
+.authorized button:hover,
+.unauthorized button:hover {
+    text-decoration: underline;
+}
+
 .game {
     width: 100%;
     height: 100%;

@@ -1,25 +1,52 @@
-import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React, { useState } from 'react'
+import styles from './App.module.css'
+import LoginModal from './components/modals/LoginModal'
+import RegistrationModal from './components/modals/RegistrationModal'
+import useToken from './components/hooks/useToken'
 
 function App() {
+    const [isLoginModalVisible, setIsLoginModalVisible] = useState(false)
+    const [
+        isRegistrationModalVisible,
+        setIsRegistrationModalVisible,
+    ] = useState(false)
+    const { token, setToken } = useToken()
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <>
+            <div className={styles.App}>
+                {token ? <div>Залогинений</div> : <div>не залогинений</div>}
+
+                {!token && (
+                    <button onClick={() => setIsLoginModalVisible(true)}>
+                        Вход
+                    </button>
+                )}
+                {!token && (
+                    <button onClick={() => setIsRegistrationModalVisible(true)}>
+                        Регистрация
+                    </button>
+                )}
+                {token && <button onClick={() => setToken(null)}>Выход</button>}
+                {isLoginModalVisible && (
+                    <LoginModal
+                        setToken={setToken}
+                        setIsLoginModalVisible={setIsLoginModalVisible}
+                        setIsRegistrationModalVisible={
+                            setIsRegistrationModalVisible
+                        }
+                    />
+                )}
+                {isRegistrationModalVisible && (
+                    <RegistrationModal
+                        setToken={setToken}
+                        setIsRegistrationModalVisible={
+                            setIsRegistrationModalVisible
+                        }
+                    />
+                )}
+            </div>
+        </>
     )
 }
 

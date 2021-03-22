@@ -21,9 +21,8 @@ module.exports = {
     rules: {
         'no-case-declarations': 'error',
         'no-duplicate-imports': 'error',
-        'no-console': 'error',
         'no-unused-vars': 'error',
-        'no-alert': 'error',
+        'no-alert': 1,
         'new-cap': 'error',
         'prefer-template': 'error',
         'no-shadow': 'error',
@@ -34,6 +33,7 @@ module.exports = {
         'object-shorthand': 'error',
         'no-param-reassign': ['error', { props: true }],
         'react/no-unused-prop-types': 'error',
+        'no-console': 1,
         'spaced-comment': [
             'error',
             'always',

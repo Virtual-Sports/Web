@@ -3,6 +3,7 @@
     max-width: 250px;
     background: black; /* TODO: just to see the white title */
     margin: 6px;
+    cursor: pointer;
 }
 
 .card img {

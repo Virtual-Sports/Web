@@ -40,13 +40,13 @@
 .formWrapper {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 .formBlock {
     width: 100%;
     max-width: 800px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 170px);
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@
     border: none;
     border-bottom: 1px solid #333;
     margin: 10px 0;
-    padding: 10px;
+    padding: 10px 40px 10px 10px;
     box-sizing: border-box;
 }
 

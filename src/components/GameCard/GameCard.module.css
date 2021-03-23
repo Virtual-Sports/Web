@@ -1,0 +1,20 @@
+.card {
+    width: max-content;
+    max-width: 250px;
+    background: black; /* TODO: just to see the white title */
+    margin: 6px;
+}
+
+.card img {
+    width: 250px;
+    height: 250px;
+    border-radius: 7px;
+}
+
+.card .description {
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 0.9em;
+    margin-top: 7px;
+    color: white;
+}

@@ -1,3 +1,5 @@
+import { TOGGLE_PROVIDER, SET_CATEGORY } from '../actionConstants'
+
 const initialState = {
     selectedCategory: null, // only 1 category
     selectedProviders: [], // multiple providers
@@ -20,7 +22,7 @@ const filters = (state = initialState, action) => {
     }
     */
     switch (action.type) {
-        case 'TOGGLE_PROVIDER':
+        case TOGGLE_PROVIDER:
             return {
                 ...state,
                 selectedProviders: state.selectedProviders.includes(
@@ -31,7 +33,7 @@ const filters = (state = initialState, action) => {
                       )
                     : [...state.selectedProviders, action.payload],
             }
-        case 'SET_CATEGORY':
+        case SET_CATEGORY:
             return {
                 ...state,
                 selectedCategory: action.payload,

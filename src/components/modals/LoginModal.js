@@ -22,9 +22,9 @@ const LoginModal = ({
         password: pass,
     }
 
-    const login = async e => {
+    const login = e => {
         e.preventDefault()
-        await fetch('https://radiant-temple-07706.herokuapp.com/auth/local', {
+        fetch('https://radiant-temple-07706.herokuapp.com/auth/local', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,8 +35,8 @@ const LoginModal = ({
             .then(body => {
                 if (body.jwt) {
                     setToken(body.jwt)
-                    setIsLoginModalVisible(false)
                     setIsLoading(false)
+                    setIsLoginModalVisible(false)
                 } else {
                     setLoginError('Wrong credential')
                     setIsLoading(false)

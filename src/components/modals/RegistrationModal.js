@@ -10,13 +10,14 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
     const [isPasword2Show, setIsPasword2Show] = useState(false)
     const [isPassSame, setIsPassSame] = useState(true)
     const [registrationError, setRegistrationError] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [pass1, setPass1] = useState('')
     const [pass2, setPass2] = useState('')
 
     const formData = {
         email,
-        username: 'qw@gmail.com',
+        username: email,
         password: pass1,
     }
 
@@ -26,9 +27,9 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
         }
     }
 
-    const registration = async e => {
+    const registration = e => {
         e.preventDefault()
-        await fetch(
+        fetch(
             'https://radiant-temple-07706.herokuapp.com/auth/local/register',
             {
                 method: 'POST',
@@ -43,10 +44,11 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
             .then(body => {
                 if (body.jwt) {
                     setToken(body.jwt)
+                    setIsLoading(false)
                     setIsRegistrationModalVisible(false)
                 } else {
-                    setToken(null)
-                    setRegistrationError('Email уже занят')
+                    setIsLoading(false)
+                    setRegistrationError('Email уже используется')
                 }
             })
     }
@@ -68,7 +70,10 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
             <div className={styles.formWrapper}>
                 <form
                     className={styles.formBlock}
-                    onSubmit={e => registration(e)}
+                    onSubmit={e => {
+                        setIsLoading(false)
+                        registration(e)
+                    }}
                 >
                     <input
                         className={styles.input}
@@ -126,7 +131,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                         onClick={passAlert}
                         disabled={!email || !pass1 || !pass2 || !isPassSame}
                     >
-                        Регистрация
+                        {isLoading ? 'Загрузка...' : 'Регистрация'}
                     </button>
                 </form>
             </div>

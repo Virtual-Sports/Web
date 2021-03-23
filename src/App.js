@@ -18,16 +18,29 @@ function App() {
                 {token ? <div>Залогинений</div> : <div>не залогинений</div>}
 
                 {!token && (
-                    <button onClick={() => setIsLoginModalVisible(true)}>
+                    <button
+                        className={styles.defaultButton}
+                        onClick={() => setIsLoginModalVisible(true)}
+                    >
                         Вход
                     </button>
                 )}
                 {!token && (
-                    <button onClick={() => setIsRegistrationModalVisible(true)}>
+                    <button
+                        className={`${styles.defaultButton} ${styles.yellow}`}
+                        onClick={() => setIsRegistrationModalVisible(true)}
+                    >
                         Регистрация
                     </button>
                 )}
-                {token && <button onClick={() => setToken(null)}>Выход</button>}
+                {token && (
+                    <button
+                        className={styles.defaultButton}
+                        onClick={() => setToken(null)}
+                    >
+                        Выход
+                    </button>
+                )}
                 {isLoginModalVisible && (
                     <LoginModal
                         setToken={setToken}

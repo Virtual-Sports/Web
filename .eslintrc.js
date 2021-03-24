@@ -34,6 +34,7 @@ module.exports = {
         'no-param-reassign': ['error', { props: true }],
         'react/no-unused-prop-types': 'error',
         'no-console': 1,
+        'react-hooks/exhaustive-deps': 0,
         'spaced-comment': [
             'error',
             'always',

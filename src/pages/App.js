@@ -3,7 +3,6 @@ import styles from './App.module.css'
 import LoginModal from '../components/modals/LoginModal'
 import RegistrationModal from '../components/modals/RegistrationModal'
 import useToken from '../components/hooks/useToken'
-import { Link } from 'react-router-dom'
 
 function App() {
     const [isLoginModalVisible, setIsLoginModalVisible] = useState(false)

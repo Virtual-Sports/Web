@@ -35,6 +35,10 @@
         background-color: #262626;
     }
 
+    .main-content {
+        flex-direction: column;
+    }
+
     .sidebar,
     .games-container {
         width: 100%;

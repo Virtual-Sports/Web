@@ -42,3 +42,19 @@
     opacity: 1;
     border-bottom: 1.5px solid #fff;
 }
+
+@media only screen and (max-width: 760px) {
+    .card {
+        width: 32%;
+        height: 32%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card {
+        width: 48%;
+        height: 48%;
+
+        margin-right: 2%;
+    }
+}

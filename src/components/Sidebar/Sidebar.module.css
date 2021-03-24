@@ -89,7 +89,7 @@ hr {
     border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
 }
 
-h2 {
+.providers h2 {
     margin-bottom: 15px;
     font-size: 0.8em;
     font-weight: 400;

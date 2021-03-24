@@ -8,7 +8,6 @@ import { ReactComponent as EyeNo } from '../icons/eye_no.svg'
 const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
     const [isPaswordShow, setIsPaswordShow] = useState(false)
     const [isPasword2Show, setIsPasword2Show] = useState(false)
-    const [isPassSame, setIsPassSame] = useState(true)
     const [registrationError, setRegistrationError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState('')
@@ -20,14 +19,12 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
         password: pass1,
     }
 
-    const passAlert = () => {
-        if (pass1 !== pass2) {
-            setIsPassSame(false)
-        }
-    }
-
     const registration = e => {
         e.preventDefault()
+        if (pass1 !== pass2) {
+            setRegistrationError('Пароли должны совпадать!')
+            return
+        }
         fetch('https://virtual-sports-yi3j9.ondigitalocean.app/register', {
             method: 'POST',
             headers: {
@@ -90,7 +87,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                             placeholder="Введите пароль (мин 8 символов)"
                             onChange={e => {
                                 setPass1(e.target.value)
-                                setIsPassSame(true)
+                                setRegistrationError('')
                             }}
                             minLength={8}
                             autoComplete="new-password"
@@ -109,7 +106,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                             placeholder="Повторите пароль"
                             onChange={e => {
                                 setPass2(e.target.value)
-                                setIsPassSame(true)
+                                setRegistrationError('')
                             }}
                             minLength={8}
                             autoComplete="new-password"
@@ -123,17 +120,11 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                         </span>
                     </div>
                     <span>{registrationError}</span>
-                    {!isPassSame && <span>Пароли должны совпадать!</span>}
                     <button
-                        type={pass1 !== pass2 ? 'button' : 'submit'}
+                        type="submit"
                         className={styles.buttonLogin}
-                        onClick={passAlert}
                         disabled={
-                            !email ||
-                            !pass1 ||
-                            !pass2 ||
-                            !isPassSame ||
-                            registrationError
+                            !email || !pass1 || !pass2 || registrationError
                         }
                     >
                         {isLoading ? 'Загрузка...' : 'Регистрация'}

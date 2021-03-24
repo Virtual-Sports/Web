@@ -30,9 +30,6 @@ function AllGames() {
         }
     }, [tags, allGames])
 
-    // eslint-disable-next-line no-console
-    console.log(tagsGames)
-
     return (
         <div className={styles['container']}>
             <div className={styles['tags']}>

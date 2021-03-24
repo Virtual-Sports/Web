@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
+import { MOBILE_WIDTH, TABLET_WIDTH } from '../../../shared/constants'
 
 GamesContainer.propTypes = {
     icon: PropTypes.string,
@@ -13,9 +14,26 @@ GamesContainer.propTypes = {
 }
 
 function GamesContainer({ title, games, numberToDisplay = null, icon = null }) {
-    const gamesToDisplay = numberToDisplay
-        ? games.slice(0, numberToDisplay)
-        : games
+    const [width, setWindowWidth] = useState(0)
+
+    useEffect(() => {
+        updateScreenWidth()
+
+        window.addEventListener('resize', updateScreenWidth)
+        return () => window.removeEventListener('resize', updateScreenWidth)
+    }, [])
+
+    const updateScreenWidth = () => setWindowWidth(window.innerWidth)
+
+    const gamesToDisplay = () => {
+        if (!numberToDisplay) return games
+
+        let length = 4
+        if (width <= MOBILE_WIDTH) length = 2
+        else if (width <= TABLET_WIDTH) length = 3
+
+        return games.slice(0, length)
+    }
 
     return (
         <div className={styles['container']}>
@@ -25,7 +43,7 @@ function GamesContainer({ title, games, numberToDisplay = null, icon = null }) {
             </div>
 
             <div className={styles['games']}>
-                {gamesToDisplay.map(game => (
+                {gamesToDisplay().map(game => (
                     <GameCard
                         key={game.id}
                         id={game.id}

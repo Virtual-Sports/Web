@@ -42,7 +42,7 @@ const LoginModal = ({
                 }
             })
             .catch(err => {
-                setLoginError('Oшыбка сети')
+                setLoginError('Oшибка сети')
                 console.log(err)
             })
             .finally(setIsLoading(false))

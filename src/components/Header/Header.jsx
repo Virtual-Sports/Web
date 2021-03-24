@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import styles from './Header.module.css'
 
-function Header() {
+Header.propTypes = {
+    isMainPage: PropTypes.bool.isRequired,
+}
+
+function Header({ isMainPage }) {
     const isAuthorized = false
-    const isMainPage = true
     const gameName = 'Football'
 
     const renderMainPageHeader = () => (
@@ -36,7 +40,7 @@ function Header() {
     const renderGamePageHeader = () => (
         <div className={styles['game']}>
             <Link to={'/'}>
-                <img src="./icons/back.svg" alt="back-arrow" />
+                <img src="../icons/back.svg" alt="back-arrow" />
             </Link>
             <p>{gameName}</p>
         </div>

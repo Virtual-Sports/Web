@@ -27,7 +27,7 @@ function MainPage({ initialize }) {
 
     return (
         <div className={styles['container']}>
-            <Header />
+            <Header isMainPage={true} />
 
             <div className={styles['main-content']}>
                 <div className={styles['sidebar']}>

@@ -40,6 +40,7 @@ function AllGames() {
                     <div key={item.tag.id}>
                         <GamesContainer
                             key={item.tag.id}
+                            numberToDisplay={4}
                             title={item.tag.name}
                             icon={item.icon}
                             games={item.games}

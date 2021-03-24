@@ -8,19 +8,30 @@ function Header() {
     const isMainPage = true
     const gameName = 'Football'
 
-    const renderMainPageHeader = () =>
-        isAuthorized ? (
-            <div className={styles['authorized']}>
-                <button className={styles['logout-button']}>Выход</button>
-            </div>
-        ) : (
-            <div className={styles['unauthorized']}>
-                <button className={styles['login-button']}>Вход</button>
-                <button className={styles['registration-button']}>
-                    Регистрация
-                </button>
-            </div>
-        )
+    const renderMainPageHeader = () => (
+        <div className={styles['main-page-container']}>
+            <Link to={'/dice'}>
+                <img
+                    className={styles['dice']}
+                    src="./icons/dice.svg"
+                    alt="dice-icon"
+                />
+            </Link>
+
+            {isAuthorized ? (
+                <div className={styles['authorized']}>
+                    <button className={styles['logout-button']}>Выход</button>
+                </div>
+            ) : (
+                <div className={styles['unauthorized']}>
+                    <button className={styles['login-button']}>Вход</button>
+                    <button className={styles['registration-button']}>
+                        Регистрация
+                    </button>
+                </div>
+            )}
+        </div>
+    )
 
     const renderGamePageHeader = () => (
         <div className={styles['game']}>

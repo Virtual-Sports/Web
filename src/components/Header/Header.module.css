@@ -6,6 +6,19 @@
     align-items: center;
 }
 
+.main-page-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 15px;
+}
+
+.main-page-container img {
+    height: 25px;
+}
+
 .authorized,
 .unauthorized {
     float: right;
@@ -14,8 +27,6 @@
 
     display: flex;
     align-items: center;
-
-    margin-right: 15px;
 }
 
 .authorized button,
@@ -41,6 +52,15 @@
     background-color: #faff4b;
 }
 
+.dice {
+    opacity: 0.8;
+}
+
+.dice:hover {
+    opacity: 1;
+}
+
+.dice:hover,
 .authorized button:hover,
 .unauthorized button:hover {
     text-decoration: underline;

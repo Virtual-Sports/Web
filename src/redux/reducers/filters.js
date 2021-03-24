@@ -1,4 +1,4 @@
-import { TOGGLE_PROVIDER, SET_CATEGORY } from '../actionConstants'
+import { TOGGLE_PROVIDER, SET_CATEGORY } from '../actions/сonstants'
 
 const initialState = {
     selectedCategory: null, // only 1 category
@@ -6,21 +6,6 @@ const initialState = {
 }
 
 const filters = (state = initialState, action) => {
-    /* 
-    if (action.type === 'ADD_PROVIDER') {
-        return {
-            ...state,
-            selectedProviders: [...selectedProviders, action.payload],
-        }
-    } else if (action.type === 'REMOVE_PROVIDER') {
-        return {
-            ...state,
-            selectedProviders: selectedProviders.filter(
-                providerId => providerId !== action.payload
-            ),
-        }
-    }
-    */
     switch (action.type) {
         case TOGGLE_PROVIDER:
             return {

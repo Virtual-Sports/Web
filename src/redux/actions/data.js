@@ -1,5 +1,5 @@
 import { response } from '../response' // TODO: remove on production
-import { SET_LOADED, SET_DATA } from '../actionConstants'
+import { SET_LOADED, SET_DATA } from './сonstants'
 
 // TODO: mb create action for each subarray
 export const setLoaded = status => ({

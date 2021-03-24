@@ -1,7 +1,6 @@
-import { SET_LOADED, SET_DATA } from '../actionConstants'
+import { SET_LOADED, SET_DATA } from '../actions/сonstants'
 
 const initialState = {
-    // TODO: mb create action for each subarray
     data: {
         providers: [],
         categories: [],

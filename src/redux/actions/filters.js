@@ -1,4 +1,4 @@
-import { TOGGLE_PROVIDER, SET_CATEGORY } from '../actionConstants'
+import { TOGGLE_PROVIDER, SET_CATEGORY } from './сonstants'
 
 export const toggleProvider = providerId => ({
     type: TOGGLE_PROVIDER,

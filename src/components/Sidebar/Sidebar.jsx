@@ -1,66 +1,56 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 
 import styles from './Sidebar.module.css'
 
 import { MOBILE_WIDTH } from '../../shared/constants'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-    CHANGE_CATEGORY_SELECTANCE,
-    CHANGE_PROVIDER_SELECTANCE,
-} from '../../store/actions'
+    areFiltersVisible,
+    setCategory,
+    toggleProvider,
+} from '../../redux/actions/filters'
 
-Sidebar.propTypes = {
-    categories: PropTypes.array,
-    providers: PropTypes.array,
-    changeProvidersSelectance: PropTypes.func,
-    changeCategorySelectance: PropTypes.func,
-}
+function Sidebar() {
+    const dispatch = useDispatch()
 
-function Sidebar({
-    categories,
-    providers,
-    changeProvidersSelectance,
-    changeCategorySelectance,
-}) {
-    const [width, setWindowWidth] = useState(0)
-    const [filtersVisibility, setFiltersVisibility] = useState(false)
-    const [anySelected, setAnySelected] = useState(false)
     const [recentlySelected, setRecentlySelected] = useState([])
 
-    useEffect(() => {
-        updateScreenWidth()
+    const filtersVisibility = useSelector(
+        state => state.filters.areFiltersVisible
+    )
+    const width = useSelector(state => state.data.width)
+    const categories = useSelector(state => state.data.data.categories)
+    const providers = useSelector(state => state.data.data.providers)
+    const selectedCategory = useSelector(
+        state => state.filters.selectedCategory
+    )
+    const selectedProviders = useSelector(
+        state => state.filters.selectedProviders
+    )
 
-        window.addEventListener('resize', updateScreenWidth)
-        return () => window.removeEventListener('resize', updateScreenWidth)
-    }, [])
-
-    const updateScreenWidth = () => setWindowWidth(window.innerWidth)
+    const changeFiltersVisibility = () =>
+        dispatch(areFiltersVisible(!filtersVisibility))
 
     const select = (id, isCategory) => {
-        setAnySelected(true)
+        isCategory ? dispatch(setCategory(id)) : dispatch(toggleProvider(id))
 
-        isCategory
-            ? changeCategorySelectance(id)
-            : changeProvidersSelectance(id)
-
-        if (width < MOBILE_WIDTH)
+        if (width === MOBILE_WIDTH)
             setRecentlySelected([...recentlySelected, { id, isCategory }])
     }
 
     const cancel = () => {
         recentlySelected.map(({ id, isCategory }) => {
             isCategory
-                ? changeCategorySelectance(id)
-                : changeProvidersSelectance(id)
+                ? dispatch(setCategory(null))
+                : dispatch(toggleProvider(id))
         })
 
-        setFiltersVisibility(!filtersVisibility)
+        changeFiltersVisibility()
         setRecentlySelected([])
     }
 
     const applyFilters = () => {
-        setFiltersVisibility(!filtersVisibility)
+        changeFiltersVisibility()
         setRecentlySelected([])
     }
 
@@ -69,7 +59,7 @@ function Sidebar({
             <div
                 key={category.id}
                 className={`${styles['category']} ${
-                    category.isSelected ? styles['selected'] : ''
+                    category.id === selectedCategory ? styles['selected'] : ''
                 }`}
                 onClick={select.bind(this, category.id, true)}
             >
@@ -83,7 +73,9 @@ function Sidebar({
             <div
                 key={provider.id}
                 className={`${styles['provider']} ${
-                    provider.isSelected ? styles['selected'] : ''
+                    selectedProviders.includes(provider.id)
+                        ? styles['selected']
+                        : ''
                 }`}
                 onClick={select.bind(this, provider.id, false)}
             >
@@ -95,7 +87,7 @@ function Sidebar({
         return !filtersVisibility ? (
             <button
                 className={styles['filters-closed']}
-                onClick={() => setFiltersVisibility(!filtersVisibility)}
+                onClick={changeFiltersVisibility}
             >
                 <img src="./icons/settings.svg" alt="filters-icon" />
                 <span>Фильтры</span>
@@ -117,8 +109,8 @@ function Sidebar({
     }
 
     const renderApplyFilterButton = () =>
-        width < MOBILE_WIDTH &&
-        anySelected && (
+        width === MOBILE_WIDTH &&
+        (selectedCategory || selectedProviders.length !== 0) && (
             <button
                 className={styles['apply-filters-button']}
                 onClick={applyFilters}
@@ -148,21 +140,13 @@ function Sidebar({
 
     return (
         <div className={styles['container']}>
-            {width < MOBILE_WIDTH && handleFilterButton()}
+            {width === MOBILE_WIDTH && handleFilterButton()}
 
-            {((width < MOBILE_WIDTH && filtersVisibility) ||
-                width >= MOBILE_WIDTH) &&
+            {((width === MOBILE_WIDTH && filtersVisibility) ||
+                width > MOBILE_WIDTH) &&
                 renderOpenedFilters()}
         </div>
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    changeCategorySelectance: id => dispatch(CHANGE_CATEGORY_SELECTANCE(id)),
-    changeProvidersSelectance: id => dispatch(CHANGE_PROVIDER_SELECTANCE(id)),
-})
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(Sidebar)
+export default Sidebar

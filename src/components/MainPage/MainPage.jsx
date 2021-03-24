@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './MainPage.module.css'
 
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
 import AllGames from '../AllGames/AllGames'
+import { fetchData } from '../../redux/actions/data'
 
-import { INITIALIZE } from '../../store/actions'
-import { CONFIG } from '../../config'
+function MainPage() {
+    const dispatch = useDispatch()
 
-MainPage.propTypes = {
-    initialize: PropTypes.func,
-}
-
-function MainPage({ initialize }) {
-    const categories = useSelector(state => state.categories)
-    const providers = useSelector(state => state.providers)
-    // const tags = useSelector(state => state.tags)
-    // const games = useSelector(state => state.games)
+    const filtersVisibility = useSelector(
+        state => state.filters.areFiltersVisible
+    )
+    const categories = useSelector(state => state.data.categories)
+    const providers = useSelector(state => state.data.providers)
 
     useEffect(() => {
-        initialize(CONFIG)
+        dispatch(fetchData())
     }, [])
 
     return (
@@ -33,26 +29,17 @@ function MainPage({ initialize }) {
                 <div className={styles['sidebar']}>
                     <Sidebar categories={categories} providers={providers} />
                 </div>
-                <div className={styles['games-container']}>
-                    <AllGames />
-                </div>
+
+                {!filtersVisibility ? (
+                    <div className={styles['games-container']}>
+                        <AllGames />
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    providers: state.providers,
-    categories: state.categories,
-    tags: state.tags,
-    games: state.games,
-})
-
-const mapDispatchToProps = dispatch => ({
-    initialize: data => dispatch(INITIALIZE(data)),
-})
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MainPage)
+export default MainPage

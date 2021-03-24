@@ -16,8 +16,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
     const [pass2, setPass2] = useState('')
 
     const formData = {
-        email,
-        username: email,
+        login: email,
         password: pass1,
     }
 
@@ -29,28 +28,28 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
 
     const registration = e => {
         e.preventDefault()
-        fetch(
-            'https://radiant-temple-07706.herokuapp.com/auth/local/register',
-            {
-                method: 'POST',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            }
-        )
-            .then(data => data.json())
-            .then(body => {
-                if (body.jwt) {
-                    setToken(body.jwt)
-                    setIsLoading(false)
+        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(async response => {
+                if (response.status === 200) {
+                    const resParsed = await response.text()
+                    setToken(resParsed)
                     setIsRegistrationModalVisible(false)
-                } else {
-                    setIsLoading(false)
-                    setRegistrationError('Email уже используется')
+                } else if (response.status === 409) {
+                    const resParsed = await response.text()
+                    setRegistrationError(resParsed)
                 }
             })
+            .catch(err => {
+                setRegistrationError('Oшыбка сети')
+                console.log(err)
+            })
+            .finally(setIsLoading(false))
     }
 
     return (
@@ -129,7 +128,13 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                         type={pass1 !== pass2 ? 'button' : 'submit'}
                         className={styles.buttonLogin}
                         onClick={passAlert}
-                        disabled={!email || !pass1 || !pass2 || !isPassSame}
+                        disabled={
+                            !email ||
+                            !pass1 ||
+                            !pass2 ||
+                            !isPassSame ||
+                            registrationError
+                        }
                     >
                         {isLoading ? 'Загрузка...' : 'Регистрация'}
                     </button>

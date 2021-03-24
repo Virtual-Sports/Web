@@ -18,30 +18,34 @@ const LoginModal = ({
     const [pass, setPass] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const formData = {
-        identifier: email,
+        login: email,
         password: pass,
     }
 
     const login = e => {
         e.preventDefault()
-        fetch('https://radiant-temple-07706.herokuapp.com/auth/local', {
+        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData),
         })
-            .then(data => data.json())
-            .then(body => {
-                if (body.jwt) {
-                    setToken(body.jwt)
-                    setIsLoading(false)
+            .then(async response => {
+                if (response.status === 200) {
+                    const resParsed = await response.text()
+                    setToken(resParsed)
                     setIsLoginModalVisible(false)
-                } else {
-                    setLoginError('Wrong credential')
-                    setIsLoading(false)
+                } else if (response.status === 404) {
+                    const resParsed = await response.text()
+                    setLoginError(resParsed)
                 }
             })
+            .catch(err => {
+                setLoginError('Oшыбка сети')
+                console.log(err)
+            })
+            .finally(setIsLoading(false))
     }
     return (
         <div className={styles.wrapper}>
@@ -98,7 +102,7 @@ const LoginModal = ({
                     <button
                         type="submit"
                         className={styles.buttonLogin}
-                        disabled={!email || !pass || isLoading}
+                        disabled={!email || !pass || isLoading || loginError}
                     >
                         {isLoading ? 'Загрузка...' : 'Вход'}
                     </button>

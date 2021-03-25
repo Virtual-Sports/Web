@@ -6,5 +6,6 @@
     "trailingComma": "es5",
     "ecmaVersion": 11,
     "sourceType": "module",
+    "arrowParens": "avoid",
     "formatOnSave": true
 }

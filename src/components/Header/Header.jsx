@@ -6,10 +6,19 @@ import styles from './Header.module.css'
 
 Header.propTypes = {
     isMainPage: PropTypes.bool.isRequired,
+    token: PropTypes.string,
+    setToken: PropTypes.func,
+    setIsLoginModalVisible: PropTypes.func,
+    setIsRegistrationModalVisible: PropTypes.func,
 }
 
-function Header({ isMainPage }) {
-    const isAuthorized = false
+function Header({
+    isMainPage,
+    token,
+    setToken,
+    setIsLoginModalVisible,
+    setIsRegistrationModalVisible,
+}) {
     const gameName = 'Football'
 
     const renderMainPageHeader = () => (
@@ -21,15 +30,28 @@ function Header({ isMainPage }) {
                     alt="dice-icon"
                 />
             </Link>
-
-            {isAuthorized ? (
+            {token ? (
                 <div className={styles['authorized']}>
-                    <button className={styles['logout-button']}>Выход</button>
+                    <button
+                        className={styles['logout-button']}
+                        onClick={() => setToken(null)}
+                    >
+                        Выход
+                    </button>
                 </div>
             ) : (
                 <div className={styles['unauthorized']}>
-                    <button className={styles['login-button']}>Вход</button>
-                    <button className={styles['registration-button']}>
+                    <button
+                        className={styles['login-button']}
+                        onClick={() => setIsLoginModalVisible(true)}
+                    >
+                        Вход
+                    </button>
+
+                    <button
+                        className={styles['registration-button']}
+                        onClick={() => setIsRegistrationModalVisible(true)}
+                    >
                         Регистрация
                     </button>
                 </div>

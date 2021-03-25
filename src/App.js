@@ -34,9 +34,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={MainPage} />
                     <Route path="/game/:id" component={GamePage} />
-                    <Route path="/dice">
-                        <Dice />
-                    </Route>
+                    <Route path="/dice" component={Dice} />
                 </Switch>
             </div>
         </Router>

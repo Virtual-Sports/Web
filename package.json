@@ -8,6 +8,7 @@
         "@testing-library/user-event": "^12.1.10",
         "babel-eslint": "^10.1.0",
         "eslint": "^7.22.0",
+        "moment": "^2.29.1",
         "npm-merge-driver": "^2.3.6",
         "prop-types": "^15.7.2",
         "react": "^17.0.1",

@@ -6,6 +6,7 @@ import './App.css'
 
 import MainPage from './components/MainPage/MainPage'
 import GamePage from './components/GamePage/GamePage'
+import Dice from './components/dice-game/Dice'
 import { setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 
@@ -33,6 +34,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={MainPage} />
                     <Route path="/game/:id" component={GamePage} />
+                    <Route path="/dice" component={Dice} />
                 </Switch>
             </div>
         </Router>

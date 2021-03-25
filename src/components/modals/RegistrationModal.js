@@ -90,6 +90,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                                 setRegistrationError('')
                             }}
                             minLength={8}
+                            maxLength={20}
                             autoComplete="new-password"
                             type={isPaswordShow ? 'text' : 'password'}
                         />
@@ -109,6 +110,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                                 setRegistrationError('')
                             }}
                             minLength={8}
+                            maxLength={20}
                             autoComplete="new-password"
                             type={isPasword2Show ? 'text' : 'password'}
                         />
@@ -119,7 +121,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                             {isPasword2Show ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
-                    <span>{registrationError}</span>
+                    <span className={styles.error}>{registrationError}</span>
                     <button
                         type="submit"
                         className={styles.buttonLogin}

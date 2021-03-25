@@ -88,6 +88,7 @@ const LoginModal = ({
                                 setLoginError('')
                             }}
                             minLength={8}
+                            maxLength={20}
                             type={isPaswordShow ? 'text' : 'password'}
                             autoComplete="current-password"
                         />
@@ -98,7 +99,7 @@ const LoginModal = ({
                             {isPaswordShow ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
-                    <span>{loginError}</span>
+                    <span className={styles.error}>{loginError}</span>
                     <button
                         type="submit"
                         className={styles.buttonLogin}

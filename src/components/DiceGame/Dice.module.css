@@ -5,7 +5,6 @@
     align-items: center;
     height: 100vh;
     width: 100%;
-    background: url(../../img/wooden-plank-textured-background-material.jpg);
     background-size: cover;
 }
 .header {
@@ -22,9 +21,14 @@
 .header a {
     color: #fff;
 }
-
+.header h3 {
+    font-size: 24px;
+}
+.arrow {
+    height: 30px;
+}
 .select {
-    width: 310px;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,7 +47,13 @@
 .selectRow {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: space-around;
     margin: 10px 0;
+}
+.selectRow > div {
+    display: flex;
+    align-items: center;
 }
 .selectRow input {
     width: 20px;
@@ -60,6 +70,7 @@
     width: 200px;
     height: 200px;
     margin: 20px auto;
+    fill: #feff00;
 }
 @keyframes spin {
     from {
@@ -102,6 +113,10 @@
     bottom: 0;
     right: 0;
     font-size: 16px;
+    text-align: center;
+}
+.history h1 {
+    margin: 10px;
 }
 .history button {
     position: absolute;
@@ -111,11 +126,74 @@
 .historyList {
     height: calc(100vh - 65px);
     overflow: scroll;
-    padding-left: 35px;
+    padding: 0 15px 0 35px;
     margin-bottom: 5px;
     width: 100%;
     box-sizing: border-box;
 }
-.historyListItem p {
+.historyListItem div {
+    display: flex;
+    justify-content: space-between;
     text-align: center;
+    min-width: 270px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.historyListItem div > span {
+    margin: 5px 0;
+}
+
+.popUp {
+    position: absolute;
+    background-color: #fff;
+    bottom: 5px;
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 250px;
+    text-align: center;
+    border-radius: 10px;
+}
+.popUp h3 {
+    color: #000;
+    font-size: 20px;
+    margin: 15px;
+    line-height: 26px;
+}
+.popUp h3 b {
+    font-size: 26px;
+    text-transform: uppercase;
+}
+.login {
+    color: #000;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    font-size: 16px;
+    padding: 2px 5px;
+    background-color: yellow;
+    line-height: 17px;
+}
+@media (min-width: 1024px) {
+    .select {
+        width: 50%;
+    }
+    .selectRow input {
+        margin: 2px 5px;
+    }
 }

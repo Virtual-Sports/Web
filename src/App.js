@@ -6,7 +6,7 @@ import './App.css'
 
 import MainPage from './components/MainPage/MainPage'
 import GamePage from './components/GamePage/GamePage'
-import Dice from './components/dice-game/Dice'
+import Dice from './components/DiceGame/Dice'
 import { setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 
@@ -17,8 +17,8 @@ function App() {
         const currentWidth = window.innerWidth
 
         if (currentWidth < MOBILE_WIDTH) dispatch(setWidth(MOBILE_WIDTH))
-        else if (currentWidth < TABLET_WIDTH) dispatch(setWidth(TABLET_WIDTH))
-        else if (currentWidth < DESKTOP_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
+        else if (currentWidth <= TABLET_WIDTH) dispatch(setWidth(TABLET_WIDTH))
+        else if (currentWidth > TABLET_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
     }
 
     useEffect(() => {

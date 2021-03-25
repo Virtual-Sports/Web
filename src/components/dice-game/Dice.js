@@ -21,7 +21,7 @@ function Dice() {
     const [historyData, setHistoryData] = useState([])
     const [result, setResult] = useState(null)
 
-    const token = useToken()
+    const { token } = useToken()
 
     const platform = window.navigator.userAgentData.mobile
         ? WEB_MOBILE

@@ -12,7 +12,6 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:react-hooks/recommended',
     ],
-
     settings: {
         react: {
             version: 'detect',
@@ -23,15 +22,15 @@ module.exports = {
         'no-duplicate-imports': 'error',
         'no-unused-vars': 'error',
         'no-alert': 1,
-        'new-cap': 'error',
+        'new-cap': 0,
         'prefer-template': 'error',
         'no-shadow': 'error',
-        'no-underscore-dangle': 'error',
+        'no-underscore-dangle': 0,
         'prefer-rest-params': 'error',
         'consistent-return': 'error',
         camelcase: 'error',
         'object-shorthand': 'error',
-        'no-param-reassign': ['error', { props: true }],
+        'no-param-reassign': ['error', { props: false }],
         'react/no-unused-prop-types': 'error',
         'no-console': 1,
         'react-hooks/exhaustive-deps': 0,
@@ -46,6 +45,12 @@ module.exports = {
                     exceptions: ['*'],
                     balanced: true,
                 },
+            },
+        ],
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto',
             },
         ],
     },

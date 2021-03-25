@@ -1,0 +1,46 @@
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100%;
+}
+
+.games-container {
+    width: 80%;
+    height: 100%;
+}
+
+.main-content {
+    display: flex;
+}
+
+@media only screen and (max-width: 980px) {
+    .sidebar {
+        width: 30%;
+    }
+
+    .games-container {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        background-color: #262626;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .sidebar,
+    .games-container {
+        width: 100%;
+    }
+}

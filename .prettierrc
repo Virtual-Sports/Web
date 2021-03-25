@@ -1,10 +1,11 @@
 {
-    "endOfLine": "lf",
+    "endOfLine": "auto",
     "semi": false,
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "es5",
     "ecmaVersion": 11,
     "sourceType": "module",
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "formatOnSave": true
 }

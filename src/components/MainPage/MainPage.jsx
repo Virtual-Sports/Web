@@ -7,15 +7,14 @@ import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
 import AllGames from '../AllGames/AllGames'
 import { fetchData } from '../../redux/actions/data'
+import { mainPageSelector } from './MainPage.selector.js'
 
 function MainPage() {
     const dispatch = useDispatch()
 
-    const filtersVisibility = useSelector(
-        state => state.filters.areFiltersVisible
+    const { filtersVisibility, categories, providers } = useSelector(
+        mainPageSelector
     )
-    const categories = useSelector(state => state.data.categories)
-    const providers = useSelector(state => state.data.providers)
 
     useEffect(() => {
         dispatch(fetchData())

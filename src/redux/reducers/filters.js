@@ -1,6 +1,6 @@
 import {
-    ARE_FILTERS_VISIBLE,
     SET_CATEGORY,
+    SET_FILTERS_VISIBILITY,
     TOGGLE_PROVIDER,
 } from '../actions/constants'
 
@@ -12,7 +12,7 @@ const initialState = {
 
 const filters = (state = initialState, action) => {
     switch (action.type) {
-        case ARE_FILTERS_VISIBLE:
+        case SET_FILTERS_VISIBILITY:
             return {
                 ...state,
                 areFiltersVisible: action.payload,

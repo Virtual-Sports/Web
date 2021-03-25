@@ -1,111 +1,69 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import styles from './Sidebar.module.css'
 
 import { MOBILE_WIDTH } from '../../shared/constants'
 import { useDispatch, useSelector } from 'react-redux'
+
 import {
-    areFiltersVisible,
+    setFiltersVisibility,
     setCategory,
     toggleProvider,
 } from '../../redux/actions/filters'
 
+import Categories from './Categories/Categories'
+import Providers from './Providers/Providers'
+import FilterButton from './FilterButton/FilterButton'
+import { sidebarSelector } from './Sidebar.selector.js'
+
 function Sidebar() {
     const dispatch = useDispatch()
 
-    const [recentlySelected, setRecentlySelected] = useState([])
+    const [lastSelected, setLastSelected] = useState({
+        category: null,
+        providers: [],
+    })
 
-    const filtersVisibility = useSelector(
-        state => state.filters.areFiltersVisible
-    )
-    const width = useSelector(state => state.data.width)
-    const categories = useSelector(state => state.data.data.categories)
-    const providers = useSelector(state => state.data.data.providers)
-    const selectedCategory = useSelector(
-        state => state.filters.selectedCategory
-    )
-    const selectedProviders = useSelector(
-        state => state.filters.selectedProviders
-    )
+    const {
+        width,
+        filtersVisibility,
+        selectedCategory,
+        selectedProviders,
+    } = useSelector(sidebarSelector)
 
     const changeFiltersVisibility = () =>
-        dispatch(areFiltersVisible(!filtersVisibility))
+        dispatch(setFiltersVisibility(!filtersVisibility))
 
-    const select = (id, isCategory) => {
+    const select = (id, isCategory) =>
         isCategory ? dispatch(setCategory(id)) : dispatch(toggleProvider(id))
 
-        if (width === MOBILE_WIDTH)
-            setRecentlySelected([...recentlySelected, { id, isCategory }])
+    const onSelectHandler = useCallback(
+        (id, isCategory) => e => {
+            e.preventDefault()
+
+            select(id, isCategory)
+        },
+        []
+    )
+
+    const resetLastSelected = () =>
+        setLastSelected({
+            category: null,
+            providers: [],
+        })
+
+    const applyFilters = () => {
+        resetLastSelected()
+        changeFiltersVisibility()
     }
 
-    const cancel = () => {
-        recentlySelected.map(({ id, isCategory }) => {
-            isCategory
-                ? dispatch(setCategory(null))
-                : dispatch(toggleProvider(id))
+    const onFilterButtonClick = () => {
+        setLastSelected({
+            category: selectedCategory,
+            providers: selectedProviders,
         })
 
         changeFiltersVisibility()
-        setRecentlySelected([])
-    }
-
-    const applyFilters = () => {
-        changeFiltersVisibility()
-        setRecentlySelected([])
-    }
-
-    const renderAllCategories = () =>
-        categories.map(category => (
-            <div
-                key={category.id}
-                className={`${styles['category']} ${
-                    category.id === selectedCategory ? styles['selected'] : ''
-                }`}
-                onClick={select.bind(this, category.id, true)}
-            >
-                <img src={category.icon} alt="category-icon" />
-                <p>{category.displayName}</p>
-            </div>
-        ))
-
-    const renderAllProviders = () =>
-        providers.map(provider => (
-            <div
-                key={provider.id}
-                className={`${styles['provider']} ${
-                    selectedProviders.includes(provider.id)
-                        ? styles['selected']
-                        : ''
-                }`}
-                onClick={select.bind(this, provider.id, false)}
-            >
-                <img src={provider.icon} alt="provider-icon" />
-            </div>
-        ))
-
-    const handleFilterButton = () => {
-        return !filtersVisibility ? (
-            <button
-                className={styles['filters-closed']}
-                onClick={changeFiltersVisibility}
-            >
-                <img src="./icons/settings.svg" alt="filters-icon" />
-                <span>Фильтры</span>
-            </button>
-        ) : (
-            <div className={styles['filters-opened']}>
-                <div>
-                    <span>Фильтры</span>
-                    <img
-                        src="./icons/cancel.svg"
-                        onClick={cancel}
-                        alt="cancel-icon"
-                    />
-                </div>
-
-                <hr />
-            </div>
-        )
     }
 
     const renderApplyFilterButton = () =>
@@ -119,32 +77,39 @@ function Sidebar() {
             </button>
         )
 
-    const renderOpenedFilters = () => {
-        return (
-            <>
-                <div className={styles['categories']}>
-                    {renderAllCategories()}
-                </div>
-
-                <hr />
-
-                <div className={styles['providers']}>
-                    <h2>Провайдеры</h2>
-                    {renderAllProviders()}
-                </div>
-
-                {renderApplyFilterButton()}
-            </>
-        )
-    }
-
     return (
         <div className={styles['container']}>
-            {width === MOBILE_WIDTH && handleFilterButton()}
+            {width === MOBILE_WIDTH && (
+                <FilterButton
+                    onFilterButtonClick={onFilterButtonClick}
+                    lastSelected={lastSelected}
+                    resetLastSelected={resetLastSelected}
+                />
+            )}
 
             {((width === MOBILE_WIDTH && filtersVisibility) ||
-                width > MOBILE_WIDTH) &&
-                renderOpenedFilters()}
+                width > MOBILE_WIDTH) && (
+                <>
+                    <div className={styles['categories']}>
+                        <Categories
+                            selectedCategory={selectedCategory}
+                            onSelectHandler={onSelectHandler}
+                        />
+                    </div>
+
+                    <hr />
+
+                    <div className={styles['providers']}>
+                        <h2>Провайдеры</h2>
+                        <Providers
+                            selectedProviders={selectedProviders}
+                            onSelectHandler={onSelectHandler}
+                        />
+                    </div>
+
+                    {renderApplyFilterButton()}
+                </>
+            )}
         </div>
     )
 }

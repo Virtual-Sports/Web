@@ -1,7 +1,11 @@
-import { ARE_FILTERS_VISIBLE, SET_CATEGORY, TOGGLE_PROVIDER } from './constants'
+import {
+    SET_FILTERS_VISIBILITY,
+    SET_CATEGORY,
+    TOGGLE_PROVIDER,
+} from './constants'
 
-export const areFiltersVisible = value => ({
-    type: ARE_FILTERS_VISIBLE,
+export const setFiltersVisibility = value => ({
+    type: SET_FILTERS_VISIBILITY,
     payload: value,
 })
 

@@ -15,10 +15,14 @@ const initialState = {
 const data = (state = initialState, action) => {
     switch (action.type) {
         case SET_WIDTH:
-            return {
-                ...state,
-                width: action.payload,
-            }
+            return state.width === action.payload
+                ? {
+                      ...state,
+                  }
+                : {
+                      ...state,
+                      width: action.payload,
+                  }
 
         case SET_DATA:
             return {

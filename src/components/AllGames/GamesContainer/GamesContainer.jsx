@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
 import { MOBILE_WIDTH, TABLET_WIDTH } from '../../../shared/constants'
+import { useSelector } from 'react-redux'
+import { allGamesSelector } from '../AllGames.selector.js'
 
 GamesContainer.propTypes = {
     icon: PropTypes.string,
@@ -14,16 +16,7 @@ GamesContainer.propTypes = {
 }
 
 function GamesContainer({ title, games, numberToDisplay = null, icon = null }) {
-    const [width, setWindowWidth] = useState(0)
-
-    useEffect(() => {
-        updateScreenWidth()
-
-        window.addEventListener('resize', updateScreenWidth)
-        return () => window.removeEventListener('resize', updateScreenWidth)
-    }, [])
-
-    const updateScreenWidth = () => setWindowWidth(window.innerWidth)
+    const { width } = useSelector(allGamesSelector)
 
     const gamesToDisplay = () => {
         if (!numberToDisplay) return games
@@ -47,7 +40,7 @@ function GamesContainer({ title, games, numberToDisplay = null, icon = null }) {
                     <GameCard
                         key={game.id}
                         id={game.id}
-                        title={game.name}
+                        title={game.displayName}
                         img={game.image}
                     />
                 ))}

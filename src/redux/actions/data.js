@@ -1,5 +1,5 @@
-import { response } from '../response' // TODO: remove on production
-import { SET_LOADED, SET_DATA } from './сonstants'
+import { response } from '../response'
+import { SET_DATA, SET_LOADED, SET_WIDTH } from './constants' // TODO: remove on production
 
 // TODO: mb create action for each subarray
 export const setLoaded = status => ({
@@ -11,6 +11,13 @@ export const setData = items => ({
     type: SET_DATA,
     payload: items,
 })
+
+export const setWidth = width => ({
+    type: SET_WIDTH,
+    payload: width,
+})
+
+// https://virtual-sports-yi3j9.ondigitalocean.app/
 
 export const fetchData = () => dispatch => {
     dispatch(setLoaded(false))

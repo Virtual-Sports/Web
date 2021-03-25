@@ -1,25 +1,45 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
 import './App.css'
 
+import MainPage from './components/MainPage/MainPage'
+import GamePage from './components/GamePage/GamePage'
+import Dice from './components/dice-game/Dice'
+import { setWidth } from './redux/actions/data'
+import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
+
 function App() {
+    const dispatch = useDispatch()
+
+    const updateScreenWidth = () => {
+        const currentWidth = window.innerWidth
+
+        if (currentWidth < MOBILE_WIDTH) dispatch(setWidth(MOBILE_WIDTH))
+        else if (currentWidth < TABLET_WIDTH) dispatch(setWidth(TABLET_WIDTH))
+        else if (currentWidth < DESKTOP_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
+    }
+
+    useEffect(() => {
+        updateScreenWidth()
+
+        window.addEventListener('resize', updateScreenWidth)
+        return () => window.removeEventListener('resize', updateScreenWidth)
+    }, [])
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Router>
+            <div className="App">
+                <Switch>
+                    <Route path="/" exact component={MainPage} />
+                    <Route path="/game/:id" component={GamePage} />
+                    <Route path="/dice">
+                        <Dice />
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     )
 }
 

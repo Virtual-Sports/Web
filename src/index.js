@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import './reset.css'
 import './index.css'
-import App from './pages/App'
-import Dice from './pages/Dice'
+
+import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 
@@ -12,16 +13,7 @@ import store from './redux/store'
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Router>
-                <Switch>
-                    <Route path="/dice">
-                        <Dice />
-                    </Route>
-                    <Route exact path="/">
-                        <App />
-                    </Route>
-                </Switch>
-            </Router>
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

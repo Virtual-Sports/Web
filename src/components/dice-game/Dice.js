@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './Dice.module.css'
-import { ReactComponent as Dice1 } from '../components/icons/dice1.svg'
-import { ReactComponent as Dice2 } from '../components/icons/dice2.svg'
-import { ReactComponent as Dice3 } from '../components/icons/dice3.svg'
-import { ReactComponent as Dice4 } from '../components/icons/dice4.svg'
-import { ReactComponent as Dice5 } from '../components/icons/dice5.svg'
-import { ReactComponent as Dice6 } from '../components/icons/dice6.svg'
-import { useToken } from '../components/hooks/useToken'
 import moment from 'moment'
-import DiceImg from '../img/dice.png'
+
+import { ReactComponent as Dice1 } from '../icons/dice1.svg'
+import { ReactComponent as Dice2 } from '../icons/dice2.svg'
+import { ReactComponent as Dice3 } from '../icons/dice3.svg'
+import { ReactComponent as Dice4 } from '../icons/dice4.svg'
+import { ReactComponent as Dice5 } from '../icons/dice5.svg'
+import { ReactComponent as Dice6 } from '../icons/dice6.svg'
+import useToken from '../hooks/useToken'
+import DiceImg from '../../img/dice.png'
+import { WEB_MOBILE, WEB_DESKTOP } from '../../shared/constants'
+
+import styles from './Dice.module.css'
 
 function Dice() {
     const [bet, setBet] = useState(null)
@@ -21,8 +24,8 @@ function Dice() {
     const token = useToken()
 
     const platform = window.navigator.userAgentData.mobile
-        ? 'Web-mobile'
-        : 'Web-desktop'
+        ? WEB_MOBILE
+        : WEB_DESKTOP
 
     const getHistory = () => {
         fetch('https://virtual-sports-yi3j9.ondigitalocean.app/User/history', {
@@ -143,7 +146,7 @@ function Dice() {
         <>
             <div className={styles.wrapper}>
                 <div className={styles.header}>
-                    <Link to={'/'}> На главную</Link>
+                    <Link to={'/'}> X </Link>
                     <h3>DICE GAME</h3>
                     <span></span>
                 </div>

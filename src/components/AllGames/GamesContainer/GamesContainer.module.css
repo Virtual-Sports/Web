@@ -1,0 +1,34 @@
+.container {
+    width: 100%;
+
+    margin-bottom: 5%;
+
+    overflow-y: auto;
+}
+
+.header {
+    font-weight: 700;
+    font-size: 0.9em;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.header img {
+    height: 18px;
+    width: 18px;
+
+    margin-right: 10px;
+
+    filter: invert(100%) sepia(3%) saturate(13%) hue-rotate(81deg)
+        brightness(106%) contrast(106%);
+}
+
+.games {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Dice.module.css'
 import { ReactComponent as Dice1 } from '../components/icons/dice1.svg'
@@ -7,26 +7,78 @@ import { ReactComponent as Dice3 } from '../components/icons/dice3.svg'
 import { ReactComponent as Dice4 } from '../components/icons/dice4.svg'
 import { ReactComponent as Dice5 } from '../components/icons/dice5.svg'
 import { ReactComponent as Dice6 } from '../components/icons/dice6.svg'
+import { useToken } from '../components/hooks/useToken'
+import moment from 'moment'
 import DiceImg from '../img/dice.png'
-import useToken from '../components/hooks/useToken'
 
 function Dice() {
     const [bet, setBet] = useState(null)
     const [isLoading, setLoading] = useState(false)
+    const [showHistory, setShowHistory] = useState(false)
+    const [historyData, setHistoryData] = useState([])
     const [result, setResult] = useState(null)
-    const { token } = useToken()
+
+    const token = useToken()
+
+    const platform = window.navigator.userAgentData.mobile
+        ? 'Web-mobile'
+        : 'Web-desktop'
+
+    const getHistory = () => {
+        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/User/history', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then(data => data.json())
+            .then(body => {
+                setHistoryData(body)
+            })
+            .catch(err => console.log(err))
+    }
 
     const placeBet = () => {
+        setLoading(true)
+        setResult(null)
         if (!token) {
-            setLoading(true)
-            setResult(null)
             setTimeout(() => {
                 setResult(Math.floor(Math.random() * 6))
                 setLoading(false)
             }, 1000)
             return
         }
-        // TODO: add work with API
+
+        const formData = {
+            dateTime: moment().format('DD-MM-YYYY hh:mm:ss'),
+            betType: bet,
+        }
+
+        fetch(
+            'https://virtual-sports-yi3j9.ondigitalocean.app/Games/play/dice',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Platform': `${platform}`,
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(formData),
+            }
+        )
+            .then(data => data.json())
+            .then(body => {
+                setResult(Number(body.droppedNumber) - 1)
+                setLoading(false)
+                getHistory()
+            })
+            .catch(err => console.log(err))
+    }
+
+    const showHistoryHandler = () => {
+        setShowHistory(true)
     }
 
     const resultImg = () => {
@@ -47,6 +99,7 @@ function Dice() {
                 return <Dice6 className={styles.img} />
         }
     }
+
     const isBetWin = () => {
         if ([0, 1, 2, 3, 4, 5].includes(bet) && bet === Number(result)) {
             return true
@@ -59,11 +112,38 @@ function Dice() {
         }
     }
 
+    useEffect(() => {
+        getHistory()
+    }, [])
+
+    const getBetValue = betIndex => {
+        switch (betIndex) {
+            case 0:
+                return 1
+            case 1:
+                return 2
+            case 2:
+                return 3
+            case 3:
+                return 4
+            case 4:
+                return 4
+            case 5:
+                return 6
+            case 6:
+                return 'НЕЧЕТ'
+            case 7:
+                return 'ЧЕТ'
+            default:
+                return 1
+        }
+    }
+
     return (
         <>
             <div className={styles.wrapper}>
                 <div className={styles.header}>
-                    <Link to={'/'}> BACK</Link>
+                    <Link to={'/'}> На главную</Link>
                     <h3>DICE GAME</h3>
                     <span></span>
                 </div>
@@ -199,19 +279,53 @@ function Dice() {
                     />
                 )}
                 {result !== null && (
-                    <h1>{isBetWin() ? 'YOU WIN !!!' : 'YOU LOSE'}</h1>
+                    <h1 className={styles.result}>
+                        {isBetWin() ? 'ПОБЕДА !!!' : 'ПОРАЖЕНИЕ'}
+                    </h1>
                 )}
-                <button
-                    className={styles.button}
-                    onClick={placeBet}
-                    disabled={bet === null || isLoading}
-                >
-                    Ставка
-                </button>
-                {token && (
-                    <button className={styles.button} onClick={showHistory}>
-                        История
+                <div className={styles.buttonWrapper}>
+                    <button
+                        className={styles.button}
+                        onClick={placeBet}
+                        disabled={bet === null || isLoading}
+                    >
+                        Ставка
                     </button>
+                    {token && (
+                        <button
+                            className={styles.button}
+                            onClick={showHistoryHandler}
+                        >
+                            История
+                        </button>
+                    )}
+                </div>
+                {showHistory && (
+                    <div className={styles.history}>
+                        <button onClick={() => setShowHistory(false)}>X</button>
+                        <h1>История</h1>
+                        <br />
+                        <ol className={styles.historyList}>
+                            {historyData.map(historyItem => {
+                                return (
+                                    <li
+                                        key={historyItem.id}
+                                        className={styles.historyListItem}
+                                    >
+                                        <p> Дата: {historyItem.dateTime}</p>
+                                        <p>
+                                            Ставка:{' '}
+                                            {getBetValue(historyItem.betType)} -
+                                            Результат:{' '}
+                                            {historyItem.droppedNumber} ПОБЕДА:{' '}
+                                            {historyItem.isBetWon ? '✅' : '❌'}
+                                        </p>
+                                        <hr />
+                                    </li>
+                                )
+                            })}
+                        </ol>{' '}
+                    </div>
                 )}
             </div>
         </>

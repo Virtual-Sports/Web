@@ -21,7 +21,7 @@ module.exports = {
     rules: {
         'no-case-declarations': 'error',
         'no-duplicate-imports': 'error',
-        'no-console': 'error',
+        'no-console': 1,
         'no-unused-vars': 'error',
         'no-alert': 'error',
         'new-cap': 'error',
@@ -30,6 +30,8 @@ module.exports = {
         'no-underscore-dangle': 'error',
         'prefer-rest-params': 'error',
         'consistent-return': 'error',
+        'react-hooks/exhaustive-deps': 0,
+        'new-cap': 0,
         camelcase: 'error',
         'object-shorthand': 'error',
         'no-param-reassign': ['error', { props: true }],

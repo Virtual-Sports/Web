@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,10 +72,45 @@
     animation-timing-function: linear;
 }
 
+.result {
+    background-color: #ffffff55;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .button {
-    margin: auto 0 30px 0;
+    margin: 0 5px 10px 0;
     font-size: 25px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+}
+.buttonWrapper {
+    margin-top: auto;
+}
+
+.history {
+    position: absolute;
+    background-color: #fff;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+.history button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.historyList {
+    height: calc(100vh - 65px);
+    overflow: scroll;
+    padding-left: 35px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.historyListItem p {
+    text-align: center;
 }

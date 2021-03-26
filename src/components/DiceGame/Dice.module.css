@@ -142,12 +142,20 @@
 .historyListItem div > span {
     margin: 5px 0;
 }
-
-.popUp {
+.popUpWrapper {
     position: absolute;
+    background-color: #00000099;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.popUp {
     background-color: #fff;
-    bottom: 5px;
-    left: calc(50% - 150px);
     width: 300px;
     height: 250px;
     text-align: center;
@@ -181,11 +189,11 @@
 
 .close {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 20px;
+    right: 20px;
     border-radius: 50%;
-    font-size: 16px;
-    padding: 2px 5px;
+    font-size: 24px;
+    padding: 5px;
     background-color: yellow;
     line-height: 17px;
 }

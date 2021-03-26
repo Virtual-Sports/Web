@@ -420,38 +420,41 @@ function Dice() {
                 />
             )}
             {showPopUp && (
-                <div className={styles.popUp}>
-                    <button
-                        onClick={() => setShowPopUp(false)}
-                        className={styles.close}
-                    >
-                        X
-                    </button>
-                    <h3>
-                        Войди или зарегистрируйся и <b>проверь свою удачу!</b>
-                    </h3>
-                    <p>
+                <div className={styles.popUpWrapper}>
+                    <div className={styles.popUp}>
                         <button
-                            className={styles.login}
-                            onClick={() => {
-                                setShowPopUp(false)
-                                setIsLoginModalVisible(true)
-                            }}
+                            onClick={() => setShowPopUp(false)}
+                            className={styles.close}
                         >
-                            Вход
+                            X
                         </button>
-                    </p>
-                    <p>
-                        <button
-                            className={`${styles.login} ${styles.yellow}`}
-                            onClick={() => {
-                                setShowPopUp(false)
-                                setIsRegistrationModalVisible(true)
-                            }}
-                        >
-                            Регистрация
-                        </button>
-                    </p>
+                        <h3>
+                            Войди или зарегистрируйся и{' '}
+                            <b>проверь свою удачу!</b>
+                        </h3>
+                        <p>
+                            <button
+                                className={styles.login}
+                                onClick={() => {
+                                    setShowPopUp(false)
+                                    setIsLoginModalVisible(true)
+                                }}
+                            >
+                                Вход
+                            </button>
+                        </p>
+                        <p>
+                            <button
+                                className={`${styles.login} ${styles.yellow}`}
+                                onClick={() => {
+                                    setShowPopUp(false)
+                                    setIsRegistrationModalVisible(true)
+                                }}
+                            >
+                                Регистрация
+                            </button>
+                        </p>
+                    </div>
                 </div>
             )}
         </div>

@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import './App.css'
 
 import MainPage from './components/MainPage/MainPage'
 import GamePage from './components/GamePage/GamePage'
-import { setWidth } from './redux/actions/data'
+
+import Dice from './components/dice-game/Dice'
+import { fetchData, setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
+import Loader from './components/Loader/Loader'
 
 function App() {
     const dispatch = useDispatch()
+    const isLoaded = useSelector(state => state.data.isLoaded)
 
     const updateScreenWidth = () => {
         const currentWidth = window.innerWidth
@@ -21,6 +25,8 @@ function App() {
     }
 
     useEffect(() => {
+        dispatch(fetchData())
+
         updateScreenWidth()
 
         window.addEventListener('resize', updateScreenWidth)
@@ -30,10 +36,15 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Switch>
-                    <Route path="/" exact component={MainPage} />
-                    <Route path="/game/:id" component={GamePage} />
-                </Switch>
+                {!isLoaded ? (
+                    <Loader />
+                ) : (
+                    <Switch>
+                        <Route path="/" exact component={MainPage} />
+                        <Route path="/game/:id" component={GamePage} />
+                        <Route path="/dice" component={Dice} />
+                    </Switch>
+                )}
             </div>
         </Router>
     )

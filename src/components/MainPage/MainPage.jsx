@@ -1,28 +1,37 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './MainPage.module.css'
 
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
 import AllGames from '../AllGames/AllGames'
-import { fetchData } from '../../redux/actions/data'
 import { mainPageSelector } from './MainPage.selector.js'
 
-function MainPage() {
-    const dispatch = useDispatch()
+import LoginModal from '../../shared/modals/LoginModal'
+import RegistrationModal from '../../shared/modals/RegistrationModal'
+import useToken from '../../shared/hooks/useToken'
 
+function MainPage() {
+    const { token, setToken } = useToken()
     const { filtersVisibility, categories, providers } = useSelector(
         mainPageSelector
     )
-
-    useEffect(() => {
-        dispatch(fetchData())
-    }, [])
+    const [isLoginModalVisible, setIsLoginModalVisible] = useState(false)
+    const [
+        isRegistrationModalVisible,
+        setIsRegistrationModalVisible,
+    ] = useState(false)
 
     return (
         <div className={styles['container']}>
-            <Header isMainPage={true} />
+            <Header
+                isMainPage={true}
+                token={token}
+                setToken={setToken}
+                setIsLoginModalVisible={setIsLoginModalVisible}
+                setIsRegistrationModalVisible={setIsRegistrationModalVisible}
+            />
 
             <div className={styles['main-content']}>
                 <div className={styles['sidebar']}>
@@ -35,6 +44,24 @@ function MainPage() {
                     </div>
                 ) : (
                     <></>
+                )}
+
+                {isLoginModalVisible && (
+                    <LoginModal
+                        setToken={setToken}
+                        setIsLoginModalVisible={setIsLoginModalVisible}
+                        setIsRegistrationModalVisible={
+                            setIsRegistrationModalVisible
+                        }
+                    />
+                )}
+                {isRegistrationModalVisible && (
+                    <RegistrationModal
+                        setToken={setToken}
+                        setIsRegistrationModalVisible={
+                            setIsRegistrationModalVisible
+                        }
+                    />
                 )}
             </div>
         </div>

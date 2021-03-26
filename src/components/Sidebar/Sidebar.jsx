@@ -34,8 +34,16 @@ function Sidebar() {
     const changeFiltersVisibility = () =>
         dispatch(setFiltersVisibility(!filtersVisibility))
 
-    const select = (id, isCategory) =>
-        isCategory ? dispatch(setCategory(id)) : dispatch(toggleProvider(id))
+    const select = (id, isCategory) => {
+        console.log(selectedCategory)
+        console.log(id)
+
+        isCategory
+            ? selectedCategory === id
+                ? dispatch(setCategory(null))
+                : dispatch(setCategory(id))
+            : dispatch(toggleProvider(id))
+    }
 
     const onSelectHandler = useCallback(
         (id, isCategory) => e => {

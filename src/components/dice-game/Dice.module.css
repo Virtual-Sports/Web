@@ -1,0 +1,121 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: url(../../resources/images/wooden-plank-textured-background-material.jpg);
+    background-size: cover;
+}
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    box-sizing: border-box;
+}
+.header a {
+    color: #fff;
+}
+
+.select {
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+.select label {
+    color: #000;
+    line-height: 12px;
+    font-size: 20px;
+}
+.selectRow {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.selectRow input {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+}
+.svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.img {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.isLoading {
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.result {
+    background-color: #ffffff55;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.button {
+    margin: 0 5px 10px 0;
+    font-size: 25px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+.buttonWrapper {
+    margin-top: auto;
+}
+
+.history {
+    position: absolute;
+    background-color: #000;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 16px;
+}
+.history button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.historyList {
+    height: calc(100vh - 65px);
+    overflow: scroll;
+    padding-left: 35px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.historyListItem p {
+    text-align: center;
+}

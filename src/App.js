@@ -33,8 +33,8 @@ function App() {
             <div className="App">
                 <Switch>
                     <Route path="/" exact component={MainPage} />
+                    <Route path="/game/original_dice_game" component={Dice} />
                     <Route path="/game/:id" component={GamePage} />
-                    <Route path="/dice" component={Dice} />
                 </Switch>
             </div>
         </Router>

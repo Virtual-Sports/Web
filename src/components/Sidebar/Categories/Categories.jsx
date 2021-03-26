@@ -5,18 +5,18 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 Categories.propTypes = {
-    selectedCategory: PropTypes.array.isRequired,
+    selectedCategory: PropTypes.array,
     onSelectHandler: PropTypes.func.isRequired,
 }
 
-function Categories({ selectedCategory, onSelectHandler }) {
+function Categories({ selectedCategory = [], onSelectHandler }) {
     const categories = useSelector(state => state.data.data.categories)
 
     return categories.map(category => (
         <div
             key={category.id}
             className={`${styles['category']} ${
-                category.id === selectedCategory ? styles['selected'] : ''
+                category.id === selectedCategory ? styles['selected'] : []
             }`}
             onClick={onSelectHandler(category.id, true)}
         >

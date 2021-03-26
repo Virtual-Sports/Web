@@ -33,7 +33,10 @@ const filters = (state = initialState, action) => {
         case SET_CATEGORY:
             return {
                 ...state,
-                selectedCategory: action.payload,
+                selectedCategory:
+                    state.selectedCategory === action.payload
+                        ? null
+                        : action.payload,
             }
 
         default:

@@ -7,7 +7,7 @@ import './App.css'
 import MainPage from './components/MainPage/MainPage'
 import GamePage from './components/GamePage/GamePage'
 
-import Dice from './components/dice-game/Dice'
+import Dice from './components/DiceGame/Dice'
 import { fetchData, setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 import Loader from './components/Loader/Loader'
@@ -20,8 +20,8 @@ function App() {
         const currentWidth = window.innerWidth
 
         if (currentWidth < MOBILE_WIDTH) dispatch(setWidth(MOBILE_WIDTH))
-        else if (currentWidth < TABLET_WIDTH) dispatch(setWidth(TABLET_WIDTH))
-        else if (currentWidth < DESKTOP_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
+        else if (currentWidth <= TABLET_WIDTH) dispatch(setWidth(TABLET_WIDTH))
+        else if (currentWidth > TABLET_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
     }
 
     useEffect(() => {
@@ -33,8 +33,6 @@ function App() {
         return () => window.removeEventListener('resize', updateScreenWidth)
     }, [])
 
-    console.log(isLoaded)
-
     return (
         <Router>
             <div className="App">
@@ -43,8 +41,11 @@ function App() {
                 ) : (
                     <Switch>
                         <Route path="/" exact component={MainPage} />
+                        <Route
+                            path="/game/original_dice_game"
+                            component={Dice}
+                        />
                         <Route path="/game/:id" component={GamePage} />
-                        <Route path="/dice" component={Dice} />
                     </Switch>
                 )}
             </div>

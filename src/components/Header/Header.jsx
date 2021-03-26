@@ -26,7 +26,7 @@ function Header({
 
     const renderMainPageHeader = () => (
         <div className={styles['main-page-container']}>
-            <Link to={'/dice'}>
+            <Link to={'/game/original_dice_game'}>
                 <img
                     className={styles['dice']}
                     src={DiceIcon}

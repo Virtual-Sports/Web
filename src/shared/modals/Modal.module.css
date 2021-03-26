@@ -5,6 +5,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: 3;
 }
 
 .header {
@@ -108,4 +109,9 @@
     background-color: #fff;
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.error {
+    color: red;
+    text-align: center;
 }

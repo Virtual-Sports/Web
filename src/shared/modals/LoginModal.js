@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { ReactComponent as ExitLogo } from '../icons/exit.svg'
-import { ReactComponent as Eye } from '../icons/eye.svg'
-import { ReactComponent as EyeNo } from '../icons/eye_no.svg'
+import { ReactComponent as ExitLogo } from '../../resources/icons/exit.svg'
+import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
+import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
 

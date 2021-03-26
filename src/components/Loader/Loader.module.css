@@ -1,0 +1,87 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    background-color: transparent;
+    height: 50vh;
+    width: 100%;
+}
+
+.logo polygon {
+    opacity: 0;
+    fill: #f8ff13;
+}
+
+.logo polygon:nth-child(1) {
+    transform: translate3d(0, 0, 0);
+    animation: animate-logo-left 1.5s infinite;
+    animation-fill-mode: backwards;
+}
+
+.logo polygon:nth-child(2) {
+    transform: translate3d(20px, 0, 0);
+    animation: animate-logo-right 1.5s infinite;
+    animation-fill-mode: backwards;
+}
+
+@keyframes animate-logo-left {
+    0%,
+    12.5% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+    }
+    25% {
+        transform: translate3d(8px, 0, 0);
+        opacity: 0.9;
+    }
+    37.5%,
+    62.5% {
+        transform: translate3d(8px, 0, 0);
+        opacity: 1;
+    }
+    75% {
+        transform: translate3d(8px, 0, 0);
+        opacity: 0.9;
+    }
+    87.5% {
+        transform: translate3d(15px, 0, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(20px, 0, 0);
+    }
+}
+
+@keyframes animate-logo-right {
+    0% {
+        transform: translate3d(20px, 0, 0);
+        opacity: 0;
+    }
+    12.5% {
+        transform: translate3d(15px, 0, 0);
+        opacity: 0;
+    }
+    25%,
+    75% {
+        transform: translate3d(10px, 0, 0);
+        opacity: 0.9;
+    }
+    37.5%,
+    62.5% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.9;
+    }
+    87.5%,
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+    }
+}

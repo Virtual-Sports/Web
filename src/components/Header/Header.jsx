@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 
 import styles from './Header.module.css'
 
+import DiceIcon from '../../resources/icons/dice.svg'
+import ArrowBack from '../../resources/icons/back.svg'
+
 Header.propTypes = {
     isMainPage: PropTypes.bool.isRequired,
     token: PropTypes.string,
@@ -26,7 +29,7 @@ function Header({
             <Link to={'/dice'}>
                 <img
                     className={styles['dice']}
-                    src="./icons/dice.svg"
+                    src={DiceIcon}
                     alt="dice-icon"
                 />
             </Link>
@@ -62,7 +65,7 @@ function Header({
     const renderGamePageHeader = () => (
         <div className={styles['game']}>
             <Link to={'/'}>
-                <img src="../icons/back.svg" alt="back-arrow" />
+                <img src={ArrowBack} alt="back-arrow" />
             </Link>
             <p>{gameName}</p>
         </div>

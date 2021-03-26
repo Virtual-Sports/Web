@@ -1,30 +1,31 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-
-import { ReactComponent as ExitLogo } from '../icons/exit.svg'
-import { ReactComponent as Eye } from '../icons/eye.svg'
-import { ReactComponent as EyeNo } from '../icons/eye_no.svg'
-
 import styles from './Modal.module.css'
+import PropTypes from 'prop-types'
+import { ReactComponent as ExitLogo } from '../../resources/icons/exit.svg'
+import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
+import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
-const LoginModal = ({
-    setIsLoginModalVisible,
-    setIsRegistrationModalVisible,
-    setToken,
-}) => {
+const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
     const [isPaswordShow, setIsPaswordShow] = useState(false)
-    const [loginError, setLoginError] = useState('')
-    const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
+    const [isPasword2Show, setIsPasword2Show] = useState(false)
+    const [registrationError, setRegistrationError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [email, setEmail] = useState('')
+    const [pass1, setPass1] = useState('')
+    const [pass2, setPass2] = useState('')
+
     const formData = {
         login: email,
-        password: pass,
+        password: pass1,
     }
 
-    const login = e => {
+    const registration = e => {
         e.preventDefault()
-        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/login', {
+        if (pass1 !== pass2) {
+            setRegistrationError('Пароли должны совпадать!')
+            return
+        }
+        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,25 +36,26 @@ const LoginModal = ({
                 if (response.status === 200) {
                     const resParsed = await response.text()
                     setToken(resParsed)
-                    setIsLoginModalVisible(false)
-                } else if (response.status === 404) {
+                    setIsRegistrationModalVisible(false)
+                } else if (response.status === 409) {
                     const resParsed = await response.text()
-                    setLoginError(resParsed)
+                    setRegistrationError(resParsed)
                 }
             })
             .catch(err => {
-                setLoginError('Oшибка сети')
+                setRegistrationError('Oшибка сети')
                 console.log(err)
             })
             .finally(setIsLoading(false))
     }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <div className={styles.containerHeader}>
                     <button
                         className={styles.closeButton}
-                        onClick={() => setIsLoginModalVisible(false)}
+                        onClick={() => setIsRegistrationModalVisible(false)}
                     >
                         <ExitLogo className={styles.svg} />
                     </button>
@@ -65,18 +67,18 @@ const LoginModal = ({
                 <form
                     className={styles.formBlock}
                     onSubmit={e => {
-                        setIsLoading(true)
-                        login(e)
+                        setIsLoading(false)
+                        registration(e)
                     }}
                 >
                     <input
-                        type="email"
                         className={styles.input}
                         placeholder="Введите email"
                         onChange={e => {
                             setEmail(e.target.value)
-                            setLoginError('')
+                            setRegistrationError('')
                         }}
+                        type="email"
                         autoComplete="email"
                     />
                     <div className={styles.inputWrapper}>
@@ -84,13 +86,13 @@ const LoginModal = ({
                             className={styles.input}
                             placeholder="Введите пароль (мин 8 символов)"
                             onChange={e => {
-                                setPass(e.target.value)
-                                setLoginError('')
+                                setPass1(e.target.value)
+                                setRegistrationError('')
                             }}
                             minLength={8}
                             maxLength={20}
+                            autoComplete="new-password"
                             type={isPaswordShow ? 'text' : 'password'}
-                            autoComplete="current-password"
                         />
                         <span
                             className={styles.eys}
@@ -99,22 +101,35 @@ const LoginModal = ({
                             {isPaswordShow ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
-                    <span className={styles.error}>{loginError}</span>
+                    <div className={styles.inputWrapper}>
+                        <input
+                            className={styles.input}
+                            placeholder="Повторите пароль"
+                            onChange={e => {
+                                setPass2(e.target.value)
+                                setRegistrationError('')
+                            }}
+                            minLength={8}
+                            maxLength={20}
+                            autoComplete="new-password"
+                            type={isPasword2Show ? 'text' : 'password'}
+                        />
+                        <span
+                            className={styles.eys}
+                            onClick={() => setIsPasword2Show(!isPasword2Show)}
+                        >
+                            {isPasword2Show ? <Eye /> : <EyeNo />}
+                        </span>
+                    </div>
+                    <span className={styles.error}>{registrationError}</span>
                     <button
                         type="submit"
                         className={styles.buttonLogin}
-                        disabled={!email || !pass || isLoading || loginError}
+                        disabled={
+                            !email || !pass1 || !pass2 || registrationError
+                        }
                     >
-                        {isLoading ? 'Загрузка...' : 'Вход'}
-                    </button>
-                    <button
-                        className={styles.buttonRegistration}
-                        onClick={() => {
-                            setIsLoginModalVisible(false),
-                                setIsRegistrationModalVisible(true)
-                        }}
-                    >
-                        Регистрация
+                        {isLoading ? 'Загрузка...' : 'Регистрация'}
                     </button>
                 </form>
             </div>
@@ -122,10 +137,9 @@ const LoginModal = ({
     )
 }
 
-export default LoginModal
+export default RegistrationModal
 
-LoginModal.propTypes = {
-    setIsLoginModalVisible: PropTypes.func,
+RegistrationModal.propTypes = {
     setIsRegistrationModalVisible: PropTypes.func,
     setToken: PropTypes.func,
 }

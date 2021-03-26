@@ -5,6 +5,8 @@
     align-items: center;
     height: 100vh;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     background-size: cover;
 }
 .header {
@@ -18,14 +20,13 @@
     color: #fff;
     box-sizing: border-box;
 }
-.header a {
-    color: #fff;
-}
+
 .header h3 {
     font-size: 24px;
 }
 .arrow {
     height: 30px;
+    width: 30px;
 }
 .select {
     width: 95%;
@@ -107,7 +108,7 @@
 .history {
     position: absolute;
     background-color: #000;
-    opacity: 0.9;
+    opacity: 0.92;
     top: 0;
     left: 0;
     bottom: 0;

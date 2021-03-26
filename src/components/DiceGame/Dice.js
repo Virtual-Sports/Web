@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import { ReactComponent as Dice1 } from '../icons/dice1.svg'
-import { ReactComponent as Dice2 } from '../icons/dice2.svg'
-import { ReactComponent as Dice3 } from '../icons/dice3.svg'
-import { ReactComponent as Dice4 } from '../icons/dice4.svg'
-import { ReactComponent as Dice5 } from '../icons/dice5.svg'
-import { ReactComponent as Dice6 } from '../icons/dice6.svg'
-import useToken from '../hooks/useToken'
-import DiceImg from '../../img/dice.png'
+import { ReactComponent as Dice1 } from '../../resources/icons/dice1.svg'
+import { ReactComponent as Dice2 } from '../../resources/icons/dice2.svg'
+import { ReactComponent as Dice3 } from '../../resources/icons/dice3.svg'
+import { ReactComponent as Dice4 } from '../../resources/icons/dice4.svg'
+import { ReactComponent as Dice5 } from '../../resources/icons/dice5.svg'
+import { ReactComponent as Dice6 } from '../../resources/icons/dice6.svg'
+import { ReactComponent as Back } from '../../resources/icons/back.svg'
+import useToken from '../../shared/hooks/useToken'
+import DiceImg from '../../resources/images/dice.png'
 import { WEB_MOBILE, WEB_DESKTOP } from '../../shared/constants'
-import LoginModal from '../modals/LoginModal'
-import RegistrationModal from '../modals/RegistrationModal'
+import LoginModal from '../../shared/modals/LoginModal'
+import RegistrationModal from '../../shared/modals/RegistrationModal'
 
 import styles from './Dice.module.css'
 
@@ -159,11 +160,7 @@ function Dice() {
             <div className={styles.wrapper}>
                 <div className={styles.header}>
                     <Link to={'/'}>
-                        <img
-                            src="../icons/back.svg"
-                            alt="back-arrow"
-                            className={styles.arrow}
-                        />
+                        <Back className={styles.arrow} />
                     </Link>
                     <h3>DICE GAME</h3>
                     <span></span>

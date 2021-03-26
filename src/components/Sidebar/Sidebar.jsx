@@ -35,9 +35,6 @@ function Sidebar() {
         dispatch(setFiltersVisibility(!filtersVisibility))
 
     const select = (id, isCategory) => {
-        console.log(selectedCategory)
-        console.log(id)
-
         isCategory
             ? selectedCategory === id
                 ? dispatch(setCategory(null))

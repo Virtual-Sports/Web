@@ -10,6 +10,7 @@ import { ReactComponent as Dice5 } from '../../resources/icons/dice5.svg'
 import { ReactComponent as Dice6 } from '../../resources/icons/dice6.svg'
 import useToken from '../../shared/hooks/useToken'
 import DiceImg from '../../resources/images/dice.png'
+
 import { WEB_MOBILE, WEB_DESKTOP } from '../../shared/constants'
 
 import styles from './Dice.module.css'

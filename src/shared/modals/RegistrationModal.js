@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { ReactComponent as ExitLogo } from '../../resources/icons/exit.svg'
 import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
 import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
+import { fetchRegistration } from '../../components/fetchs/fetchs'
 
 const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
     const [isPaswordShow, setIsPaswordShow] = useState(false)
@@ -25,13 +26,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
             setRegistrationError('Пароли должны совпадать!')
             return
         }
-        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
+        fetchRegistration(formData)
             .then(async response => {
                 if (response.status === 200) {
                     const resParsed = await response.text()

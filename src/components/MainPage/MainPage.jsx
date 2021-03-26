@@ -42,7 +42,7 @@ function MainPage() {
                         <AllGames />
                     </div>
                 ) : (
-                    <></>
+                    <>Search result</>
                 )}
                 {isLoginModalVisible && (
                     <LoginModal

@@ -31,7 +31,7 @@ function GamesContainer({ title, games, numberToDisplay = null, icon = null }) {
     return (
         <div className={styles['container']}>
             <div className={styles['header']}>
-                {icon ? <img src={icon} alt="icon" /> : <></>}
+                {icon && <img src={icon} alt="icon" />}
                 <h2 className={styles['title']}>{title}</h2>
             </div>
 

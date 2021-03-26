@@ -1,4 +1,5 @@
 .react-multi-carousel-list {
+    width: 100%;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -20,7 +21,7 @@
     outline: 0;
     transition: all 0.5s;
     border-radius: 35px;
-    z-index: 1000;
+    z-index: 1;
     border: 0;
     background: rgba(0, 0, 0, 0.5);
     min-width: 35px;
@@ -36,7 +37,7 @@
     color: #fff;
     display: block;
     text-align: center;
-    z-index: 2;
+    z-index: 1;
     position: relative;
 }
 .react-multiple-carousel__arrow--left {
@@ -55,6 +56,13 @@
 .react-multi-carousel-item {
     transform-style: preserve-3d;
     backface-visibility: hidden;
+}
+.carouselWrapper {
+    width: 100%;
+}
+.carouselTitle {
+    font-size: 0.9em;
+    margin-bottom: 15px;
 }
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .react-multi-carousel-item {

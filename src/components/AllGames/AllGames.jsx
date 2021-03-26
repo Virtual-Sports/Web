@@ -1,50 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import styles from './AllGames.module.css'
 
 import GamesContainer from './GamesContainer/GamesContainer'
+import GamesCardSlider from './GameCardSlider/GameCardSlider'
 import { useSelector } from 'react-redux'
 import { allGamesSelector } from './AllGames.selector.js'
+import { Slider } from '../../shared/slider/Slider'
 
 function AllGames() {
-    const { tags, allGames } = useSelector(allGamesSelector)
+    const { allGames } = useSelector(allGamesSelector)
 
-    const [tagsGames, setTagsGames] = useState([])
+    const topGames = allGames.filter(game => game.tags.includes('top'))
+    console.log(allGames, topGames)
 
-    useEffect(() => {
-        for (let tag of tags) {
-            const games = allGames.filter(game => game.tags.includes(tag.id))
-
-            if (games.length !== 0) {
-                setTagsGames(prev => [
-                    ...prev,
-                    {
-                        tag,
-                        icon: tag.icon ? tag.icon : null,
-                        games: allGames.filter(game =>
-                            game.tags.includes(tag.id)
-                        ),
-                    },
-                ])
-            }
-        }
-    }, [tags, allGames])
-
-    const renderAllGames = () => (
-        <div className={styles['tags']}>
-            {tagsGames.map(item => (
-                <GamesContainer
-                    key={item.tag.id}
-                    numberToDisplay={4}
-                    title={item.tag.name}
-                    icon={item.icon}
-                    games={item.games}
-                />
-            ))}
+    return (
+        <div className={styles['container']}>
+            <Slider>
+                {topGames.map(item => (
+                    <GamesCardSlider
+                        key={item.id}
+                        id={item.id}
+                        title={item.displayName}
+                        image={item.url}
+                    />
+                ))}
+            </Slider>
+            <div className={styles['tags']}>
+                <GamesContainer title={'Все игры'} games={allGames} />
+            </div>
         </div>
     )
-
-    return <div className={styles['container']}>{renderAllGames()}</div>
 }
 
 export default AllGames

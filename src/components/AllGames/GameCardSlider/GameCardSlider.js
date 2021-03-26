@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './GameCard.module.css'
+import styles from './GameCardSlider.module.css'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const GameCard = ({ id, title, img }) => {
+const GameCardSlider = ({ id, title, img }) => {
     const defaultImageUrl = 'https://via.placeholder.com/250x250' // TODO: move to another file with constants
     const defaultTitle = 'no title' // TODO: move to another file with constants
 
@@ -14,16 +14,20 @@ const GameCard = ({ id, title, img }) => {
 
     return (
         <Link className={styles.card} to={`/game/${id}`}>
-            <img src={img ?? defaultImageUrl} onError={handleError} />
+            <img
+                className={styles.img}
+                src={img ?? defaultImageUrl}
+                onError={handleError}
+            />
             <p className={styles.description}>{title ?? defaultTitle}</p>
         </Link>
     )
 }
 
-GameCard.propTypes = {
+GameCardSlider.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     title: PropTypes.string.isRequired,
     img: PropTypes.string,
 }
 
-export default GameCard
+export default GameCardSlider

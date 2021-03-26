@@ -6,25 +6,33 @@ import './slider.css'
 export const Slider = ({ children }) => {
     const responsive = {
         desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 3000, min: 761 },
             items: 4,
         },
         tablet: {
-            breakpoint: { max: 1024, min: 0 },
+            breakpoint: { max: 760, min: 500 },
+            items: 3,
+        },
+        tablet: {
+            breakpoint: { max: 499, min: 0 },
             items: 2,
         },
     }
     return (
-        <Carousel
-            removeArrowOnDeviceType={['mobile', 'tablet']}
-            swipeable={true}
-            responsive={responsive}
-        >
-            {children}
-        </Carousel>
+        <div className="carouselWrapper">
+            <h2 className="carouselTitle">Топ</h2>
+            <Carousel
+                draggable={false}
+                removeArrowOnDeviceType={['mobile', 'tablet']}
+                swipeable={true}
+                responsive={responsive}
+            >
+                {children}
+            </Carousel>
+        </div>
     )
 }
 
 Slider.propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.oneOfType(PropTypes.object || PropTypes.array),
 }

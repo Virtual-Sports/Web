@@ -22,7 +22,6 @@
 }
 
 .games {
-    overflow-y: auto;
     display: flex;
     align-items: center;
     justify-content: flex-start;

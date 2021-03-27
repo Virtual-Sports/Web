@@ -13,6 +13,7 @@ function AllGames() {
 
     const topGames = allGames.filter(game => game.tags.includes('top'))
     const tagsWithoutTop = tags.filter(tag => tag.id !== 'top')
+    console.log(tagsWithoutTop)
     return (
         <div className={styles['container']}>
             {topGames.length && (

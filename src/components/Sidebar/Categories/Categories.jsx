@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 Categories.propTypes = {
-    selectedCategory: PropTypes.string.isRequired,
+    selectedCategory: PropTypes.string,
     onSelectHandler: PropTypes.func.isRequired,
 }
 

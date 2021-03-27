@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
-import { useSelector } from 'react-redux'
-import { filtersSelector } from '../Filters.selector.js'
+// import { useSelector } from 'react-redux'
+// import { filtersSelector } from '../Filters.selector.js'
 
 GamesContainer.propTypes = {
     icon: PropTypes.string,
@@ -14,9 +14,7 @@ GamesContainer.propTypes = {
 }
 
 function GamesContainer({ title, games, icon = null }) {
-    const { selectedCategory, selectedProviders } = useSelector(filtersSelector)
-
-    // const [filterEnabled, setFilterEnabled] = useState(false)
+    /* const { selectedCategory, selectedProviders } = useSelector(filtersSelector)
 
     const gamesToDisplay = () => {
         let tmpGame = games
@@ -31,26 +29,32 @@ function GamesContainer({ title, games, icon = null }) {
                 : tmpGame
 
         return tmpGame
-    }
+    } */
 
     return (
-        <div className={styles['container']}>
-            <div className={styles['header']}>
-                {icon ?? <img src={icon} alt="icon" />}
-                <h2 className={styles['title']}>{title}</h2>
-            </div>
+        <>
+            {games.length > 0 && (
+                <div className={styles['container']}>
+                    <div className={styles['header']}>
+                        {icon ?? <img src={icon} alt="icon" />}
+                        <h2 className={styles['title']}>
+                            {title} [{games.length}]
+                        </h2>
+                    </div>
 
-            <div className={styles['games']}>
-                {gamesToDisplay().map(game => (
-                    <GameCard
-                        key={game.id}
-                        id={game.id}
-                        title={game.displayName}
-                        img={game.image}
-                    />
-                ))}
-            </div>
-        </div>
+                    <div className={styles['games']}>
+                        {games.map(game => (
+                            <GameCard
+                                key={game.id}
+                                id={game.id}
+                                title={game.displayName}
+                                img={game.image}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 

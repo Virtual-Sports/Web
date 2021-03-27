@@ -11,6 +11,7 @@ import Dice from './components/DiceGame/Dice'
 import { fetchData, setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 import Loader from './components/Loader/Loader'
+import { debounce } from './shared/utils'
 
 function App() {
     const dispatch = useDispatch()
@@ -29,8 +30,10 @@ function App() {
 
         updateScreenWidth()
 
-        window.addEventListener('resize', updateScreenWidth)
-        return () => window.removeEventListener('resize', updateScreenWidth)
+        const debounced = debounce(updateScreenWidth, 1000)
+
+        window.addEventListener('resize', debounced)
+        return () => window.removeEventListener('resize', debounced)
     }, [])
 
     return (

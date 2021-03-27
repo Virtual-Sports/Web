@@ -11,6 +11,7 @@ import Dice from './components/DiceGame/Dice'
 import { fetchData, setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 import Loader from './components/Loader/Loader'
+import { debounce } from './shared/utils'
 
 function App() {
     const dispatch = useDispatch()
@@ -22,20 +23,6 @@ function App() {
         if (currentWidth < MOBILE_WIDTH) dispatch(setWidth(MOBILE_WIDTH))
         else if (currentWidth <= TABLET_WIDTH) dispatch(setWidth(TABLET_WIDTH))
         else if (currentWidth > TABLET_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
-    }
-
-    const debounce = (func, wait) => {
-        let timeout
-
-        return function execute() {
-            const later = () => {
-                clearTimeout(timeout)
-                func()
-            }
-
-            clearTimeout(timeout)
-            timeout = setTimeout(later, wait)
-        }
     }
 
     useEffect(() => {

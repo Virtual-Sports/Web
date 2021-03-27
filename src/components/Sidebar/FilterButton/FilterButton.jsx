@@ -10,6 +10,9 @@ import {
     toggleProvider,
 } from '../../../redux/actions/filters'
 
+import CancelIcon from '../../../resources/icons/cancel.svg'
+import FilterIcon from '../../../resources/icons/settings.svg'
+
 FilterButton.propTypes = {
     onFilterButtonClick: PropTypes.func.isRequired,
     lastSelected: PropTypes.object.isRequired,
@@ -50,7 +53,7 @@ function FilterButton({
                     className={styles['filters-closed']}
                     onClick={onFilterButtonClick}
                 >
-                    <img src="./icons/settings.svg" alt="filters-icon" />
+                    <img src={FilterIcon} alt="filters-icon" />
                     <span>Фильтры</span>
                 </button>
             ) : (
@@ -58,7 +61,7 @@ function FilterButton({
                     <div>
                         <span>Фильтры</span>
                         <img
-                            src="./icons/cancel.svg"
+                            src={CancelIcon}
                             onClick={cancel}
                             alt="cancel-icon"
                         />

@@ -63,12 +63,15 @@
     margin: 20px 0;
 }
 
-.category.selected,
-.category:hover {
+.category.selected {
     opacity: 1;
     color: rgba(255, 255, 255, 1);
 }
-
+.category:hover {
+    text-decoration: underline;
+    opacity: 1;
+    color: rgba(255, 255, 255, 1);
+}
 .category img {
     height: 18px;
     width: 18px;

@@ -16,8 +16,10 @@
     border-image: linear-gradient(
         90deg,
         rgba(252, 248, 84, 1) 0%,
-        rgba(255, 255, 255, 1) 100%
+        rgba(253, 251, 168, 0.4640231092436975) 50%,
+        rgba(255, 255, 255, 0) 100%
     );
+    border-image-slice: 1;
 }
 
 .header img {
@@ -31,7 +33,7 @@
 .games {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 

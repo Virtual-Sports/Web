@@ -5,6 +5,7 @@ import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
 import { ReactComponent as PMSorry } from '../../icons/pm-sorry.svg'
+import { gamesContainer as messages } from '../../../shared/messages'
 
 GamesContainer.propTypes = {
     icon: PropTypes.string,
@@ -34,7 +35,12 @@ function GamesContainer({ title, games, icon = null }) {
                     ))}
                 </div>
             ) : (
-                <PMSorry />
+                <div className={styles['nothing-found']}>
+                    <span className={styles['message']}>
+                        {messages.nothingFound}
+                    </span>
+                    <PMSorry className={styles['image']} />
+                </div>
             )}
         </div>
     )

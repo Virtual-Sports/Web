@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 import { allGamesSelector } from './AllGames.selector.js'
 import { filtersSelector } from './Filters.selector.js'
 
+import { allGames as messages } from '../../shared/messages'
+
 function AllGames() {
     const { tags, allGames } = useSelector(allGamesSelector)
     const {
@@ -35,10 +37,10 @@ function AllGames() {
     const title =
         (selectedCategory && selectedProviders.length > 0) ||
         selectedProviders.length > 0
-            ? 'Результаты поиска'
+            ? messages.searchResult
             : selectedCategory
             ? selectedCategoryTitle
-            : 'Список игр'
+            : messages.gameList
 
     useEffect(() => {
         for (let tag of tags) {

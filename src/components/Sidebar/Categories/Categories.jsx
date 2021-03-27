@@ -16,7 +16,7 @@ function Categories({ selectedCategory = null, onSelectHandler }) {
         <div
             key={category.id}
             className={`${styles['category']} ${
-                category.id === selectedCategory ? styles['selected'] : ''
+                category.id === selectedCategory ? styles['selected'] : []
             }`}
             onClick={onSelectHandler(category.id, true, category.displayName)}
         >

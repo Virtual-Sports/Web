@@ -26,7 +26,7 @@ module.exports = {
         'new-cap': 0,
         'prefer-template': 'error',
         'no-shadow': 'error',
-        'no-underscore-dangle': 0,
+        'no-underscore-dangle': 1,
         'prefer-rest-params': 'error',
         'consistent-return': 'error',
         'react-hooks/exhaustive-deps': 0,
@@ -35,8 +35,6 @@ module.exports = {
         'object-shorthand': 'error',
         'no-param-reassign': ['error', { props: false }],
         'react/no-unused-prop-types': 'error',
-        'no-console': 1,
-        'react-hooks/exhaustive-deps': 0,
         'spaced-comment': [
             'error',
             'always',

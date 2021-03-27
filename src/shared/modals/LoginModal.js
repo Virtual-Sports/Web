@@ -6,7 +6,7 @@ import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
 import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
-import { fetchLogin } from '../../components/fetchs/fetchs'
+import { fetchLogin } from '../../shared/fetchs/fetchs'
 
 const LoginModal = ({
     setIsLoginModalVisible,

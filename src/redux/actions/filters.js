@@ -14,7 +14,7 @@ export const toggleProvider = providerId => ({
     payload: providerId,
 })
 
-export const setCategory = categoryId => ({
+export const setCategory = (categoryId, categoryTitle) => ({
     type: SET_CATEGORY,
-    payload: categoryId,
+    payload: { id: categoryId, title: categoryTitle },
 })

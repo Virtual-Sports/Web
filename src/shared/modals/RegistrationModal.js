@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { ReactComponent as ExitLogo } from '../../resources/icons/exit.svg'
 import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
 import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
-import { fetchRegistration } from '../../components/fetchs/fetchs'
+import { fetchRegistration } from '../../shared/fetchs/fetchs'
 
 const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
     const [isPaswordShow, setIsPaswordShow] = useState(false)

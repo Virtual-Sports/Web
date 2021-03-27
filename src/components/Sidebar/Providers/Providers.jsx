@@ -24,7 +24,7 @@ function Providers({ selectedProviders, onSelectHandler }) {
         >
             <img
                 src={
-                    provider.icon ||
+                    provider.image ||
                     'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952'
                 }
                 alt="provider-icon"

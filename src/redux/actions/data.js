@@ -1,4 +1,4 @@
-import { getDataFromSeverFunction } from '../../components/fetchs/fetchs'
+import { getDataFromSeverFunction } from '../../shared/fetchs/fetchs'
 import { SET_DATA, SET_LOADED, SET_WIDTH } from './constants' // TODO: remove on production
 
 // TODO: mb create action for each subarray
@@ -23,6 +23,5 @@ export const fetchData = token => dispatch => {
         .then(data => data.json())
         .then(body => {
             dispatch(setData(body))
-            dispatch(setLoaded(true))
         })
 }

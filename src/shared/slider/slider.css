@@ -41,7 +41,7 @@
     position: relative;
 }
 .react-multiple-carousel__arrow--left {
-    top: 35%;
+    top: calc(50% - 29px - 0.7em);
     left: 10px;
 }
 .react-multiple-carousel__arrow--left::before {
@@ -63,8 +63,21 @@
     width: 100%;
 }
 .carouselTitle {
-    font-size: 0.9em;
     margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(
+        90deg,
+        rgba(252, 248, 84, 1) 0%,
+        rgba(253, 251, 168, 0.4640231092436975) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-image-slice: 1;
+}
+.count {
+    color: #fcf854;
+    font-size: 0.75em;
 }
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .react-multi-carousel-item {

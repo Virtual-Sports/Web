@@ -13,7 +13,7 @@ import DiceImg from '../../resources/images/dice.png'
 
 import LoginModal from '../../shared/modals/LoginModal'
 import RegistrationModal from '../../shared/modals/RegistrationModal'
-import { fetchMakeBet, fetchGetHistory } from '../fetchs/fetchs'
+import { fetchMakeBet, fetchGetHistory } from '../../shared/fetchs/fetchs'
 import styles from './Dice.module.css'
 
 function Dice() {

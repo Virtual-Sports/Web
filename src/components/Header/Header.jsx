@@ -6,7 +6,7 @@ import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
 import ArrowBack from '../../resources/icons/back.svg'
-import { fetchLogout } from '../fetchs/fetchs'
+import { fetchLogout } from '../../shared/fetchs/fetchs'
 
 Header.propTypes = {
     isMainPage: PropTypes.bool.isRequired,

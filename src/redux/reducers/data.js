@@ -7,8 +7,8 @@ const initialState = {
         tags: [],
         games: [],
     },
-    width: null,
     isLoaded: false,
+    width: null,
 }
 
 // TODO: mb rename that
@@ -16,26 +16,19 @@ const data = (state = initialState, action) => {
     switch (action.type) {
         case SET_WIDTH:
             return state.width === action.payload
-                ? {
-                      ...state,
-                  }
-                : {
-                      ...state,
-                      width: action.payload,
-                  }
-
+                ? { ...state }
+                : { ...state, width: action.payload }
         case SET_DATA:
             return {
                 ...state,
                 data: action.payload,
+                isLoaded: true,
             }
-
         case SET_LOADED:
             return {
                 ...state,
                 isLoaded: action.payload,
             }
-
         default:
             return state
     }

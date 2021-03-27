@@ -9,7 +9,7 @@ Categories.propTypes = {
     onSelectHandler: PropTypes.func.isRequired,
 }
 
-function Categories({ selectedCategory = [], onSelectHandler }) {
+function Categories({ selectedCategory = null, onSelectHandler }) {
     const categories = useSelector(state => state.data.data.categories)
 
     return categories.map(category => (
@@ -18,7 +18,7 @@ function Categories({ selectedCategory = [], onSelectHandler }) {
             className={`${styles['category']} ${
                 category.id === selectedCategory ? styles['selected'] : []
             }`}
-            onClick={onSelectHandler(category.id, true)}
+            onClick={onSelectHandler(category.id, true, category.displayName)}
         >
             <img
                 src={

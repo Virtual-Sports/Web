@@ -3,7 +3,10 @@ import Carousel from 'react-multi-carousel'
 import PropTypes from 'prop-types'
 import './slider.css'
 
-export const Slider = ({ children }) => {
+export const Slider = ({
+    children,
+    topTag = { id: 'default', displayName: 'default' },
+}) => {
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 761 },
@@ -18,9 +21,14 @@ export const Slider = ({ children }) => {
             items: 2,
         },
     }
+
     return (
         <div className="carouselWrapper">
-            <h2 className="carouselTitle">Топ</h2>
+            <h2 className="carouselTitle">
+                {topTag.displayName}{' '}
+                <span className={'count'}>[{children.length}]</span>
+            </h2>
+
             <Carousel
                 draggable={false}
                 removeArrowOnDeviceType={['mobile', 'tablet']}
@@ -34,5 +42,6 @@ export const Slider = ({ children }) => {
 }
 
 Slider.propTypes = {
-    children: PropTypes.oneOfType(PropTypes.object || PropTypes.array),
+    children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    topTag: PropTypes.object,
 }

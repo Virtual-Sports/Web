@@ -20,7 +20,13 @@ function Categories({ selectedCategory = null, onSelectHandler }) {
             }`}
             onClick={onSelectHandler(category.id, true, category.displayName)}
         >
-            <img src={category.icon} alt="category-icon" />
+            <img
+                src={
+                    category.icon ||
+                    'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png'
+                }
+                alt="category-icon"
+            />
             <p>{category.displayName}</p>
         </div>
     ))

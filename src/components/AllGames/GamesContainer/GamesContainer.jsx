@@ -8,16 +8,14 @@ import { ReactComponent as PMSorry } from '../../icons/pm-sorry.svg'
 import { gamesContainer as messages } from '../../../shared/messages'
 
 GamesContainer.propTypes = {
-    icon: PropTypes.string,
     title: PropTypes.string.isRequired,
     games: PropTypes.array.isRequired,
 }
 
-function GamesContainer({ title, games, icon = null }) {
+function GamesContainer({ title, games }) {
     return (
         <div className={styles['container']}>
             <div className={styles['header']}>
-                {icon && <img src={icon} alt="icon" />}
                 <h2 className={styles['title']}>
                     {title}&nbsp;
                     <span className={styles['count']}>[{games.length}]</span>

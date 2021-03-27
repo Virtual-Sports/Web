@@ -6,6 +6,7 @@ import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
 import ArrowBack from '../../resources/icons/back.svg'
+import { fetchLogout } from '../../shared/fetchs/fetchs'
 
 Header.propTypes = {
     isMainPage: PropTypes.bool.isRequired,
@@ -13,6 +14,7 @@ Header.propTypes = {
     setToken: PropTypes.func,
     setIsLoginModalVisible: PropTypes.func,
     setIsRegistrationModalVisible: PropTypes.func,
+    title: PropTypes.string,
 }
 
 function Header({
@@ -21,9 +23,8 @@ function Header({
     setToken,
     setIsLoginModalVisible,
     setIsRegistrationModalVisible,
+    title = 'Game',
 }) {
-    const gameName = 'Football'
-
     const renderMainPageHeader = () => (
         <div className={styles['main-page-container']}>
             <Link to={'/game/original_dice_game'}>
@@ -37,7 +38,10 @@ function Header({
                 <div className={styles['authorized']}>
                     <button
                         className={styles['logout-button']}
-                        onClick={() => setToken(null)}
+                        onClick={() => {
+                            setToken(null)
+                            fetchLogout()
+                        }}
                     >
                         Выход
                     </button>
@@ -67,7 +71,7 @@ function Header({
             <Link to={'/'}>
                 <img src={ArrowBack} alt="back-arrow" />
             </Link>
-            <p>{gameName}</p>
+            <p>{title}</p>
         </div>
     )
 

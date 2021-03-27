@@ -1,4 +1,4 @@
-import { response } from '../response'
+import { getDataFromSeverFunction } from '../../shared/fetchs/fetchs'
 import { SET_DATA, SET_LOADED, SET_WIDTH } from './constants' // TODO: remove on production
 
 // TODO: mb create action for each subarray
@@ -17,19 +17,11 @@ export const setWidth = width => ({
     payload: width,
 })
 
-// https://virtual-sports-yi3j9.ondigitalocean.app/
-
-export const fetchData = () => dispatch => {
+export const fetchData = token => dispatch => {
     dispatch(setLoaded(false))
-
-    // TODO: just for test - remove on production
-    setTimeout(() => {
-        dispatch(setData(response))
-    }, 2000)
-
-    // TODO
-    /* getDataFromSeverFunction().then(({ data }) => {
-        // TODO: create an object with 4 arrays from the response
-        dispatch(setData(data))
-    }) */
+    getDataFromSeverFunction(token)
+        .then(data => data.json())
+        .then(body => {
+            dispatch(setData(body))
+        })
 }

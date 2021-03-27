@@ -6,6 +6,7 @@ import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
 import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
+import { fetchLogin } from '../../shared/fetchs/fetchs'
 
 const LoginModal = ({
     setIsLoginModalVisible,
@@ -24,13 +25,7 @@ const LoginModal = ({
 
     const login = e => {
         e.preventDefault()
-        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
+        fetchLogin(formData)
             .then(async response => {
                 if (response.status === 200) {
                     const resParsed = await response.text()

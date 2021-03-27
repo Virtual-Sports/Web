@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 
 import { ReactComponent as Dice1 } from '../../resources/icons/dice1.svg'
 import { ReactComponent as Dice2 } from '../../resources/icons/dice2.svg'
@@ -11,10 +10,10 @@ import { ReactComponent as Dice6 } from '../../resources/icons/dice6.svg'
 import { ReactComponent as Back } from '../../resources/icons/back.svg'
 import useToken from '../../shared/hooks/useToken'
 import DiceImg from '../../resources/images/dice.png'
-import { WEB_MOBILE, WEB_DESKTOP } from '../../shared/constants'
+
 import LoginModal from '../../shared/modals/LoginModal'
 import RegistrationModal from '../../shared/modals/RegistrationModal'
-
+import { fetchMakeBet, fetchGetHistory } from '../../shared/fetchs/fetchs'
 import styles from './Dice.module.css'
 
 function Dice() {
@@ -33,22 +32,11 @@ function Dice() {
 
     const { token, setToken } = useToken()
 
-    const platform = window.navigator.userAgentData.mobile
-        ? WEB_MOBILE
-        : WEB_DESKTOP
-
     const getHistory = () => {
-        fetch('https://virtual-sports-yi3j9.ondigitalocean.app/User/history', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Platform': platform,
-                Authorization: `Bearer ${token}`,
-            },
-        })
+        fetchGetHistory(token)
             .then(data => data.json())
             .then(body => {
-                setHistoryData(body)
+                setHistoryData(body.reverse())
             })
             .catch(err => console.log(err))
     }
@@ -67,23 +55,7 @@ function Dice() {
                 }
             }, 2000)
         } else {
-            const formData = {
-                dateTime: moment().format('DD-MM-YYYY hh:mm:ss'),
-                betType: bet,
-            }
-
-            fetch(
-                'https://virtual-sports-yi3j9.ondigitalocean.app/Games/play/dice',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Platform': `${platform}`,
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify(formData),
-                }
-            )
+            fetchMakeBet(bet, token)
                 .then(data => data.json())
                 .then(body => {
                     setResult(Number(body.droppedNumber) - 1)
@@ -154,7 +126,6 @@ function Dice() {
                 return 1
         }
     }
-
     return (
         <div>
             <div className={styles.wrapper}>

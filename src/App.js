@@ -11,11 +11,14 @@ import Dice from './components/DiceGame/Dice'
 import { fetchData, setWidth } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 import Loader from './components/Loader/Loader'
+import useToken from './shared/hooks/useToken'
 import { debounce } from './shared/utils'
 
 function App() {
     const dispatch = useDispatch()
+
     const isLoaded = useSelector(state => state.data.isLoaded)
+    const { token } = useToken()
 
     const updateScreenWidth = () => {
         const currentWidth = window.innerWidth
@@ -26,8 +29,7 @@ function App() {
     }
 
     useEffect(() => {
-        dispatch(fetchData())
-
+        dispatch(fetchData(token))
         updateScreenWidth()
 
         const debounced = debounce(updateScreenWidth, 1000)

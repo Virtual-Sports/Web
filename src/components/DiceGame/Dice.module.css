@@ -131,6 +131,7 @@
     margin-bottom: 5px;
     width: 100%;
     box-sizing: border-box;
+    list-style: none;
 }
 .historyListItem div {
     display: flex;

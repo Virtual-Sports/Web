@@ -9,7 +9,11 @@ import { filtersSelector } from './Filters.selector.js'
 
 function AllGames() {
     const { tags, allGames } = useSelector(allGamesSelector)
-    const { selectedCategory, selectedProviders } = useSelector(filtersSelector)
+    const {
+        selectedCategory,
+        selectedCategoryTitle,
+        selectedProviders,
+    } = useSelector(filtersSelector)
 
     const [tagsGames, setTagsGames] = useState([])
 
@@ -28,9 +32,15 @@ function AllGames() {
         return tmpGame
     }
 
+    const title =
+        (selectedCategory && selectedProviders.length > 0) ||
+        selectedProviders.length > 0
+            ? 'Результаты поиска'
+            : selectedCategory
+            ? selectedCategoryTitle
+            : 'Список игр'
+
     useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log('useEffect')
         for (let tag of tags) {
             const games = allGames.filter(game => game.tags.includes(tag.id))
 
@@ -51,21 +61,20 @@ function AllGames() {
 
     const renderAllGames = () => (
         <div className={styles['tags']}>
-            {selectedCategory || selectedProviders.length > 0
-                ? 'Применен фильтр'
-                : ''}
-
-            {tagsGames.map(item => (
-                <GamesContainer
-                    key={item.tag.id}
-                    title={item.tag.name}
-                    icon={item.icon}
-                    games={filteredGames(item.games)}
-                    isFiltered={
-                        selectedCategory || selectedProviders.length > 0
-                    }
-                />
-            ))}
+            {selectedCategory || selectedProviders.length > 0 ? (
+                <GamesContainer title={title} games={filteredGames(allGames)} />
+            ) : (
+                <>
+                    {tagsGames.map(item => (
+                        <GamesContainer
+                            key={item.tag.id}
+                            title={item.tag.name}
+                            icon={item.icon}
+                            games={filteredGames(item.games)}
+                        />
+                    ))}
+                </>
+            )}
         </div>
     )
 

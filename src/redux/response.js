@@ -198,8 +198,8 @@ export const response = {
             name: 'Top',
         },
         {
-            id: 'all',
-            name: 'All',
+            id: 'all123',
+            name: 'All123',
         },
     ],
     games: [
@@ -216,7 +216,7 @@ export const response = {
             provider: 'leap 1',
             category: ['basketball 2', 'tennis 11'],
             displayName: 'basketball',
-            tags: ['all'],
+            tags: ['all123'],
             url: 'https://ru.wikipedia.org/wiki/URL',
         },
     ],

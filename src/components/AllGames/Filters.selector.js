@@ -7,5 +7,6 @@ export const filtersSelector = createSelector(
     filters => ({
         selectedProviders: filters.selectedProviders,
         selectedCategory: filters.selectedCategory,
+        selectedCategoryTitle: filters.selectedCategoryTitle,
     })
 )

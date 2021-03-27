@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
-// import { useSelector } from 'react-redux'
-// import { filtersSelector } from '../Filters.selector.js'
+import { ReactComponent as PMSorry } from '../../icons/pm-sorry.svg'
 
 GamesContainer.propTypes = {
     icon: PropTypes.string,
@@ -14,47 +13,30 @@ GamesContainer.propTypes = {
 }
 
 function GamesContainer({ title, games, icon = null }) {
-    /* const { selectedCategory, selectedProviders } = useSelector(filtersSelector)
-
-    const gamesToDisplay = () => {
-        let tmpGame = games
-
-        tmpGame = selectedCategory
-            ? tmpGame.filter(g => g.category.includes(selectedCategory))
-            : tmpGame
-
-        tmpGame =
-            selectedProviders.length > 0
-                ? tmpGame.filter(g => selectedProviders.includes(g.provider))
-                : tmpGame
-
-        return tmpGame
-    } */
-
     return (
-        <>
-            {games.length > 0 && (
-                <div className={styles['container']}>
-                    <div className={styles['header']}>
-                        {icon ?? <img src={icon} alt="icon" />}
-                        <h2 className={styles['title']}>
-                            {title} [{games.length}]
-                        </h2>
-                    </div>
-
-                    <div className={styles['games']}>
-                        {games.map(game => (
-                            <GameCard
-                                key={game.id}
-                                id={game.id}
-                                title={game.displayName}
-                                img={game.image}
-                            />
-                        ))}
-                    </div>
+        <div className={styles['container']}>
+            <div className={styles['header']}>
+                {icon && <img src={icon} alt="icon" />}
+                <h2 className={styles['title']}>
+                    {title}&nbsp;
+                    <span className={styles['count']}>[{games.length}]</span>
+                </h2>
+            </div>
+            {games.length > 0 ? (
+                <div className={styles['games']}>
+                    {games.map(game => (
+                        <GameCard
+                            key={game.id}
+                            id={game.id}
+                            title={game.displayName}
+                            img={game.image}
+                        />
+                    ))}
                 </div>
+            ) : (
+                <PMSorry />
             )}
-        </>
+        </div>
     )
 }
 

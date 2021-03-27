@@ -24,13 +24,29 @@ function App() {
         else if (currentWidth > TABLET_WIDTH) dispatch(setWidth(DESKTOP_WIDTH))
     }
 
+    const debounce = (func, wait) => {
+        let timeout
+
+        return function execute() {
+            const later = () => {
+                clearTimeout(timeout)
+                func()
+            }
+
+            clearTimeout(timeout)
+            timeout = setTimeout(later, wait)
+        }
+    }
+
     useEffect(() => {
         dispatch(fetchData())
 
         updateScreenWidth()
 
-        window.addEventListener('resize', updateScreenWidth)
-        return () => window.removeEventListener('resize', updateScreenWidth)
+        const debounced = debounce(updateScreenWidth, 1000)
+
+        window.addEventListener('resize', debounced)
+        return () => window.removeEventListener('resize', debounced)
     }, [])
 
     return (

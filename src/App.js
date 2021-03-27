@@ -38,7 +38,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {isLoaded ? (
+                {!isLoaded ? (
                     <Loader />
                 ) : (
                     <Switch>

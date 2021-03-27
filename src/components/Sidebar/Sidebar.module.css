@@ -212,8 +212,8 @@ hr {
     .categories,
     .providers {
         width: 100%;
-
-        overflow-y: unset;
+        height: auto;
+        max-height: 100%;
     }
     .filtersWrapper {
         height: calc(100vh - 90px);

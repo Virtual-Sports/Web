@@ -16,12 +16,13 @@ export const setWidth = width => ({
     type: SET_WIDTH,
     payload: width,
 })
-// dispatch(setLoaded(false))
+
 export const fetchData = token => dispatch => {
+    dispatch(setLoaded(false))
     getDataFromSeverFunction(token)
         .then(data => data.json())
         .then(body => {
             dispatch(setData(body))
+            dispatch(setLoaded(true))
         })
 }
-// dispatch(setLoaded(true))

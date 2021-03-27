@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { WEB_MOBILE, WEB_DESKTOP } from '../../shared/constants'
+import { WEB_MOBILE, WEB_DESKTOP } from '../constants'
 
 const platform = window.navigator.userAgentData.mobile
     ? WEB_MOBILE

@@ -15,7 +15,7 @@ const GameCard = ({ id, title, img }) => {
     return (
         <Link className={styles.card} to={`/game/${id}`}>
             <img src={img ?? defaultImageUrl} onError={handleError} />
-            <span className={styles.description}>{title ?? defaultTitle}</span>
+            <p className={styles.description}>{title ?? defaultTitle}</p>
         </Link>
     )
 }

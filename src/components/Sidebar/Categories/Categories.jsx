@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 Categories.propTypes = {
-    selectedCategory: PropTypes.array.isRequired,
+    selectedCategory: PropTypes.string.isRequired,
     onSelectHandler: PropTypes.func.isRequired,
 }
 
-function Categories({ selectedCategory, onSelectHandler }) {
+function Categories({ selectedCategory = null, onSelectHandler }) {
     const categories = useSelector(state => state.data.data.categories)
 
     return categories.map(category => (

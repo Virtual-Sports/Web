@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     areFiltersVisible: false,
-    selectedCategory: null, // only 1 category
+    selectedCategory: null,
+    selectedCategoryTitle: '',
     selectedProviders: [], // multiple providers
 }
 
@@ -17,7 +18,6 @@ const filters = (state = initialState, action) => {
                 ...state,
                 areFiltersVisible: action.payload,
             }
-
         case TOGGLE_PROVIDER:
             return {
                 ...state,
@@ -29,16 +29,18 @@ const filters = (state = initialState, action) => {
                       )
                     : [...state.selectedProviders, action.payload],
             }
-
         case SET_CATEGORY:
             return {
                 ...state,
                 selectedCategory:
-                    state.selectedCategory === action.payload
+                    state.selectedCategory === action.payload.id
                         ? null
-                        : action.payload,
+                        : action.payload.id,
+                selectedCategoryTitle:
+                    state.selectedCategory === action.payload.id
+                        ? null
+                        : action.payload.title,
             }
-
         default:
             return state
     }

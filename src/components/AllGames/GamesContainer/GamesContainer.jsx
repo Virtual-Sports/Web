@@ -4,47 +4,44 @@ import PropTypes from 'prop-types'
 import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
-import { MOBILE_WIDTH, TABLET_WIDTH } from '../../../shared/constants'
-import { useSelector } from 'react-redux'
-import { allGamesSelector } from '../AllGames.selector.js'
+import { ReactComponent as PMSorry } from '../../icons/pm-sorry.svg'
+import { gamesContainer as messages } from '../../../shared/messages'
 
 GamesContainer.propTypes = {
     icon: PropTypes.string,
-    numberToDisplay: PropTypes.number,
     title: PropTypes.string.isRequired,
     games: PropTypes.array.isRequired,
 }
 
-function GamesContainer({ title, games, numberToDisplay = null, icon = null }) {
-    const { width } = useSelector(allGamesSelector)
-
-    const gamesToDisplay = () => {
-        if (!numberToDisplay) return games
-
-        let length = 4
-        if (width <= MOBILE_WIDTH) length = 2
-        else if (width <= TABLET_WIDTH) length = 3
-
-        return games.slice(0, length)
-    }
-
+function GamesContainer({ title, games, icon = null }) {
     return (
         <div className={styles['container']}>
             <div className={styles['header']}>
-                {icon ? <img src={icon} alt="icon" /> : <></>}
-                <h2 className={styles['title']}>{title}</h2>
+                {icon && <img src={icon} alt="icon" />}
+                <h2 className={styles['title']}>
+                    {title}&nbsp;
+                    <span className={styles['count']}>[{games.length}]</span>
+                </h2>
             </div>
-
-            <div className={styles['games']}>
-                {gamesToDisplay().map(game => (
-                    <GameCard
-                        key={game.id}
-                        id={game.id}
-                        title={game.displayName}
-                        img={game.image}
-                    />
-                ))}
-            </div>
+            {games.length > 0 ? (
+                <div className={styles['games']}>
+                    {games.map(game => (
+                        <GameCard
+                            key={game.id}
+                            id={game.id}
+                            title={game.displayName}
+                            img={game.image}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className={styles['nothing-found']}>
+                    <span className={styles['message']}>
+                        {messages.nothingFound}
+                    </span>
+                    <PMSorry className={styles['image']} />
+                </div>
+            )}
         </div>
     )
 }

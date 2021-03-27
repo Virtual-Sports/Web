@@ -25,7 +25,6 @@ export const fetchData = () => dispatch => {
     // TODO: just for test - remove on production
     setTimeout(() => {
         dispatch(setData(response))
-        dispatch(setLoaded(true))
     }, 2000)
 
     // TODO

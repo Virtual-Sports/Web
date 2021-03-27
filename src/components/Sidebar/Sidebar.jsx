@@ -66,17 +66,6 @@ function Sidebar() {
         changeFiltersVisibility()
     }
 
-    const renderApplyFilterButton = () =>
-        width === MOBILE_WIDTH &&
-        (selectedCategory || selectedProviders.length !== 0) && (
-            <button
-                className={styles['apply-filters-button']}
-                onClick={applyFilters}
-            >
-                Применить
-            </button>
-        )
-
     return (
         <div className={styles['container']}>
             {width === MOBILE_WIDTH && (
@@ -89,7 +78,7 @@ function Sidebar() {
 
             {((width === MOBILE_WIDTH && filtersVisibility) ||
                 width > MOBILE_WIDTH) && (
-                <>
+                <div className={styles.filtersWrapper}>
                     <div className={styles['categories']}>
                         <Categories
                             selectedCategory={selectedCategory}
@@ -107,8 +96,17 @@ function Sidebar() {
                         />
                     </div>
 
-                    {renderApplyFilterButton()}
-                </>
+                    {width === MOBILE_WIDTH &&
+                        (selectedCategory ||
+                            selectedProviders.length !== 0) && (
+                            <button
+                                className={styles['apply-filters-button']}
+                                onClick={applyFilters}
+                            >
+                                Применить
+                            </button>
+                        )}
+                </div>
             )}
         </div>
     )

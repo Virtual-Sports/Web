@@ -37,12 +37,10 @@ function MainPage() {
                     <Sidebar categories={categories} providers={providers} />
                 </div>
 
-                {!filtersVisibility ? (
+                {!filtersVisibility && (
                     <div className={styles['games-container']}>
                         <AllGames />
                     </div>
-                ) : (
-                    <>Search result</>
                 )}
                 {isLoginModalVisible && (
                     <LoginModal

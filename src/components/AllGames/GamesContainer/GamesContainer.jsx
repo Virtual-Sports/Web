@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -17,15 +16,21 @@ GamesContainer.propTypes = {
 function GamesContainer({ title, games, icon = null }) {
     const { selectedCategory, selectedProviders } = useSelector(filtersSelector)
 
-    console.log(selectedProviders, selectedCategory)
+    // const [filterEnabled, setFilterEnabled] = useState(false)
 
     const gamesToDisplay = () => {
-        return games.filter(
-            game =>
-                game.category.includes(selectedCategory) &&
-                (selectedProviders.length > 0 &&
-                    selectedProviders.includes(game.provider))
-        )
+        let tmpGame = games
+
+        tmpGame = selectedCategory
+            ? tmpGame.filter(g => g.category.includes(selectedCategory))
+            : tmpGame
+
+        tmpGame =
+            selectedProviders.length > 0
+                ? tmpGame.filter(g => selectedProviders.includes(g.provider))
+                : tmpGame
+
+        return tmpGame
     }
 
     return (
@@ -36,7 +41,6 @@ function GamesContainer({ title, games, icon = null }) {
             </div>
 
             <div className={styles['games']}>
-                {/* {JSON.stringify(gamesToDisplay())} */}
                 {gamesToDisplay().map(game => (
                     <GameCard
                         key={game.id}

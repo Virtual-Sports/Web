@@ -15,7 +15,7 @@ function AllGames() {
         for (let tag of tags) {
             const games = allGames.filter(game => game.tags.includes(tag.id))
 
-            if (games.length !== 0) {
+            if (games.length > 0) {
                 setTagsGames(prev => [
                     ...prev,
                     {

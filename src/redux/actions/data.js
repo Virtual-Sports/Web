@@ -2,11 +2,13 @@ import {
     getDataFromSeverFunction,
     fetchGetFavourite,
     fetchGetRecent,
+    fetchGetRecommended,
 } from '../../shared/fetchs/fetchs'
 import {
     SET_DATA,
     SET_FAVOURITES,
     SET_RECENT,
+    SET_RECOMMENDED,
     SET_LOADED,
     SET_WIDTH,
 } from './constants' // TODO: remove on production
@@ -29,6 +31,11 @@ export const setFavourites = items => ({
 
 export const setRecent = items => ({
     type: SET_RECENT,
+    payload: items,
+})
+
+export const setRecommended = items => ({
+    type: SET_RECOMMENDED,
     payload: items,
 })
 
@@ -60,6 +67,15 @@ export const fetchRecent = token => dispatch => {
         .then(data => data.json())
         .then(body => {
             dispatch(setRecent(body))
+        })
+        .catch(err => console.log(err))
+}
+
+export const fetchRecommended = token => dispatch => {
+    fetchGetRecommended(token)
+        .then(data => data.json())
+        .then(body => {
+            dispatch(setRecommended(body))
         })
         .catch(err => console.log(err))
 }

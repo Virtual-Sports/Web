@@ -148,3 +148,17 @@ export const fetchAddGameToRecent = (gameId, token) => {
         }
     )
 }
+
+export const fetchGetRecommended = token => {
+    return fetch(
+        'https://virtual-sports-yi3j9.ondigitalocean.app/User/recommended',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}

@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { favouritesGamesSelector } from '../AllGames/FavouritesGames.selector'
+import { customGamesSelector } from '../AllGames/CustomGames.selector'
 import styles from './Header.module.css'
 
-import { fetchFavourites, fetchRecent } from '../../redux/actions/data'
+import {
+    fetchFavourites,
+    fetchRecent,
+    fetchRecommended,
+} from '../../redux/actions/data'
 import ArrowBack from '../../resources/icons/back.svg'
 import {
     fetchAddToFavorite,
@@ -18,9 +22,9 @@ import useToken from '../../shared/hooks/useToken'
 
 const HeaderGame = ({ title = 'Game', gameId }) => {
     const dispatch = useDispatch()
-    const { favouritesGames } = useSelector(favouritesGamesSelector)
+    const { favouriteGames } = useSelector(customGamesSelector)
     const [isFav, setIsFav] = useState(
-        favouritesGames.findIndex(item => item.id === gameId)
+        favouriteGames.findIndex(item => item.id === gameId)
     )
 
     const { token } = useToken()
@@ -43,6 +47,7 @@ const HeaderGame = ({ title = 'Game', gameId }) => {
             .then(res => {
                 if (res.ok) {
                     dispatch(fetchRecent(token))
+                    dispatch(fetchRecommended(token))
                 }
             })
             .catch(err => console.log(`Erorr: ${err}`))

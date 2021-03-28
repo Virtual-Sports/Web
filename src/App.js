@@ -13,6 +13,7 @@ import {
     setWidth,
     fetchFavourites,
     fetchRecent,
+    fetchRecommended,
 } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 import Loader from './components/Loader/Loader'
@@ -39,6 +40,7 @@ function App() {
         if (token) {
             dispatch(fetchFavourites(token))
             dispatch(fetchRecent(token))
+            dispatch(fetchRecommended(token))
         }
 
         updateScreenWidth()

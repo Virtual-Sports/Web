@@ -33,7 +33,7 @@ function GamesContainer({ title = '', games = [], search }) {
                         <h2 className={styles['title']}>
                             {title}&nbsp;
                             <span className={styles['count']}>
-                                [{games.length}] {isCompleted ? '1' : '0'}
+                                [{games.length}]
                             </span>
                         </h2>
 

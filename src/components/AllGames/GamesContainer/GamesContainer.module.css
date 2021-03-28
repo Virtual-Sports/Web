@@ -1,27 +1,30 @@
 .container {
     width: 100%;
-
-    margin-bottom: 5%;
-
-    overflow-y: auto;
+    margin: 15px 0;
 }
 
 .header {
     font-weight: 700;
     font-size: 0.9em;
-
     display: flex;
     align-items: center;
-
     margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(
+        90deg,
+        rgba(252, 248, 84, 1) 0%,
+        rgba(253, 251, 168, 0.4640231092436975) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-image-slice: 1;
 }
 
 .header img {
     height: 18px;
     width: 18px;
-
     margin-right: 10px;
-
     filter: invert(100%) sepia(3%) saturate(13%) hue-rotate(81deg)
         brightness(106%) contrast(106%);
 }
@@ -29,6 +32,28 @@
 .games {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-wrap: wrap;
+}
+
+.count {
+    color: #fcf854;
+    font-size: 0.75em;
+}
+
+.nothing-found {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.message {
+    margin-bottom: 1em;
+    white-space: pre-line;
+    text-align: center;
+}
+
+.image {
+    width: 350px;
 }

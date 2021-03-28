@@ -1,5 +1,8 @@
-import { response } from '../response'
-import { SET_DATA, SET_LOADED, SET_WIDTH } from './constants' // TODO: remove on production
+import {
+    getDataFromSeverFunction,
+    fetchGetFavourite,
+} from '../../shared/fetchs/fetchs'
+import { SET_DATA, SET_FAVOURITES, SET_LOADED, SET_WIDTH } from './constants' // TODO: remove on production
 
 // TODO: mb create action for each subarray
 export const setLoaded = status => ({
@@ -12,25 +15,30 @@ export const setData = items => ({
     payload: items,
 })
 
+export const setFavourites = items => ({
+    type: SET_FAVOURITES,
+    payload: items,
+})
+
 export const setWidth = width => ({
     type: SET_WIDTH,
     payload: width,
 })
 
-// https://virtual-sports-yi3j9.ondigitalocean.app/
-
-export const fetchData = () => dispatch => {
+export const fetchData = token => dispatch => {
     dispatch(setLoaded(false))
+    getDataFromSeverFunction(token)
+        .then(data => data.json())
+        .then(body => {
+            dispatch(setData(body))
+        })
+}
 
-    // TODO: just for test - remove on production
-    setTimeout(() => {
-        dispatch(setData(response))
-        dispatch(setLoaded(true))
-    }, 2000)
-
-    // TODO
-    /* getDataFromSeverFunction().then(({ data }) => {
-        // TODO: create an object with 4 arrays from the response
-        dispatch(setData(data))
-    }) */
+export const fetchFavourites = token => dispatch => {
+    fetchGetFavourite(token)
+        .then(data => data.json())
+        .then(body => {
+            dispatch(setFavourites(body))
+        })
+        .catch(err => console.log(err))
 }

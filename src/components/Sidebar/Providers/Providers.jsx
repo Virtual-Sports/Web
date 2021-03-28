@@ -22,7 +22,13 @@ function Providers({ selectedProviders, onSelectHandler }) {
             }`}
             onClick={onSelectHandler(provider.id, false)}
         >
-            <img src={provider.icon} alt="provider-icon" />
+            <img
+                src={
+                    provider.image ||
+                    'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952'
+                }
+                alt="provider-icon"
+            />
         </div>
     ))
 }

@@ -4,6 +4,9 @@ import styles from '../Sidebar.module.css'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { sidebarSelector } from '../Sidebar.selector'
+import { ReactComponent as Settings } from '../../../resources/icons/settings.svg'
+import { ReactComponent as Cancel } from '../../../resources/icons/cancel.svg'
+
 import {
     setCategory,
     setFiltersVisibility,
@@ -50,18 +53,14 @@ function FilterButton({
                     className={styles['filters-closed']}
                     onClick={onFilterButtonClick}
                 >
-                    <img src="./icons/settings.svg" alt="filters-icon" />
+                    <Settings />
                     <span>Фильтры</span>
                 </button>
             ) : (
                 <div className={styles['filters-opened']}>
                     <div>
                         <span>Фильтры</span>
-                        <img
-                            src="./icons/cancel.svg"
-                            onClick={cancel}
-                            alt="cancel-icon"
-                        />
+                        <Cancel onClick={cancel} />
                     </div>
 
                     <hr />

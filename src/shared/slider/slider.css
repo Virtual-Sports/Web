@@ -1,0 +1,89 @@
+.react-multi-carousel-list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.react-multi-carousel-track {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, transition;
+}
+.react-multiple-carousel__arrow {
+    position: absolute;
+    outline: 0;
+    transition: all 0.5s;
+    border-radius: 30px;
+    z-index: 1;
+    border: 0;
+    background: rgba(0, 0, 0, 0.5);
+    min-width: 30px;
+    min-height: 30px;
+    opacity: 1;
+    cursor: pointer;
+}
+.react-multiple-carousel__arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+.react-multiple-carousel__arrow::before {
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+.react-multiple-carousel__arrow--left {
+    top: calc(50% - 29px - 0.7em);
+    left: 10px;
+}
+.react-multiple-carousel__arrow--left::before {
+    content: '\21E6';
+}
+.react-multiple-carousel__arrow--right {
+    top: calc(50% - 29px - 0.7em);
+    right: 10px;
+}
+.react-multiple-carousel__arrow--right::before {
+    content: '\21E8';
+}
+
+.react-multi-carousel-item {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+.carouselWrapper {
+    width: 100%;
+}
+.carouselTitle {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(
+        90deg,
+        rgba(252, 248, 84, 1) 0%,
+        rgba(253, 251, 168, 0.4640231092436975) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-image-slice: 1;
+}
+.count {
+    color: #fcf854;
+    font-size: 0.75em;
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .react-multi-carousel-item {
+        flex-shrink: 0 !important;
+    }
+    .react-multi-carousel-track {
+        overflow: visible !important;
+    }
+}

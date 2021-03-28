@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 
 import styles from './GamePage.module.css'
 
-import HeaderGame from '../Header/HeaderGame'
 import { gamePageSelector } from './GamePage.selector'
+import HeaderGame from '../Header/HeaderGame'
 
 function GamePage() {
     let history = useHistory()
@@ -18,7 +18,10 @@ function GamePage() {
             <HeaderGame title={game.displayName} gameId={id} />
             <div className={styles['frame-container']}>
                 {game ? (
-                    <iframe id={id} src={game.url || 'https://wiki.com'} />
+                    <iframe
+                        id={id}
+                        src={game.url || 'https://parimatch.com/'}
+                    />
                 ) : (
                     () => history.push('/game/original_dice_game')
                 )}

@@ -32,3 +32,44 @@ code {
 .ReactCollapse--collapse {
     transition: height 1000ms;
 }
+/*Fonts */
+
+@font-face {
+    font-family: 'Parimatch';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Parimatch'),
+        url('./resources/fonts/Parimatch-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Parimatch';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Parimatch'),
+        url('./resources/fonts/Parimatch-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Parimatch';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Parimatch'),
+        url('./resources/fonts/Parimatch-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Parimatch';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Parimatch'),
+        url('./resources/fonts/Parimatch-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Parimatch';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Parimatch'),
+        url('./resources/fonts/Parimatch-Thin.otf') format('opentype');
+}

@@ -33,9 +33,11 @@
 .card:hover > img {
     transform: scale(0.95);
 }
+
 .card:hover > .description {
     opacity: 1;
 }
+
 @media only screen and (max-width: 760px) {
     .card {
         width: 31.3%;

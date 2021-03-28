@@ -6,7 +6,7 @@ import './App.css'
 
 import MainPage from './components/MainPage/MainPage'
 import GamePage from './components/GamePage/GamePage'
-
+import Loader from './components/Loader/Loader'
 import Dice from './components/DiceGame/Dice'
 import {
     fetchData,
@@ -16,7 +16,6 @@ import {
     fetchRecommended,
 } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
-import Loader from './components/Loader/Loader'
 import useToken from './shared/hooks/useToken'
 import { debounce } from './shared/utils'
 

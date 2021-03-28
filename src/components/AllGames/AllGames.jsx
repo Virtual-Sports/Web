@@ -1,15 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './AllGames.module.css'
 
 import GamesContainer from './GamesContainer/GamesContainer'
 import GamesCardSlider from './GameCardSlider/GameCardSlider'
-import { useSelector } from 'react-redux'
+
 import { allGamesSelector } from './AllGames.selector.js'
 import { customGamesSelector } from './CustomGames.selector.js'
-import { Slider } from '../../shared/slider/Slider'
 import { filtersSelector } from './Filters.selector.js'
 import { allGames as messages } from '../../shared/messages'
+import { Slider } from '../../shared/slider/Slider'
 
 function AllGames() {
     const { allGames, tags } = useSelector(allGamesSelector)
@@ -50,7 +51,7 @@ function AllGames() {
             : messages.gameList
 
     return (
-        <>
+        <div className={styles['scroll']}>
             {selectedCategory || selectedProviders.length > 0 ? (
                 <div className={styles['container']}>
                     <GamesContainer
@@ -78,10 +79,7 @@ function AllGames() {
                     {tagsWithoutTop &&
                         tagsWithoutTop.map(tag => {
                             return (
-                                <div
-                                    key={tag.displayName}
-                                    className={styles['tags']}
-                                >
+                                <div key={tag.displayName}>
                                     <GamesContainer
                                         title={tag.displayName}
                                         games={allGames.filter(game =>
@@ -108,7 +106,8 @@ function AllGames() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     )
 }
+
 export default AllGames

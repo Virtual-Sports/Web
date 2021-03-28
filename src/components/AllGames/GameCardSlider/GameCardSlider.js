@@ -1,23 +1,30 @@
 import React from 'react'
-import styles from './GameCardSlider.module.css'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const defaultImageUrl = 'https://via.placeholder.com/250x250'
+import styles from './GameCardSlider.module.css'
+
+import DEFAULT_GAME_PHOTO from '../../../resources/icons/default-game.svg'
+import { DEFAULT_GAME_TITLE } from '../../../shared/constants'
 
 const GameCardSlider = ({
     id,
-    title = 'no title',
-    image = defaultImageUrl,
+    title = DEFAULT_GAME_TITLE,
+    image = DEFAULT_GAME_PHOTO,
 }) => {
     const handleError = e => {
         e.target.onerror = null
-        e.target.src = defaultImageUrl
+        e.target.src = DEFAULT_GAME_PHOTO
     }
 
     return (
         <Link className={styles.card} to={`/game/${id}`}>
-            <img className={styles.img} src={image} onError={handleError} />
+            <img
+                className={styles.img}
+                src={image}
+                onError={handleError}
+                alt="game-photo"
+            />
             <p className={styles.description}>{title}</p>
         </Link>
     )

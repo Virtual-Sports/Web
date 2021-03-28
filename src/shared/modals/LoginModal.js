@@ -13,7 +13,7 @@ const LoginModal = ({
     setIsRegistrationModalVisible,
     setToken,
 }) => {
-    const [isPaswordShow, setIsPaswordShow] = useState(false)
+    const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [loginError, setLoginError] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
@@ -41,6 +41,7 @@ const LoginModal = ({
             })
             .finally(setIsLoading(false))
     }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
@@ -52,7 +53,6 @@ const LoginModal = ({
                         <ExitLogo className={styles.svg} />
                     </button>
                     <p>Вход</p>
-                    <span></span>
                 </div>
             </div>
             <div className={styles.formWrapper}>
@@ -83,14 +83,14 @@ const LoginModal = ({
                             }}
                             minLength={8}
                             maxLength={20}
-                            type={isPaswordShow ? 'text' : 'password'}
+                            type={isPasswordShow ? 'text' : 'password'}
                             autoComplete="current-password"
                         />
                         <span
                             className={styles.eys}
-                            onClick={() => setIsPaswordShow(!isPaswordShow)}
+                            onClick={() => setIsPasswordShow(!isPasswordShow)}
                         >
-                            {isPaswordShow ? <Eye /> : <EyeNo />}
+                            {isPasswordShow ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
                     <span className={styles.error}>{loginError}</span>

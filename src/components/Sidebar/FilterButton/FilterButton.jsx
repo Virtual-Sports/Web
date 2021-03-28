@@ -13,12 +13,6 @@ import {
     toggleProvider,
 } from '../../../redux/actions/filters'
 
-FilterButton.propTypes = {
-    onFilterButtonClick: PropTypes.func.isRequired,
-    lastSelected: PropTypes.object.isRequired,
-    resetLastSelected: PropTypes.func.isRequired,
-}
-
 function FilterButton({
     onFilterButtonClick,
     lastSelected,
@@ -81,6 +75,12 @@ function FilterButton({
             )}
         </div>
     )
+}
+
+FilterButton.propTypes = {
+    onFilterButtonClick: PropTypes.func.isRequired,
+    lastSelected: PropTypes.object.isRequired,
+    resetLastSelected: PropTypes.func.isRequired,
 }
 
 export default FilterButton

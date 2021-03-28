@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
-
 import { fetchLogout } from '../../shared/fetchs/fetchs'
 
 const HeaderMain = ({
@@ -24,6 +23,7 @@ const HeaderMain = ({
                         alt="dice-icon"
                     />
                 </Link>
+
                 {token ? (
                     <div className={styles['authorized']}>
                         <button

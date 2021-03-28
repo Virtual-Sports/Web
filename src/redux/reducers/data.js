@@ -1,4 +1,9 @@
-import { SET_DATA, SET_LOADED, SET_WIDTH } from '../actions/constants'
+import {
+    SET_DATA,
+    SET_LOADED,
+    SET_WIDTH,
+    SET_FAVOURITES,
+} from '../actions/constants'
 
 const initialState = {
     data: {
@@ -7,6 +12,7 @@ const initialState = {
         tags: [],
         games: [],
     },
+    favourites: [],
     isLoaded: false,
     width: null,
 }
@@ -28,6 +34,11 @@ const data = (state = initialState, action) => {
             return {
                 ...state,
                 isLoaded: action.payload,
+            }
+        case SET_FAVOURITES:
+            return {
+                ...state,
+                favourites: action.payload,
             }
         default:
             return state

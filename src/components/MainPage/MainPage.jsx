@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import styles from './MainPage.module.css'
 
 import Sidebar from '../Sidebar/Sidebar'
-import Header from '../Header/Header'
+import HeaderMain from '../Header/HeaderMain'
 import AllGames from '../AllGames/AllGames'
 import { mainPageSelector } from './MainPage.selector.js'
 import LoginModal from '../../shared/modals/LoginModal'
@@ -24,8 +24,7 @@ function MainPage() {
 
     return (
         <div className={styles['container']}>
-            <Header
-                isMainPage={true}
+            <HeaderMain
                 token={token}
                 setToken={setToken}
                 setIsLoginModalVisible={setIsLoginModalVisible}

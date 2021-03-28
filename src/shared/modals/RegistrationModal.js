@@ -38,8 +38,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                 }
             })
             .catch(err => {
-                setRegistrationError('Oшибка сети')
-                console.log(err)
+                setRegistrationError('Oшибка сети ', err)
             })
             .finally(setIsLoading(false))
     }

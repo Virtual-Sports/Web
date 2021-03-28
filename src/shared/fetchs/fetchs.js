@@ -77,3 +77,44 @@ export const fetchGetHistory = token => {
         }
     )
 }
+
+export const fetchGetFavourite = token => {
+    return fetch(
+        'https://virtual-sports-yi3j9.ondigitalocean.app/User/favourites',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchAddToFavorite = (id, token) => {
+    return fetch(
+        `https://virtual-sports-yi3j9.ondigitalocean.app/User/favourite/${id}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+export const fetchRemoveFromFavorite = (id, token) => {
+    return fetch(
+        `https://virtual-sports-yi3j9.ondigitalocean.app/User/favourite/${id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}

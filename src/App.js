@@ -8,7 +8,7 @@ import MainPage from './components/MainPage/MainPage'
 import GamePage from './components/GamePage/GamePage'
 
 import Dice from './components/DiceGame/Dice'
-import { fetchData, setWidth } from './redux/actions/data'
+import { fetchData, setWidth, fetchFavourites } from './redux/actions/data'
 import { DESKTOP_WIDTH, MOBILE_WIDTH, TABLET_WIDTH } from './shared/constants'
 import Loader from './components/Loader/Loader'
 import useToken from './shared/hooks/useToken'
@@ -30,6 +30,8 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchData(token))
+        dispatch(fetchFavourites(token))
+
         updateScreenWidth()
 
         const debounced = debounce(updateScreenWidth, 1000)

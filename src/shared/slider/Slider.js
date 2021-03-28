@@ -23,21 +23,25 @@ export const Slider = ({
     }
 
     return (
-        <div className="carouselWrapper">
-            <h2 className="carouselTitle">
-                {topTag.displayName}{' '}
-                <span className={'count'}>[{children.length}]</span>
-            </h2>
+        <>
+            {children.length && (
+                <div className="carouselWrapper">
+                    <h2 className="carouselTitle">
+                        {topTag.displayName}{' '}
+                        <span className={'count'}>[{children.length}]</span>
+                    </h2>
 
-            <Carousel
-                draggable={false}
-                removeArrowOnDeviceType={['mobile', 'tablet']}
-                swipeable={true}
-                responsive={responsive}
-            >
-                {children}
-            </Carousel>
-        </div>
+                    <Carousel
+                        draggable={false}
+                        removeArrowOnDeviceType={['mobile', 'tablet']}
+                        swipeable={true}
+                        responsive={responsive}
+                    >
+                        {children}
+                    </Carousel>
+                </div>
+            )}
+        </>
     )
 }
 

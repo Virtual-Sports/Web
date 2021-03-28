@@ -29,6 +29,9 @@ code {
     margin: 0 auto;
 }
 
+.ReactCollapse--collapse {
+    transition: height 1000ms;
+
 /*Fonts */
 
 @font-face {

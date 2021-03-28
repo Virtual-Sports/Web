@@ -6,11 +6,13 @@ import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
 import { fetchLogout } from '../../shared/fetchs/fetchs'
+
 import {
     setFavourites,
     setRecent,
     setRecommended,
 } from '../../redux/actions/data'
+
 import { useDispatch } from 'react-redux'
 
 const HeaderMain = ({
@@ -39,11 +41,9 @@ const HeaderMain = ({
                             onClick={() => {
                                 fetchLogout(token)
                                     .then(res => {
-                                        if (!res.ok) {
-                                            // eslint-disable-next-line no-alert
-                                            alert(
-                                                `[${res.status}] Ошибка: ${res.response}`
-                                            )
+                                        if (res.ok) {
+                                            setToken(null)
+                                            dispatch(setFavourites([]))
                                         }
                                     })
                                     .finally(() => {

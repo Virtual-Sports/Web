@@ -7,6 +7,7 @@
     font-weight: 700;
     font-size: 0.9em;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
     padding-bottom: 10px;
@@ -19,6 +20,24 @@
         rgba(255, 255, 255, 0) 100%
     );
     border-image-slice: 1;
+    cursor: pointer;
+}
+
+.arrow {
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 
 .header img {

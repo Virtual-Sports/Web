@@ -18,7 +18,10 @@ function GamePage() {
             <HeaderGame title={game.displayName} gameId={id} />
             <div className={styles['frame-container']}>
                 {game ? (
-                    <iframe id={id} src={game.url || 'https://parimatch.com/'} />
+                    <iframe
+                        id={id}
+                        src={game.url || 'https://parimatch.com/'}
+                    />
                 ) : (
                     () => history.push('/game/original_dice_game')
                 )}

@@ -2,14 +2,13 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import GamePage from './GamePage.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import { render, fireEvent } from '@testing-library/react'
-import GameCard from '../AllGames/GameCard/GameCard'
+import { render } from '@testing-library/react'
 import { NO_TITLE } from '../../shared/constants'
 import Header from '../Header/Header'
 
 const mockHistoryPush = jest.fn()
 
-// jest.mock('../Header/Header', () => () => 'Header')
+jest.mock('../Header/Header', () => () => 'Header')
 jest.mock('../../shared/fetchs/fetchs', () => ({
     fetchLogout: jest.fn(),
 }))

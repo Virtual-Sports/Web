@@ -7,6 +7,8 @@ import styles from './Header.module.css'
 import DiceIcon from '../../resources/icons/dice.svg'
 
 import { fetchLogout } from '../../shared/fetchs/fetchs'
+import { setFavourites } from '../../redux/actions/data'
+import { useDispatch } from 'react-redux'
 
 const HeaderMain = ({
     setIsLoginModalVisible,
@@ -14,6 +16,8 @@ const HeaderMain = ({
     token,
     setToken,
 }) => {
+    const dispatch = useDispatch()
+
     return (
         <div className={styles['container']}>
             <div className={styles['main-page-container']}>
@@ -40,6 +44,7 @@ const HeaderMain = ({
                                     })
                                     .finally(() => {
                                         setToken(null)
+                                        dispatch(setFavourites([]))
                                     })
                             }}
                         >

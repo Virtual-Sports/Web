@@ -1,7 +1,8 @@
 import moment from 'moment'
 import { WEB_MOBILE, WEB_DESKTOP } from '../constants'
+import { getDeviceType } from '../../shared/utils'
 
-const platform = window.navigator.userAgentData.mobile
+const platform = getDeviceType() /* window.navigator.userAgentData.mobile */
     ? WEB_MOBILE
     : WEB_DESKTOP
 

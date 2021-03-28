@@ -6,14 +6,13 @@ import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
 import { fetchLogout } from '../../shared/fetchs/fetchs'
+import { useDispatch } from 'react-redux'
 
 import {
     setFavourites,
     setRecent,
     setRecommended,
 } from '../../redux/actions/data'
-
-import { useDispatch } from 'react-redux'
 
 const HeaderMain = ({
     setIsLoginModalVisible,

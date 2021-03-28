@@ -11,8 +11,8 @@ const RegistrationModal = ({
     setIsLoginModalVisible,
     setToken,
 }) => {
-    const [isPaswordShow, setIsPaswordShow] = useState(false)
-    const [isPasword2Show, setIsPasword2Show] = useState(false)
+    const [isPasswordShow, setIsPasswordShow] = useState(false)
+    const [isPassword2Show, setIsPassword2Show] = useState(false)
     const [registrationError, setRegistrationError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState('')
@@ -26,10 +26,12 @@ const RegistrationModal = ({
 
     const registration = e => {
         e.preventDefault()
+
         if (pass1 !== pass2) {
             setRegistrationError('Пароли должны совпадать!')
             return
         }
+
         fetchRegistration(formData)
             .then(async response => {
                 if (response.status === 200) {
@@ -61,6 +63,7 @@ const RegistrationModal = ({
                     <span></span>
                 </div>
             </div>
+
             <div className={styles.formWrapper}>
                 <form
                     className={styles.formBlock}
@@ -90,13 +93,13 @@ const RegistrationModal = ({
                             minLength={8}
                             maxLength={20}
                             autoComplete="new-password"
-                            type={isPaswordShow ? 'text' : 'password'}
+                            type={isPasswordShow ? 'text' : 'password'}
                         />
                         <span
                             className={styles.eys}
-                            onClick={() => setIsPaswordShow(!isPaswordShow)}
+                            onClick={() => setIsPasswordShow(!isPasswordShow)}
                         >
-                            {isPaswordShow ? <Eye /> : <EyeNo />}
+                            {isPasswordShow ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
                     <div className={styles.inputWrapper}>
@@ -110,13 +113,13 @@ const RegistrationModal = ({
                             minLength={8}
                             maxLength={20}
                             autoComplete="new-password"
-                            type={isPasword2Show ? 'text' : 'password'}
+                            type={isPassword2Show ? 'text' : 'password'}
                         />
                         <span
                             className={styles.eys}
-                            onClick={() => setIsPasword2Show(!isPasword2Show)}
+                            onClick={() => setIsPassword2Show(!isPassword2Show)}
                         >
-                            {isPasword2Show ? <Eye /> : <EyeNo />}
+                            {isPassword2Show ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
                     <span className={styles.error}>{registrationError}</span>

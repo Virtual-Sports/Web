@@ -4,3 +4,5 @@ export const DESKTOP_WIDTH = 1400
 
 export const WEB_MOBILE = 'web-mobile'
 export const WEB_DESKTOP = 'web-desktop'
+
+export const DEFAULT_GAME_TITLE = 'No title'

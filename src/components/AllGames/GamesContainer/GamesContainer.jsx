@@ -9,12 +9,6 @@ import { gamesContainer as messages } from '../../../shared/messages'
 
 import { Collapse } from 'react-collapse'
 
-GamesContainer.propTypes = {
-    title: PropTypes.string.isRequired,
-    games: PropTypes.array,
-    search: PropTypes.bool,
-}
-
 function GamesContainer({ title = '', games = [], search }) {
     const [isOpened, setIsOpened] = useState(true)
     const [isCompleted, setIsCompleted] = useState(true)
@@ -77,6 +71,12 @@ function GamesContainer({ title = '', games = [], search }) {
             )}
         </>
     )
+}
+
+GamesContainer.propTypes = {
+    title: PropTypes.string.isRequired,
+    games: PropTypes.array,
+    search: PropTypes.bool,
 }
 
 export default GamesContainer

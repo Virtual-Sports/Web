@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './GamesContainer.module.css'
@@ -7,6 +7,8 @@ import GameCard from '../GameCard/GameCard'
 import { ReactComponent as PMSorry } from '../../../resources/icons/pm-sorry.svg'
 import { gamesContainer as messages } from '../../../shared/messages'
 
+import { Collapse } from 'react-collapse'
+
 GamesContainer.propTypes = {
     title: PropTypes.string.isRequired,
     games: PropTypes.array,
@@ -14,12 +16,34 @@ GamesContainer.propTypes = {
 }
 
 function GamesContainer({ title = '', games = [], search }) {
+    const [isOpened, setIsOpened] = useState(false)
+
     return (
         <>
+            <Collapse isOpened={isOpened} duration={5000}>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+                <div>Random content</div>
+            </Collapse>
             {games.length ? (
                 <div className={styles['container']}>
                     <div className={styles['header']}>
-                        <h2 className={styles['title']}>
+                        <h2
+                            className={styles['title']}
+                            onClick={() => {
+                                setIsOpened(!isOpened)
+                            }}
+                        >
                             {title}&nbsp;
                             <span className={styles['count']}>
                                 [{games.length}]

@@ -112,7 +112,7 @@ hr {
 
     border-radius: 3px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-
+    padding: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,7 +126,9 @@ hr {
 }
 
 .provider img {
-    height: 35px;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
     opacity: 0.7;
 }
 

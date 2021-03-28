@@ -5,6 +5,10 @@ import { Provider } from 'react-redux'
 import App from './App'
 import store from './redux/store'
 
+jest.mock('./redux/actions/data', () => ({
+    fetchData: jest.fn(),
+}))
+
 test('App', () => {
     render(
         <Provider store={store}>

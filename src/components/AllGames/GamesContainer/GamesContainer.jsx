@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styles from './GamesContainer.module.css'
 
 import GameCard from '../GameCard/GameCard'
-import { ReactComponent as PMSorry } from '../../icons/pm-sorry.svg'
+import { ReactComponent as PMSorry } from '../../../resources/icons/pm-sorry.svg'
 import { gamesContainer as messages } from '../../../shared/messages'
 
 GamesContainer.propTypes = {
@@ -21,6 +21,7 @@ function GamesContainer({ title, games }) {
                     <span className={styles['count']}>[{games.length}]</span>
                 </h2>
             </div>
+
             {games.length > 0 ? (
                 <div className={styles['games']}>
                     {games.map(game => (

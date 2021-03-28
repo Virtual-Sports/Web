@@ -1,14 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './AllGames.module.css'
 
 import GamesContainer from './GamesContainer/GamesContainer'
 import GamesCardSlider from './GameCardSlider/GameCardSlider'
-import { useSelector } from 'react-redux'
-import { allGamesSelector } from './AllGames.selector.js'
+
 import { Slider } from '../../shared/slider/Slider'
-import { filtersSelector } from './Filters.selector.js'
 import { allGames as messages } from '../../shared/messages'
+
+import { allGamesSelector } from './AllGames.selector.js'
+import { filtersSelector } from './Filters.selector.js'
 
 function AllGames() {
     const { allGames, tags } = useSelector(allGamesSelector)

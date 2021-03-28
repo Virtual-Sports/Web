@@ -6,21 +6,27 @@ import styles from './GamePage.module.css'
 
 import Header from '../Header/Header'
 import { gamePageSelector } from './GamePage.selector'
+import { NO_TITLE } from '../../shared/constants'
 
 function GamePage() {
     let history = useHistory()
     const { id } = useParams()
     const { allGames } = useSelector(gamePageSelector)
     const game = allGames.find(item => item.id === id)
-    console.log(game)
+
+    const toDiceGame = () => history.push('/game/original_dice_game')
     return (
         <div>
-            <Header isMainPage={false} title={game.displayName} />
+            <Header
+                isMainPage={false}
+                title={game ? game.displayName : NO_TITLE}
+            />
+
             <div className={styles['frame-container']}>
                 {game ? (
                     <iframe id={id} src={game.url || 'https://wiki.com'} />
                 ) : (
-                    () => history.push('/game/original_dice_game')
+                    toDiceGame()
                 )}
             </div>
         </div>

@@ -25,6 +25,34 @@ function Header({
     setIsRegistrationModalVisible,
     title = 'Game',
 }) {
+    const logout = () => {
+        setToken(null)
+        fetchLogout()
+    }
+
+    const login = () => setIsLoginModalVisible(true)
+    const signup = () => setIsRegistrationModalVisible(true)
+
+    const unauthorizedHeader = () => (
+        <div className={styles['unauthorized']}>
+            <button className={styles['login-button']} onClick={login}>
+                Вход
+            </button>
+
+            <button className={styles['registration-button']} onClick={signup}>
+                Регистрация
+            </button>
+        </div>
+    )
+
+    const renderAuthorizedHeader = () => (
+        <div className={styles['authorized']}>
+            <button className={styles['logout-button']} onClick={logout}>
+                Выход
+            </button>
+        </div>
+    )
+
     const renderMainPageHeader = () => (
         <div className={styles['main-page-container']}>
             <Link to={'/game/original_dice_game'}>
@@ -34,35 +62,8 @@ function Header({
                     alt="dice-icon"
                 />
             </Link>
-            {token ? (
-                <div className={styles['authorized']}>
-                    <button
-                        className={styles['logout-button']}
-                        onClick={() => {
-                            setToken(null)
-                            fetchLogout()
-                        }}
-                    >
-                        Выход
-                    </button>
-                </div>
-            ) : (
-                <div className={styles['unauthorized']}>
-                    <button
-                        className={styles['login-button']}
-                        onClick={() => setIsLoginModalVisible(true)}
-                    >
-                        Вход
-                    </button>
 
-                    <button
-                        className={styles['registration-button']}
-                        onClick={() => setIsRegistrationModalVisible(true)}
-                    >
-                        Регистрация
-                    </button>
-                </div>
-            )}
+            {token ? renderAuthorizedHeader() : unauthorizedHeader()}
         </div>
     )
 

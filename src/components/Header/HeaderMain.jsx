@@ -6,7 +6,11 @@ import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
 import { fetchLogout } from '../../shared/fetchs/fetchs'
-import { setFavourites } from '../../redux/actions/data'
+import {
+    setFavourites,
+    setRecent,
+    setRecommended,
+} from '../../redux/actions/data'
 import { useDispatch } from 'react-redux'
 
 const HeaderMain = ({
@@ -45,6 +49,8 @@ const HeaderMain = ({
                                     .finally(() => {
                                         setToken(null)
                                         dispatch(setFavourites([]))
+                                        dispatch(setRecent([]))
+                                        dispatch(setRecommended([]))
                                     })
                             }}
                         >

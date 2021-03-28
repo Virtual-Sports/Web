@@ -34,6 +34,7 @@
 .card:hover > img {
     transform: scale(0.95);
 }
+
 .card:hover > .description {
     opacity: 1;
 }

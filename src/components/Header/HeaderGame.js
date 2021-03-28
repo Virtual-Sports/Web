@@ -7,12 +7,14 @@ import { favouritesGamesSelector } from '../AllGames/FavouritesGames.selector'
 import styles from './Header.module.css'
 
 import { fetchFavourites } from '../../redux/actions/data'
+
 import ArrowBack from '../../resources/icons/back.svg'
+import { ReactComponent as HeartImg } from '../../resources/icons/Heart.svg'
+
 import {
     fetchAddToFavorite,
     fetchRemoveFromFavorite,
 } from '../../shared/fetchs/fetchs'
-import { ReactComponent as HeartImg } from '../../resources/icons/Heart.svg'
 import useToken from '../../shared/hooks/useToken'
 
 const HeaderGame = ({ title = 'Game', gameId }) => {
@@ -38,18 +40,25 @@ const HeaderGame = ({ title = 'Game', gameId }) => {
     return (
         <div className={styles['container']}>
             <div className={styles['game']}>
-                <Link to={'/'}>
-                    <img src={ArrowBack} alt="back-arrow" />
-                </Link>
-                <p>{title}</p>
-                <HeartImg
-                    className={
-                        isFav === -1
-                            ? styles.heart
-                            : `${styles.heart} ${styles.fav}`
-                    }
-                    onClick={heartClick}
-                />
+                <div className={styles['game-title']}>
+                    <Link to={'/'}>
+                        <img src={ArrowBack} alt="back-arrow" />
+                    </Link>
+                    <p>{title}</p>
+                </div>
+
+                <div>
+                    {token && (
+                        <HeartImg
+                            className={
+                                isFav === -1
+                                    ? styles.heart
+                                    : `${styles.heart} ${styles.fav}`
+                            }
+                            onClick={heartClick}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     )

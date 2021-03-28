@@ -1,13 +1,10 @@
 import React from 'react'
-
-import styles from '../Sidebar.module.css'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
-Providers.propTypes = {
-    selectedProviders: PropTypes.array.isRequired,
-    onSelectHandler: PropTypes.func.isRequired,
-}
+import styles from '../Sidebar.module.css'
+
+import DEFAULT_PROVIDER_PHOTO from '../../../resources/icons/default-provider.svg'
 
 function Providers({ selectedProviders, onSelectHandler }) {
     const providers = useSelector(state => state.data.data.providers)
@@ -23,14 +20,16 @@ function Providers({ selectedProviders, onSelectHandler }) {
             onClick={onSelectHandler(provider.id, false)}
         >
             <img
-                src={
-                    provider.image ||
-                    'https://secureservercdn.net/160.153.137.170/ykg.3ef.myftpupload.com/wp-content/uploads/2018/07/samsung-white-logo.png?time=1610863952'
-                }
+                src={provider.image || DEFAULT_PROVIDER_PHOTO}
                 alt="provider-icon"
             />
         </div>
     ))
+}
+
+Providers.propTypes = {
+    selectedProviders: PropTypes.array.isRequired,
+    onSelectHandler: PropTypes.func.isRequired,
 }
 
 export default Providers

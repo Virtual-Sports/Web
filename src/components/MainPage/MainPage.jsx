@@ -7,6 +7,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import HeaderMain from '../Header/HeaderMain'
 import AllGames from '../AllGames/AllGames'
 import { mainPageSelector } from './MainPage.selector.js'
+
 import LoginModal from '../../shared/modals/LoginModal'
 import RegistrationModal from '../../shared/modals/RegistrationModal'
 import useToken from '../../shared/hooks/useToken'
@@ -41,6 +42,7 @@ function MainPage() {
                         <AllGames />
                     </div>
                 )}
+
                 {isLoginModalVisible && (
                     <LoginModal
                         setToken={setToken}
@@ -50,6 +52,7 @@ function MainPage() {
                         }
                     />
                 )}
+
                 {isRegistrationModalVisible && (
                     <RegistrationModal
                         setToken={setToken}

@@ -1,13 +1,10 @@
 import React from 'react'
-
-import styles from '../Sidebar.module.css'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
-Categories.propTypes = {
-    selectedCategory: PropTypes.string,
-    onSelectHandler: PropTypes.func.isRequired,
-}
+import styles from '../Sidebar.module.css'
+
+import DEFAULT_CATEGORY_PHOTO from '../../../resources/icons/default-category.svg'
 
 function Categories({ selectedCategory = null, onSelectHandler }) {
     const categories = useSelector(state => state.data.data.categories)
@@ -21,15 +18,17 @@ function Categories({ selectedCategory = null, onSelectHandler }) {
             onClick={onSelectHandler(category.id, true, category.displayName)}
         >
             <img
-                src={
-                    category.icon ||
-                    'https://www.pngkit.com/png/full/292-2928062_football-icon-png-white.png'
-                }
+                src={category.icon || DEFAULT_CATEGORY_PHOTO}
                 alt="category-icon"
             />
             <p>{category.displayName}</p>
         </div>
     ))
+}
+
+Categories.propTypes = {
+    selectedCategory: PropTypes.string,
+    onSelectHandler: PropTypes.func.isRequired,
 }
 
 export default Categories

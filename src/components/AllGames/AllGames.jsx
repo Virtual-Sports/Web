@@ -51,7 +51,7 @@ function AllGames() {
             : messages.gameList
 
     return (
-        <>
+        <div className={styles['scroll']}>
             {selectedCategory || selectedProviders.length > 0 ? (
                 <div className={styles['container']}>
                     <GamesContainer
@@ -79,10 +79,7 @@ function AllGames() {
                     {tagsWithoutTop &&
                         tagsWithoutTop.map(tag => {
                             return (
-                                <div
-                                    key={tag.displayName}
-                                    className={styles['tags']}
-                                >
+                                <div key={tag.displayName}>
                                     <GamesContainer
                                         title={tag.displayName}
                                         games={allGames.filter(game =>
@@ -109,7 +106,7 @@ function AllGames() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

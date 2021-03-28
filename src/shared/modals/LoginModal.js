@@ -58,6 +58,7 @@ const LoginModal = ({
                         <ExitLogo className={styles.svg} />
                     </button>
                     <p>Вход</p>
+                    <span></span>
                 </div>
             </div>
             <div className={styles.formWrapper}>

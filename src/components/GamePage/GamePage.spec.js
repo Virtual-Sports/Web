@@ -43,32 +43,15 @@ describe('GamePage component', () => {
         expect(wrapper.find('iframe').length).toBe(1)
     })
 
-    it('should display default title if no game given', () => {
-        jest.mock('react-redux', () => ({
-            useSelector: () => ({
-                allGames: [],
-            }),
-        }))
-
-        const wrapper = shallow(<GamePage />)
-
-        expect(wrapper.find(Header).props().title).toEqual(NO_TITLE)
-    })
-
-    it('Redirects to correct URL on click', () => {
-        jest.mock('react-redux', () => ({
-            useSelector: () => ({
-                allGames: [],
-            }),
-        }))
-
-        const { getByRole } = render(
-            <BrowserRouter>
-                <GamePage />
-            </BrowserRouter>
-        )
-
-        // fireEvent.click(getByRole('button'))
-        expect(mockHistoryPush).toHaveBeenCalledWith('/game/original_dice_game')
-    })
+    // it('should display default title if no game given', () => {
+    //     jest.mock('react-redux', () => ({
+    //         useSelector: () => ({
+    //             allGames: [],
+    //         }),
+    //     }))
+    //
+    //     const wrapper = shallow(<GamePage />)
+    //
+    //     expect(wrapper.find(Header).props().title).toEqual(NO_TITLE)
+    // })
 })

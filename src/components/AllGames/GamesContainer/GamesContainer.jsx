@@ -7,12 +7,6 @@ import GameCard from '../GameCard/GameCard'
 import { ReactComponent as PMSorry } from '../../../resources/icons/pm-sorry.svg'
 import { gamesContainer as messages } from '../../../shared/messages'
 
-GamesContainer.propTypes = {
-    title: PropTypes.string.isRequired,
-    games: PropTypes.array,
-    search: PropTypes.bool,
-}
-
 function GamesContainer({ title = '', games = [], search }) {
     return (
         <>
@@ -49,6 +43,12 @@ function GamesContainer({ title = '', games = [], search }) {
             )}
         </>
     )
+}
+
+GamesContainer.propTypes = {
+    title: PropTypes.string.isRequired,
+    games: PropTypes.array,
+    search: PropTypes.bool,
 }
 
 export default GamesContainer

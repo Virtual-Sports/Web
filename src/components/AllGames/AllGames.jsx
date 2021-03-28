@@ -7,6 +7,7 @@ import GamesCardSlider from './GameCardSlider/GameCardSlider'
 import { useSelector } from 'react-redux'
 import { allGamesSelector } from './AllGames.selector.js'
 import { favouritesGamesSelector } from './FavouritesGames.selector.js'
+import { recentGamesSelector } from './RecentGames.selector.js'
 import { Slider } from '../../shared/slider/Slider'
 import { filtersSelector } from './Filters.selector.js'
 import { allGames as messages } from '../../shared/messages'
@@ -14,6 +15,7 @@ import { allGames as messages } from '../../shared/messages'
 function AllGames() {
     const { allGames, tags } = useSelector(allGamesSelector)
     const { favouritesGames } = useSelector(favouritesGamesSelector)
+    const { recentGames } = useSelector(recentGamesSelector)
     const topTag = tags.filter(tag => tag.id === 'top')?.[0]
     const topGames = allGames.filter(game => game.tags.includes('top'))
     const tagsWithoutTop = tags.filter(tag => tag.id !== 'top')
@@ -94,6 +96,10 @@ function AllGames() {
                         <GamesContainer
                             title={'Избранные'}
                             games={favouritesGames}
+                        />
+                        <GamesContainer
+                            title={'Недавно запущенные'}
+                            games={recentGames}
                         />
                     </div>
                 </div>

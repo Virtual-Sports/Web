@@ -120,3 +120,31 @@ export const fetchRemoveFromFavorite = (id, token) => {
         }
     )
 }
+
+export const fetchGetRecent = token => {
+    return fetch(
+        'https://virtual-sports-yi3j9.ondigitalocean.app/User/recent',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchAddGameToRecent = (gameId, token) => {
+    return fetch(
+        `https://virtual-sports-yi3j9.ondigitalocean.app/Games/play/${gameId}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}

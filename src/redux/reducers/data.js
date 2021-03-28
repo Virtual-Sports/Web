@@ -3,6 +3,7 @@ import {
     SET_LOADED,
     SET_WIDTH,
     SET_FAVOURITES,
+    SET_RECENT,
 } from '../actions/constants'
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
         games: [],
     },
     favourites: [],
+    recent: [],
     isLoaded: false,
     width: null,
 }
@@ -39,6 +41,11 @@ const data = (state = initialState, action) => {
             return {
                 ...state,
                 favourites: action.payload,
+            }
+        case SET_RECENT:
+            return {
+                ...state,
+                recent: action.payload,
             }
         default:
             return state

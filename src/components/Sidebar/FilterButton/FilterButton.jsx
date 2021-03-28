@@ -13,12 +13,6 @@ import {
     toggleProvider,
 } from '../../../redux/actions/filters'
 
-FilterButton.propTypes = {
-    onFilterButtonClick: PropTypes.func.isRequired,
-    lastSelected: PropTypes.object.isRequired,
-    resetLastSelected: PropTypes.func.isRequired,
-}
-
 function FilterButton({
     onFilterButtonClick,
     lastSelected,
@@ -26,9 +20,11 @@ function FilterButton({
 }) {
     const dispatch = useDispatch()
 
-    const { filtersVisibility, selectedProviders } = useSelector(
-        sidebarSelector
-    )
+    const {
+        filtersVisibility,
+        selectedProviders,
+        selectedCategory,
+    } = useSelector(sidebarSelector)
 
     const cancel = () => {
         dispatch(setCategory(lastSelected.category))
@@ -46,16 +42,27 @@ function FilterButton({
         dispatch(setFiltersVisibility(!filtersVisibility))
     }
 
+    const resetAll = () => {
+        dispatch(setCategory(null))
+        selectedProviders.map(provider => dispatch(toggleProvider(provider)))
+    }
+
     return (
         <div>
             {!filtersVisibility ? (
-                <button
-                    className={styles['filters-closed']}
-                    onClick={onFilterButtonClick}
-                >
-                    <Settings />
-                    <span>Фильтры</span>
-                </button>
+                <div className={styles['filters-closed-container']}>
+                    <button
+                        className={styles['filters-closed']}
+                        onClick={onFilterButtonClick}
+                    >
+                        <Settings />
+                        <span>Фильтры</span>
+                    </button>
+
+                    {(selectedProviders.length > 0 || selectedCategory) && (
+                        <p onClick={resetAll}>Сбросить все фильтры</p>
+                    )}
+                </div>
             ) : (
                 <div className={styles['filters-opened']}>
                     <div>
@@ -68,6 +75,12 @@ function FilterButton({
             )}
         </div>
     )
+}
+
+FilterButton.propTypes = {
+    onFilterButtonClick: PropTypes.func.isRequired,
+    lastSelected: PropTypes.object.isRequired,
+    resetLastSelected: PropTypes.func.isRequired,
 }
 
 export default FilterButton

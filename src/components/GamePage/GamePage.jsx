@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux'
 
 import styles from './GamePage.module.css'
 
-import Header from '../Header/Header'
 import { gamePageSelector } from './GamePage.selector'
-import { NO_TITLE } from '../../shared/constants'
+import HeaderGame from '../Header/HeaderGame'
 
 function GamePage() {
     let history = useHistory()
@@ -14,19 +13,17 @@ function GamePage() {
     const { allGames } = useSelector(gamePageSelector)
     const game = allGames.find(item => item.id === id)
 
-    const toDiceGame = () => history.push('/game/original_dice_game')
     return (
         <div>
-            <Header
-                isMainPage={false}
-                title={game ? game.displayName : NO_TITLE}
-            />
-
+            <HeaderGame title={game.displayName} gameId={id} />
             <div className={styles['frame-container']}>
                 {game ? (
-                    <iframe id={id} src={game.url || 'https://wiki.com'} />
+                    <iframe
+                        id={id}
+                        src={game.url || 'https://parimatch.com/'}
+                    />
                 ) : (
-                    toDiceGame()
+                    () => history.push('/game/original_dice_game')
                 )}
             </div>
         </div>

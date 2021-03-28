@@ -1,18 +1,25 @@
 import React from 'react'
-import styles from './GameCard.module.css'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { DEFAULT_IMAGE, NO_TITLE } from '../../../shared/constants'
 
-const GameCard = ({ id, title = NO_TITLE, img = DEFAULT_IMAGE }) => {
+import styles from './GameCard.module.css'
+
+import DEFAULT_GAME_PHOTO from '../../../resources/icons/default-game.svg'
+import { DEFAULT_GAME_TITLE } from '../../../shared/constants'
+import { Link } from 'react-router-dom'
+
+const GameCard = ({
+    id,
+    title = DEFAULT_GAME_TITLE,
+    img = DEFAULT_GAME_PHOTO,
+}) => {
     const handleError = e => {
         e.target.onerror = null
-        e.target.src = DEFAULT_IMAGE
+        e.target.src = DEFAULT_GAME_PHOTO
     }
 
     return (
         <Link className={styles.card} to={`/game/${id}`}>
-            <img src={img} onError={handleError} />
+            <img src={img} onError={handleError} alt="game-photo" />
             <p className={styles.description}>{title}</p>
         </Link>
     )

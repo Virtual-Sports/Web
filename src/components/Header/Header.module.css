@@ -1,14 +1,20 @@
 .container {
     height: 45px;
     width: 100%;
+
+    margin: 0 auto;
     padding: 1% 0;
+
     max-width: 1400px;
+
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .main-page-container {
     width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,14 +76,26 @@
 .game {
     width: 100%;
     height: 100%;
-
+    margin: 0 auto;
     padding: 0 2%;
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    font-size: 0.7em;
+    font-size: 0.75em;
     font-weight: 600;
+}
+
+.game-title {
+    display: flex;
+
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
 .game img {
@@ -87,11 +105,27 @@
     height: 0.85em;
 
     margin-right: 10px;
+    fill: #dadbb1;
+}
+
+.heart {
+    cursor: pointer;
+
+    width: 1.4em;
+    height: 1.4em;
+
+    margin-right: 10px;
+    fill: #dadbb1;
+}
+
+.fav {
+    fill: #faff4b;
+    transform: scale(1.2);
 }
 
 @media only screen and (max-width: 500px) {
     .game {
-        font-size: 0.9em;
+        font-size: 1.2em;
 
         text-align: center;
     }
@@ -104,5 +138,10 @@
     .game p {
         display: inline-block;
         width: calc(100% - 1em);
+    }
+
+    .game-title {
+        justify-content: space-between;
+        width: 90vh;
     }
 }

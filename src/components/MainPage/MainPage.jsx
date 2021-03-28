@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux'
 import styles from './MainPage.module.css'
 
 import Sidebar from '../Sidebar/Sidebar'
-import Header from '../Header/Header'
+import HeaderMain from '../Header/HeaderMain'
 import AllGames from '../AllGames/AllGames'
 import { mainPageSelector } from './MainPage.selector.js'
+
 import LoginModal from '../../shared/modals/LoginModal'
 import RegistrationModal from '../../shared/modals/RegistrationModal'
 import useToken from '../../shared/hooks/useToken'
@@ -24,8 +25,7 @@ function MainPage() {
 
     return (
         <div className={styles['container']}>
-            <Header
-                isMainPage={true}
+            <HeaderMain
                 token={token}
                 setToken={setToken}
                 setIsLoginModalVisible={setIsLoginModalVisible}
@@ -42,6 +42,7 @@ function MainPage() {
                         <AllGames />
                     </div>
                 )}
+
                 {isLoginModalVisible && (
                     <LoginModal
                         setToken={setToken}
@@ -51,9 +52,11 @@ function MainPage() {
                         }
                     />
                 )}
+
                 {isRegistrationModalVisible && (
                     <RegistrationModal
                         setToken={setToken}
+                        setIsLoginModalVisible={setIsLoginModalVisible}
                         setIsRegistrationModalVisible={
                             setIsRegistrationModalVisible
                         }

@@ -1,7 +1,8 @@
 import moment from 'moment'
 import { WEB_MOBILE, WEB_DESKTOP } from '../constants'
+import { getDeviceType } from '../../shared/utils'
 
-const platform = window.navigator.userAgentData.mobile
+const platform = getDeviceType() /* window.navigator.userAgentData.mobile */
     ? WEB_MOBILE
     : WEB_DESKTOP
 
@@ -25,11 +26,12 @@ export const fetchRegistration = formData => {
     })
 }
 
-export const fetchLogout = () => {
+export const fetchLogout = token => {
     return fetch('https://virtual-sports-yi3j9.ondigitalocean.app/logout', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
     })
 }
@@ -67,6 +69,89 @@ export const fetchMakeBet = (bet, token) => {
 export const fetchGetHistory = token => {
     return fetch(
         'https://virtual-sports-yi3j9.ondigitalocean.app/User/history',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchGetFavourite = token => {
+    return fetch(
+        'https://virtual-sports-yi3j9.ondigitalocean.app/User/favourites',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchAddToFavorite = (id, token) => {
+    return fetch(
+        `https://virtual-sports-yi3j9.ondigitalocean.app/User/favourite/${id}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+export const fetchRemoveFromFavorite = (id, token) => {
+    return fetch(
+        `https://virtual-sports-yi3j9.ondigitalocean.app/User/favourite/${id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchGetRecent = token => {
+    return fetch(
+        'https://virtual-sports-yi3j9.ondigitalocean.app/User/recent',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchAddGameToRecent = (gameId, token) => {
+    return fetch(
+        `https://virtual-sports-yi3j9.ondigitalocean.app/Games/play/${gameId}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Platform': platform,
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
+}
+
+export const fetchGetRecommended = token => {
+    return fetch(
+        'https://virtual-sports-yi3j9.ondigitalocean.app/User/recommended',
         {
             method: 'GET',
             headers: {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+
+import styles from './Dice.module.css'
 
 import { ReactComponent as Dice1 } from '../../resources/icons/dice1.svg'
 import { ReactComponent as Dice2 } from '../../resources/icons/dice2.svg'
@@ -7,14 +8,14 @@ import { ReactComponent as Dice3 } from '../../resources/icons/dice3.svg'
 import { ReactComponent as Dice4 } from '../../resources/icons/dice4.svg'
 import { ReactComponent as Dice5 } from '../../resources/icons/dice5.svg'
 import { ReactComponent as Dice6 } from '../../resources/icons/dice6.svg'
-import { ReactComponent as Back } from '../../resources/icons/back.svg'
-import useToken from '../../shared/hooks/useToken'
+
+import HeaderGame from '../Header/HeaderGame'
 import DiceImg from '../../resources/images/dice.png'
 
 import LoginModal from '../../shared/modals/LoginModal'
 import RegistrationModal from '../../shared/modals/RegistrationModal'
+import useToken from '../../shared/hooks/useToken'
 import { fetchMakeBet, fetchGetHistory } from '../../shared/fetchs/fetchs'
-import styles from './Dice.module.css'
 
 function Dice() {
     const [bet, setBet] = useState(null)
@@ -129,14 +130,7 @@ function Dice() {
     return (
         <div>
             <div className={styles.wrapper}>
-                <div className={styles.header}>
-                    <Link to={'/'}>
-                        <Back className={styles.arrow} />
-                    </Link>
-                    <h3>DICE GAME</h3>
-                    <span></span>
-                </div>
-
+                <HeaderGame title="Кости" gameId="original_dice_game" />
                 <div className={styles.select}>
                     <p>Сделайте ставку</p>
                     <div className={styles.selectRow}>

@@ -28,13 +28,12 @@ const HeaderGame = ({ title = 'Game', gameId }) => {
             fetchAddToFavorite(gameId, token).then(
                 response => response.ok && setIsFav(1)
             )
-            dispatch(fetchFavourites(token))
         } else {
             fetchRemoveFromFavorite(gameId, token).then(
                 response => response.ok && setIsFav(-1)
             )
-            dispatch(fetchFavourites(token))
         }
+        dispatch(fetchFavourites(token))
     }
     return (
         <div className={styles['container']}>

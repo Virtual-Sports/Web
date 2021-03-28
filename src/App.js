@@ -30,7 +30,7 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchData(token))
-        dispatch(fetchFavourites(token))
+        token && dispatch(fetchFavourites(token))
 
         updateScreenWidth()
 

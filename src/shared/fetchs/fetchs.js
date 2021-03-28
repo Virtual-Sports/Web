@@ -25,11 +25,12 @@ export const fetchRegistration = formData => {
     })
 }
 
-export const fetchLogout = () => {
+export const fetchLogout = token => {
     return fetch('https://virtual-sports-yi3j9.ondigitalocean.app/logout', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
     })
 }

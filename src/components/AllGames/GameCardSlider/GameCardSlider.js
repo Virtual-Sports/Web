@@ -2,7 +2,9 @@ import React from 'react'
 import styles from './GameCardSlider.module.css'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+
 const defaultImageUrl = 'https://via.placeholder.com/250x250'
+
 const GameCardSlider = ({
     id,
     title = 'no title',

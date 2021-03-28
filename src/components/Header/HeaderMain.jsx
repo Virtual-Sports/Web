@@ -29,8 +29,18 @@ const HeaderMain = ({
                         <button
                             className={styles['logout-button']}
                             onClick={() => {
-                                setToken(null)
-                                fetchLogout()
+                                fetchLogout(token)
+                                    .then(res => {
+                                        if (!res.ok) {
+                                            // eslint-disable-next-line no-alert
+                                            alert(
+                                                `[${res.status}] Ошибка: ${res.response}`
+                                            )
+                                        }
+                                    })
+                                    .finally(() => {
+                                        setToken(null)
+                                    })
                             }}
                         >
                             Выход

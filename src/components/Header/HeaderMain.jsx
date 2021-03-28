@@ -6,6 +6,8 @@ import styles from './Header.module.css'
 
 import DiceIcon from '../../resources/icons/dice.svg'
 import { fetchLogout } from '../../shared/fetchs/fetchs'
+import { setFavourites } from '../../redux/actions/data'
+import { useDispatch } from 'react-redux'
 
 const HeaderMain = ({
     setIsLoginModalVisible,
@@ -13,6 +15,8 @@ const HeaderMain = ({
     token,
     setToken,
 }) => {
+    const dispatch = useDispatch()
+
     return (
         <div className={styles['container']}>
             <div className={styles['main-page-container']}>
@@ -29,8 +33,19 @@ const HeaderMain = ({
                         <button
                             className={styles['logout-button']}
                             onClick={() => {
-                                setToken(null)
-                                fetchLogout()
+                                fetchLogout(token)
+                                    .then(res => {
+                                        if (!res.ok) {
+                                            // eslint-disable-next-line no-alert
+                                            alert(
+                                                `[${res.status}] Ошибка: ${res.response}`
+                                            )
+                                        }
+                                    })
+                                    .finally(() => {
+                                        setToken(null)
+                                        dispatch(setFavourites([]))
+                                    })
                             }}
                         >
                             Выход

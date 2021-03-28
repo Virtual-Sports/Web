@@ -56,6 +56,7 @@ function MainPage() {
                 {isRegistrationModalVisible && (
                     <RegistrationModal
                         setToken={setToken}
+                        setIsLoginModalVisible={setIsLoginModalVisible}
                         setIsRegistrationModalVisible={
                             setIsRegistrationModalVisible
                         }

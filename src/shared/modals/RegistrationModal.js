@@ -6,7 +6,11 @@ import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
 import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 import { fetchRegistration } from '../../shared/fetchs/fetchs'
 
-const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
+const RegistrationModal = ({
+    setIsRegistrationModalVisible,
+    setIsLoginModalVisible,
+    setToken,
+}) => {
     const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [isPassword2Show, setIsPassword2Show] = useState(false)
     const [registrationError, setRegistrationError] = useState('')
@@ -55,7 +59,7 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                     >
                         <ExitLogo className={styles.svg} />
                     </button>
-                    <p>Вход</p>
+                    <p>Регистрация</p>
                     <span></span>
                 </div>
             </div>
@@ -128,6 +132,15 @@ const RegistrationModal = ({ setIsRegistrationModalVisible, setToken }) => {
                     >
                         {isLoading ? 'Загрузка...' : 'Регистрация'}
                     </button>
+                    <button
+                        className={styles.buttonRegistration}
+                        onClick={() => {
+                            setIsLoginModalVisible(true),
+                                setIsRegistrationModalVisible(false)
+                        }}
+                    >
+                        Вход
+                    </button>
                 </form>
             </div>
         </div>
@@ -138,5 +151,6 @@ export default RegistrationModal
 
 RegistrationModal.propTypes = {
     setIsRegistrationModalVisible: PropTypes.func,
+    setIsLoginModalVisible: PropTypes.func,
     setToken: PropTypes.func,
 }

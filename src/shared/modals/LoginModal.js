@@ -7,6 +7,8 @@ import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
 import { fetchLogin } from '../../shared/fetchs/fetchs'
+import { fetchFavourites } from '../../redux/actions/data'
+import { useDispatch } from 'react-redux'
 
 const LoginModal = ({
     setIsLoginModalVisible,
@@ -23,6 +25,8 @@ const LoginModal = ({
         password: pass,
     }
 
+    const dispatch = useDispatch()
+
     const login = e => {
         e.preventDefault()
         fetchLogin(formData)
@@ -30,6 +34,7 @@ const LoginModal = ({
                 if (response.status === 200) {
                     const resParsed = await response.text()
                     setToken(resParsed)
+                    dispatch(fetchFavourites(resParsed))
                     setIsLoginModalVisible(false)
                 } else if (response.status === 404) {
                     const resParsed = await response.text()

@@ -1,7 +1,8 @@
 import moment from 'moment'
 import { WEB_MOBILE, WEB_DESKTOP } from '../constants'
+import { getDeviceType } from '../../shared/utils'
 
-const platform = window.navigator.userAgentData.mobile
+const platform = getDeviceType() /* window.navigator.userAgentData.mobile */
     ? WEB_MOBILE
     : WEB_DESKTOP
 
@@ -25,11 +26,12 @@ export const fetchRegistration = formData => {
     })
 }
 
-export const fetchLogout = () => {
+export const fetchLogout = token => {
     return fetch('https://virtual-sports-yi3j9.ondigitalocean.app/logout', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
     })
 }

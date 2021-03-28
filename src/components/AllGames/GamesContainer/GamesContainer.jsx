@@ -16,50 +16,54 @@ GamesContainer.propTypes = {
 }
 
 function GamesContainer({ title = '', games = [], search }) {
-    const [isOpened, setIsOpened] = useState(false)
+    const [isOpened, setIsOpened] = useState(true)
+    const [isCompleted, setIsCompleted] = useState(true)
 
     return (
         <>
-            <Collapse isOpened={isOpened} duration={5000}>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-                <div>Random content</div>
-            </Collapse>
             {games.length ? (
                 <div className={styles['container']}>
-                    <div className={styles['header']}>
-                        <h2
-                            className={styles['title']}
-                            onClick={() => {
-                                setIsOpened(!isOpened)
-                            }}
-                        >
+                    <div
+                        className={styles['header']}
+                        onClick={() => {
+                            setIsOpened(!isOpened)
+                            setIsCompleted(false)
+                        }}
+                    >
+                        <h2 className={styles['title']}>
                             {title}&nbsp;
                             <span className={styles['count']}>
-                                [{games.length}]
+                                [{games.length}] {isCompleted ? '1' : '0'}
                             </span>
                         </h2>
+
+                        <i
+                            className={`${styles['arrow']} ${
+                                !isCompleted
+                                    ? isOpened
+                                        ? styles['down']
+                                        : styles['up']
+                                    : isOpened
+                                    ? styles['up']
+                                    : styles['down']
+                            }`}
+                        ></i>
                     </div>
-                    <div className={styles['games']}>
-                        {games.map(game => (
-                            <GameCard
-                                key={game.id}
-                                id={game.id}
-                                title={game.displayName}
-                                img={game.image}
-                            />
-                        ))}
-                    </div>
+                    <Collapse
+                        isOpened={isOpened}
+                        onRest={() => setIsCompleted(true)}
+                    >
+                        <div className={styles['games']}>
+                            {games.map(game => (
+                                <GameCard
+                                    key={game.id}
+                                    id={game.id}
+                                    title={game.displayName}
+                                    img={game.image}
+                                />
+                            ))}
+                        </div>
+                    </Collapse>
                 </div>
             ) : (
                 search && (

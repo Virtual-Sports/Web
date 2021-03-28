@@ -35,11 +35,9 @@ const HeaderMain = ({
                             onClick={() => {
                                 fetchLogout(token)
                                     .then(res => {
-                                        if (!res.ok) {
-                                            // eslint-disable-next-line no-alert
-                                            alert(
-                                                `[${res.status}] Ошибка: ${res.response}`
-                                            )
+                                        if (res.ok) {
+                                            setToken(null)
+                                            dispatch(setFavourites([]))
                                         }
                                     })
                                     .finally(() => {

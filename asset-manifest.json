@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Web/static/css/main.076885a8.chunk.css",
-    "main.js": "/Web/static/js/main.f67a0465.chunk.js",
-    "main.js.map": "/Web/static/js/main.f67a0465.chunk.js.map",
+    "main.css": "/Web/static/css/main.1b63d5bf.chunk.css",
+    "main.js": "/Web/static/js/main.451cb6d7.chunk.js",
+    "main.js.map": "/Web/static/js/main.451cb6d7.chunk.js.map",
     "runtime-main.js": "/Web/static/js/runtime-main.721bbf6c.js",
     "runtime-main.js.map": "/Web/static/js/runtime-main.721bbf6c.js.map",
-    "static/js/2.cd084212.chunk.js": "/Web/static/js/2.cd084212.chunk.js",
-    "static/js/2.cd084212.chunk.js.map": "/Web/static/js/2.cd084212.chunk.js.map",
+    "static/js/2.60f24334.chunk.js": "/Web/static/js/2.60f24334.chunk.js",
+    "static/js/2.60f24334.chunk.js.map": "/Web/static/js/2.60f24334.chunk.js.map",
     "static/js/3.acba101e.chunk.js": "/Web/static/js/3.acba101e.chunk.js",
     "static/js/3.acba101e.chunk.js.map": "/Web/static/js/3.acba101e.chunk.js.map",
     "index.html": "/Web/index.html",
     "service-worker.js": "/Web/service-worker.js",
     "service-worker.js.map": "/Web/service-worker.js.map",
-    "static/css/main.076885a8.chunk.css.map": "/Web/static/css/main.076885a8.chunk.css.map",
-    "static/js/2.cd084212.chunk.js.LICENSE.txt": "/Web/static/js/2.cd084212.chunk.js.LICENSE.txt",
+    "static/css/main.1b63d5bf.chunk.css.map": "/Web/static/css/main.1b63d5bf.chunk.css.map",
+    "static/js/2.60f24334.chunk.js.LICENSE.txt": "/Web/static/js/2.60f24334.chunk.js.LICENSE.txt",
     "static/media/Heart.0e7b90bb.svg": "/Web/static/media/Heart.0e7b90bb.svg",
     "static/media/index.css": "/Web/static/media/Parimatch-Thin.fc35a6c9.otf",
     "static/media/back.714a9e68.svg": "/Web/static/media/back.714a9e68.svg",
@@ -31,13 +31,15 @@
     "static/media/exit.9839a91f.svg": "/Web/static/media/exit.9839a91f.svg",
     "static/media/eye.7b342c9a.svg": "/Web/static/media/eye.7b342c9a.svg",
     "static/media/eye_no.0013a7ab.svg": "/Web/static/media/eye_no.0013a7ab.svg",
+    "static/media/game-screen-mobile.6e483ea1.png": "/Web/static/media/game-screen-mobile.6e483ea1.png",
+    "static/media/game-screen.af4a7da3.png": "/Web/static/media/game-screen.af4a7da3.png",
     "static/media/pm-sorry.464762ce.svg": "/Web/static/media/pm-sorry.464762ce.svg",
     "static/media/settings.c958f35a.svg": "/Web/static/media/settings.c958f35a.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.721bbf6c.js",
-    "static/js/2.cd084212.chunk.js",
-    "static/css/main.076885a8.chunk.css",
-    "static/js/main.f67a0465.chunk.js"
+    "static/js/2.60f24334.chunk.js",
+    "static/css/main.1b63d5bf.chunk.css",
+    "static/js/main.451cb6d7.chunk.js"
   ]
 }

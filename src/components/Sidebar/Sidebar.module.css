@@ -26,6 +26,7 @@
 .providers {
     padding: 0 10%;
     margin-right: 15px;
+    margin-top: 10px;
 
     overflow-y: auto;
 }
@@ -89,7 +90,7 @@
 .category.selected img {
     opacity: 1;
     filter: invert(0%) sepia(33%) saturate(4592%) hue-rotate(8deg)
-        brightness(105%) contrast(111%);
+        brightness(165%) contrast(111%);
 }
 
 hr {
@@ -131,8 +132,7 @@ hr {
 
 .provider img {
     max-width: 100%;
-    max-height: 100%;
-    height: auto;
+    height: 30px;
     opacity: 0.7;
 }
 

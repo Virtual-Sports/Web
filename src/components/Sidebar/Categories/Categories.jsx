@@ -9,21 +9,32 @@ import DEFAULT_CATEGORY_PHOTO from '../../../resources/icons/default-category.sv
 function Categories({ selectedCategory = null, onSelectHandler }) {
     const categories = useSelector(state => state.data.data.categories)
 
-    return categories.map(category => (
-        <div
-            key={category.id}
-            className={`${styles['category']} ${
-                category.id === selectedCategory ? styles['selected'] : []
-            }`}
-            onClick={onSelectHandler(category.id, true, category.displayName)}
-        >
-            <img
-                src={category.icon || DEFAULT_CATEGORY_PHOTO}
-                alt="category-icon"
-            />
-            <p>{category.displayName}</p>
-        </div>
-    ))
+    return (
+        <>
+            {categories &&
+                categories.map(category => (
+                    <div
+                        key={category.id}
+                        className={`${styles['category']} ${
+                            category.id === selectedCategory
+                                ? styles['selected']
+                                : ''
+                        }`}
+                        onClick={onSelectHandler(
+                            category.id,
+                            true,
+                            category.displayName
+                        )}
+                    >
+                        <img
+                            src={category.image || DEFAULT_CATEGORY_PHOTO}
+                            alt="category-icon"
+                        />
+                        <p>{category.displayName}</p>
+                    </div>
+                ))}
+        </>
+    )
 }
 
 Categories.propTypes = {

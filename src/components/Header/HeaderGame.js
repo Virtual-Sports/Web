@@ -31,6 +31,10 @@ const HeaderGame = ({ title = 'Game', gameId }) => {
 
     const { token } = useToken()
 
+    const reloadFavourites = () => {
+        dispatch(fetchFavourites(token))
+    }
+
     const heartClick = () => {
         if (isFav === -1) {
             fetchAddToFavorite(gameId, token).then(
@@ -41,7 +45,6 @@ const HeaderGame = ({ title = 'Game', gameId }) => {
                 response => response.ok && setIsFav(-1)
             )
         }
-        dispatch(fetchFavourites(token))
     }
 
     useEffect(() => {
@@ -59,7 +62,7 @@ const HeaderGame = ({ title = 'Game', gameId }) => {
         <div className={styles['container']}>
             <div className={styles['game']}>
                 <div className={styles['game-title']}>
-                    <Link to={'/'}>
+                    <Link to={'/'} onClick={reloadFavourites}>
                         <img src={ArrowBack} alt="back-arrow" />
                     </Link>
                     <p>{title}</p>

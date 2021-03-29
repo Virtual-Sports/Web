@@ -5,6 +5,7 @@ import { ReactComponent as ExitLogo } from '../../resources/icons/exit.svg'
 import { ReactComponent as Eye } from '../../resources/icons/eye.svg'
 import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 import { fetchRegistration } from '../../shared/fetchs/fetchs'
+import { registrationAuthModal as messages } from '../../shared/messages'
 
 const RegistrationModal = ({
     setIsRegistrationModalVisible,
@@ -28,7 +29,7 @@ const RegistrationModal = ({
         e.preventDefault()
 
         if (pass1 !== pass2) {
-            setRegistrationError('Пароли должны совпадать!')
+            setRegistrationError(messages.passwordMatchError)
             return
         }
 
@@ -44,7 +45,7 @@ const RegistrationModal = ({
                 }
             })
             .catch(err => {
-                setRegistrationError('Oшибка сети ', err)
+                setRegistrationError(messages.networkError, err)
             })
             .finally(setIsLoading(false))
     }
@@ -74,7 +75,7 @@ const RegistrationModal = ({
                 >
                     <input
                         className={styles.input}
-                        placeholder="Введите email"
+                        placeholder={messages.enterEmail}
                         onChange={e => {
                             setEmail(e.target.value)
                             setRegistrationError('')
@@ -84,8 +85,12 @@ const RegistrationModal = ({
                     />
                     <div className={styles.inputWrapper}>
                         <input
-                            className={styles.input}
-                            placeholder="Введите пароль (мин 8 символов)"
+                            className={`${styles['input']} ${
+                                registrationError
+                                    ? styles['password-invalid']
+                                    : ''
+                            }`}
+                            placeholder={messages.enterPassword}
                             onChange={e => {
                                 setPass1(e.target.value)
                                 setRegistrationError('')
@@ -104,8 +109,12 @@ const RegistrationModal = ({
                     </div>
                     <div className={styles.inputWrapper}>
                         <input
-                            className={styles.input}
-                            placeholder="Повторите пароль"
+                            className={`${styles['input']} ${
+                                registrationError
+                                    ? styles['password-invalid']
+                                    : ''
+                            }`}
+                            placeholder={messages.repeatPassword}
                             onChange={e => {
                                 setPass2(e.target.value)
                                 setRegistrationError('')
@@ -130,7 +139,7 @@ const RegistrationModal = ({
                             !email || !pass1 || !pass2 || registrationError
                         }
                     >
-                        {isLoading ? 'Загрузка...' : 'Регистрация'}
+                        {isLoading ? messages.loading : messages.registration}
                     </button>
                     <button
                         className={styles.buttonRegistration}
@@ -139,7 +148,7 @@ const RegistrationModal = ({
                                 setIsRegistrationModalVisible(false)
                         }}
                     >
-                        Вход
+                        {messages.login}
                     </button>
                 </form>
             </div>

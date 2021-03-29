@@ -20,7 +20,7 @@ module.exports = {
     rules: {
         'no-case-declarations': 'error',
         'no-duplicate-imports': 'error',
-        'no-console': 1,
+        'no-console': 0,
         'no-unused-vars': 'error',
         'no-alert': 1,
         'new-cap': 0,

@@ -7,8 +7,13 @@ import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
 import { fetchLogin } from '../../shared/fetchs/fetchs'
-import { fetchFavourites } from '../../redux/actions/data'
+import {
+    fetchFavourites,
+    fetchRecent,
+    fetchRecommended,
+} from '../../redux/actions/data'
 import { useDispatch } from 'react-redux'
+import { registrationAuthModal as messages } from '../../shared/messages'
 
 const LoginModal = ({
     setIsLoginModalVisible,
@@ -29,12 +34,17 @@ const LoginModal = ({
 
     const login = e => {
         e.preventDefault()
+
         fetchLogin(formData)
             .then(async response => {
                 if (response.status === 200) {
                     const resParsed = await response.text()
+
                     setToken(resParsed)
                     dispatch(fetchFavourites(resParsed))
+                    dispatch(fetchRecent(resParsed))
+                    dispatch(fetchRecommended(resParsed))
+
                     setIsLoginModalVisible(false)
                 } else if (response.status === 404) {
                     const resParsed = await response.text()
@@ -42,7 +52,7 @@ const LoginModal = ({
                 }
             })
             .catch(err => {
-                setLoginError('Oшибка сети ', err)
+                setLoginError(messages.networkError, err)
             })
             .finally(setIsLoading(false))
     }
@@ -72,7 +82,7 @@ const LoginModal = ({
                     <input
                         type="email"
                         className={styles.input}
-                        placeholder="Введите email"
+                        placeholder={messages.enterEmail}
                         onChange={e => {
                             setEmail(e.target.value)
                             setLoginError('')
@@ -82,7 +92,7 @@ const LoginModal = ({
                     <div className={styles.inputWrapper}>
                         <input
                             className={styles.input}
-                            placeholder="Введите пароль (мин 8 символов)"
+                            placeholder={messages.enterPassword}
                             onChange={e => {
                                 setPass(e.target.value)
                                 setLoginError('')
@@ -105,7 +115,7 @@ const LoginModal = ({
                         className={styles.buttonLogin}
                         disabled={!email || !pass || isLoading || loginError}
                     >
-                        {isLoading ? 'Загрузка...' : 'Вход'}
+                        {isLoading ? messages.loading : messages.login}
                     </button>
                     <button
                         className={styles.buttonRegistration}
@@ -114,7 +124,7 @@ const LoginModal = ({
                                 setIsRegistrationModalVisible(true)
                         }}
                     >
-                        Регистрация
+                        {messages.registration}
                     </button>
                 </form>
             </div>

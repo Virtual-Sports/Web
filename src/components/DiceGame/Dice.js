@@ -16,6 +16,7 @@ import LoginModal from '../../shared/modals/LoginModal'
 import RegistrationModal from '../../shared/modals/RegistrationModal'
 import useToken from '../../shared/hooks/useToken'
 import { fetchMakeBet, fetchGetHistory } from '../../shared/fetchs/fetchs'
+import { dice as messages } from '../../shared/messages'
 
 function Dice() {
     const [bet, setBet] = useState(null)
@@ -120,9 +121,9 @@ function Dice() {
             case 5:
                 return 6
             case 6:
-                return 'ЧЕТ'
+                return messages.even
             case 7:
-                return 'НЕЧЕТ'
+                return messages.odd
             default:
                 return 1
         }
@@ -130,7 +131,7 @@ function Dice() {
     return (
         <div>
             <div className={styles.wrapper}>
-                <HeaderGame title="Кости" gameId="original_dice_game" />
+                <HeaderGame title={messages.dice} gameId="original_dice_game" />
                 <div className={styles.select}>
                     <p>Сделайте ставку</p>
                     <div className={styles.selectRow}>
@@ -245,7 +246,7 @@ function Dice() {
                                 }}
                                 disabled={isLoading}
                             />
-                            <label htmlFor="choiceOdd">Нечетные</label>
+                            <label htmlFor="choiceOdd">{messages.odds}</label>
                         </div>
                         <div>
                             <input
@@ -260,7 +261,7 @@ function Dice() {
                                 }}
                                 disabled={isLoading}
                             />
-                            <label htmlFor="choicePair">Четные</label>
+                            <label htmlFor="choicePair">{messages.evens}</label>
                         </div>
                     </div>
                 </div>
@@ -279,7 +280,7 @@ function Dice() {
                 )}
                 {result !== null && (
                     <h1 className={styles.result}>
-                        {isBetWin() ? 'ПОБЕДА !!!' : 'ПОРАЖЕНИЕ'}
+                        {isBetWin() ? messages.win : messages.lose}
                     </h1>
                 )}
                 <div className={styles.buttonWrapper}>
@@ -288,14 +289,14 @@ function Dice() {
                         onClick={placeBet}
                         disabled={bet === null || isLoading}
                     >
-                        Ставка
+                        {messages.bet}
                     </button>
                     {token && (
                         <button
                             className={styles.button}
                             onClick={showHistoryHandler}
                         >
-                            История
+                            {messages.history}
                         </button>
                     )}
                 </div>
@@ -309,7 +310,7 @@ function Dice() {
                         >
                             X
                         </button>
-                        <h1>История</h1>
+                        <h1>{messages.history}</h1>
                         <br />
                         <ol className={styles.historyList}>
                             {historyData.map(historyItem => {
@@ -320,13 +321,13 @@ function Dice() {
                                     >
                                         <div>
                                             {' '}
-                                            <span>Дата:</span>
+                                            <span>{messages.date}:</span>
                                             <span>
                                                 {historyItem.dateTime}
                                             </span>{' '}
                                         </div>
                                         <div>
-                                            <span>Ставка:</span>
+                                            <span>{messages.bet}:</span>
                                             <span>
                                                 {' '}
                                                 {getBetValue(
@@ -335,7 +336,7 @@ function Dice() {
                                             </span>
                                         </div>
                                         <div>
-                                            <span>Результат:</span>{' '}
+                                            <span>{messages.result}:</span>{' '}
                                             <span>
                                                 {' '}
                                                 {historyItem.droppedNumber}
@@ -343,11 +344,11 @@ function Dice() {
                                         </div>
                                         <div>
                                             <span>
-                                                Ставка
+                                                {messages.bet}
                                                 {historyItem.isBetWon
                                                     ? ''
-                                                    : ' не'}{' '}
-                                                сыграла:
+                                                    : ` ${messages.not} `}
+                                                {messages.success}:
                                             </span>
                                             <span>
                                                 {' '}
@@ -391,8 +392,8 @@ function Dice() {
                             X
                         </button>
                         <h3>
-                            Войди или зарегистрируйся и{' '}
-                            <b>проверь свою удачу!</b>
+                            {messages.loginOrRegisterAnd}
+                            <b>{messages.checkYourLuck}</b>
                         </h3>
                         <p>
                             <button
@@ -402,7 +403,7 @@ function Dice() {
                                     setIsLoginModalVisible(true)
                                 }}
                             >
-                                Вход
+                                {messages.login}
                             </button>
                         </p>
                         <p>
@@ -413,7 +414,7 @@ function Dice() {
                                     setIsRegistrationModalVisible(true)
                                 }}
                             >
-                                Регистрация
+                                {messages.registration}
                             </button>
                         </p>
                     </div>

@@ -7,13 +7,15 @@ import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
 import { fetchLogin } from '../../shared/fetchs/fetchs'
+import { fetchFavourites } from '../../redux/actions/data'
+import { useDispatch } from 'react-redux'
 
 const LoginModal = ({
     setIsLoginModalVisible,
     setIsRegistrationModalVisible,
     setToken,
 }) => {
-    const [isPaswordShow, setIsPaswordShow] = useState(false)
+    const [isPasswordShow, setIsPasswordShow] = useState(false)
     const [loginError, setLoginError] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
@@ -23,6 +25,8 @@ const LoginModal = ({
         password: pass,
     }
 
+    const dispatch = useDispatch()
+
     const login = e => {
         e.preventDefault()
         fetchLogin(formData)
@@ -30,6 +34,7 @@ const LoginModal = ({
                 if (response.status === 200) {
                     const resParsed = await response.text()
                     setToken(resParsed)
+                    dispatch(fetchFavourites(resParsed))
                     setIsLoginModalVisible(false)
                 } else if (response.status === 404) {
                     const resParsed = await response.text()
@@ -41,6 +46,7 @@ const LoginModal = ({
             })
             .finally(setIsLoading(false))
     }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
@@ -83,14 +89,14 @@ const LoginModal = ({
                             }}
                             minLength={8}
                             maxLength={20}
-                            type={isPaswordShow ? 'text' : 'password'}
+                            type={isPasswordShow ? 'text' : 'password'}
                             autoComplete="current-password"
                         />
                         <span
                             className={styles.eys}
-                            onClick={() => setIsPaswordShow(!isPaswordShow)}
+                            onClick={() => setIsPasswordShow(!isPasswordShow)}
                         >
-                            {isPaswordShow ? <Eye /> : <EyeNo />}
+                            {isPasswordShow ? <Eye /> : <EyeNo />}
                         </span>
                     </div>
                     <span className={styles.error}>{loginError}</span>

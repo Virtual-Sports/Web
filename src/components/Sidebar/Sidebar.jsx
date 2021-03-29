@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './Sidebar.module.css'
 
 import { MOBILE_WIDTH } from '../../shared/constants'
-import { useDispatch, useSelector } from 'react-redux'
 
 import {
     setFiltersVisibility,

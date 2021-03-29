@@ -6,6 +6,7 @@ export const gamePageSelector = createSelector(
     [dataSelector],
     data => {
         return {
+            width: data.width,
             allGames: data.data.games,
         }
     }

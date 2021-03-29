@@ -113,5 +113,11 @@
 
 .error {
     color: red;
-    text-align: center;
+    font-size: 0.6em;
+    margin-bottom: 20px;
+}
+
+.password-invalid {
+    color: red;
+    border-bottom: 1px solid red;
 }

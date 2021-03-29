@@ -112,6 +112,9 @@
     border-radius: 5px;
 }
 
+.button.disable {
+}
+
 .buttonWrapper {
     margin-top: auto;
 }
@@ -140,12 +143,14 @@
 
 .historyList {
     height: calc(100vh - 65px);
-    overflow: scroll;
     padding: 0 15px 0 35px;
     margin-bottom: 5px;
     width: 100%;
     box-sizing: border-box;
     list-style: none;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .historyListItem div {

@@ -7,7 +7,11 @@ import { ReactComponent as EyeNo } from '../../resources/icons/eye_no.svg'
 
 import styles from './Modal.module.css'
 import { fetchLogin } from '../../shared/fetchs/fetchs'
-import { fetchFavourites } from '../../redux/actions/data'
+import {
+    fetchFavourites,
+    fetchRecent,
+    fetchRecommended,
+} from '../../redux/actions/data'
 import { useDispatch } from 'react-redux'
 import { registrationAuthModal as messages } from '../../shared/messages'
 
@@ -30,12 +34,17 @@ const LoginModal = ({
 
     const login = e => {
         e.preventDefault()
+
         fetchLogin(formData)
             .then(async response => {
                 if (response.status === 200) {
                     const resParsed = await response.text()
+
                     setToken(resParsed)
                     dispatch(fetchFavourites(resParsed))
+                    dispatch(fetchRecent(resParsed))
+                    dispatch(fetchRecommended(resParsed))
+
                     setIsLoginModalVisible(false)
                 } else if (response.status === 404) {
                     const resParsed = await response.text()

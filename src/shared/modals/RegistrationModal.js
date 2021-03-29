@@ -85,7 +85,11 @@ const RegistrationModal = ({
                     />
                     <div className={styles.inputWrapper}>
                         <input
-                            className={styles.input}
+                            className={`${styles['input']} ${
+                                registrationError
+                                    ? styles['password-invalid']
+                                    : ''
+                            }`}
                             placeholder={messages.enterPassword}
                             onChange={e => {
                                 setPass1(e.target.value)
@@ -105,7 +109,11 @@ const RegistrationModal = ({
                     </div>
                     <div className={styles.inputWrapper}>
                         <input
-                            className={styles.input}
+                            className={`${styles['input']} ${
+                                registrationError
+                                    ? styles['password-invalid']
+                                    : ''
+                            }`}
                             placeholder={messages.repeatPassword}
                             onChange={e => {
                                 setPass2(e.target.value)

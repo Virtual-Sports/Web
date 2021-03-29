@@ -128,6 +128,9 @@ function Dice() {
                 return 1
         }
     }
+
+    console.log(historyData)
+
     return (
         <div>
             <div className={styles.wrapper}>
@@ -293,7 +296,8 @@ function Dice() {
                     </button>
                     {token && (
                         <button
-                            className={styles.button}
+                            disabled={historyData.length === 0}
+                            className={styles['button']}
                             onClick={showHistoryHandler}
                         >
                             {messages.history}

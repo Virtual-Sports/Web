@@ -92,15 +92,15 @@ function AllGames() {
 
                     <div className={styles['tags']}>
                         <GamesContainer
-                            title={'Избранные'}
+                            title={messages.favourites}
                             games={filteredGames(favouriteGames)}
                         />
                         <GamesContainer
-                            title={'Недавно запущенные'}
+                            title={messages.recent}
                             games={filteredGames(recentGames)}
                         />
                         <GamesContainer
-                            title={'Рекомендуемые'}
+                            title={messages.recommended}
                             games={filteredGames(recommendedGames)}
                         />
                     </div>

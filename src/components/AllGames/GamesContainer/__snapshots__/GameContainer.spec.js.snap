@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameCard component should display default image if no img prop given 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="header"
+  >
+    <h2
+      className="title"
+    >
+      title
+       
+      <span
+        className="count"
+      >
+        [
+        3
+        ]
+      </span>
+    </h2>
+  </div>
+  <div
+    className="games"
+  >
+    <a
+      className="card"
+      href="/game/0"
+      onClick={[Function]}
+    >
+      <img
+        onError={[Function]}
+        src="https://via.placeholder.com/250x250"
+      />
+      <p
+        className="description"
+      >
+        No title
+      </p>
+    </a>
+    <a
+      className="card"
+      href="/game/1"
+      onClick={[Function]}
+    >
+      <img
+        onError={[Function]}
+        src="https://via.placeholder.com/250x250"
+      />
+      <p
+        className="description"
+      >
+        No title
+      </p>
+    </a>
+    <a
+      className="card"
+      href="/game/2"
+      onClick={[Function]}
+    >
+      <img
+        onError={[Function]}
+        src="https://via.placeholder.com/250x250"
+      />
+      <p
+        className="description"
+      >
+        No title
+      </p>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`GamesContainer component should display default image if no img prop given 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="header"
+  >
+    <h2
+      className="title"
+    >
+      title
+       
+      <span
+        className="count"
+      >
+        [
+        3
+        ]
+      </span>
+    </h2>
+  </div>
+  <div
+    className="games"
+  >
+    <a
+      className="card"
+      href="/game/0"
+      onClick={[Function]}
+    >
+      <img
+        onError={[Function]}
+        src="https://via.placeholder.com/250x250"
+      />
+      <p
+        className="description"
+      >
+        No title
+      </p>
+    </a>
+    <a
+      className="card"
+      href="/game/1"
+      onClick={[Function]}
+    >
+      <img
+        onError={[Function]}
+        src="https://via.placeholder.com/250x250"
+      />
+      <p
+        className="description"
+      >
+        No title
+      </p>
+    </a>
+    <a
+      className="card"
+      href="/game/2"
+      onClick={[Function]}
+    >
+      <img
+        onError={[Function]}
+        src="https://via.placeholder.com/250x250"
+      />
+      <p
+        className="description"
+      >
+        No title
+      </p>
+    </a>
+  </div>
+</div>
+`;

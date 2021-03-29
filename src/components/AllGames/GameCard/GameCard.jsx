@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import styles from './GameCard.module.css'
 
 import DEFAULT_GAME_PHOTO from '../../../resources/icons/default-game.svg'
 import { DEFAULT_GAME_TITLE } from '../../../shared/constants'
+import { Link } from 'react-router-dom'
 
 const GameCard = ({
     id,
@@ -27,7 +27,7 @@ const GameCard = ({
 
 GameCard.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     img: PropTypes.string,
 }
 

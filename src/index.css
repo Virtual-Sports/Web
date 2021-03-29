@@ -32,6 +32,7 @@ code {
 .ReactCollapse--collapse {
     transition: height 1000ms;
 }
+
 /*Fonts */
 
 @font-face {

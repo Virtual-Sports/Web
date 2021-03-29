@@ -18,7 +18,7 @@ function Categories({ selectedCategory = null, onSelectHandler }) {
                         className={`${styles['category']} ${
                             category.id === selectedCategory
                                 ? styles['selected']
-                                : []
+                                : ''
                         }`}
                         onClick={onSelectHandler(
                             category.id,

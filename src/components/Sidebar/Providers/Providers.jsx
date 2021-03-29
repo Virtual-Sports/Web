@@ -9,22 +9,25 @@ import DEFAULT_PROVIDER_PHOTO from '../../../resources/icons/default-provider.sv
 function Providers({ selectedProviders, onSelectHandler }) {
     const providers = useSelector(state => state.data.data.providers)
 
-    return providers.map(provider => (
-        <div
-            key={provider.id}
-            className={`${styles['provider']} ${
-                selectedProviders.includes(provider.id)
-                    ? styles['selected']
-                    : ''
-            }`}
-            onClick={onSelectHandler(provider.id, false)}
-        >
-            <img
-                src={provider.image || DEFAULT_PROVIDER_PHOTO}
-                alt="provider-icon"
-            />
-        </div>
-    ))
+    return (
+        providers &&
+        providers.map(provider => (
+            <div
+                key={provider.id}
+                className={`${styles['provider']} ${
+                    selectedProviders.includes(provider.id)
+                        ? styles['selected']
+                        : ''
+                }`}
+                onClick={onSelectHandler(provider.id, false)}
+            >
+                <img
+                    src={provider.image || DEFAULT_PROVIDER_PHOTO}
+                    alt="provider-icon"
+                />
+            </div>
+        ))
+    )
 }
 
 Providers.propTypes = {

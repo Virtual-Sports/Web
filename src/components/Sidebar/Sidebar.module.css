@@ -26,6 +26,7 @@
 .providers {
     padding: 0 10%;
     margin-right: 15px;
+    margin-top: 10px;
 
     overflow-y: auto;
 }

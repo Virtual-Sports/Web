@@ -38,7 +38,7 @@ function App() {
     useEffect(() => {
         dispatch(fetchData(token))
 
-        if (token) {
+        if (token !== null) {
             dispatch(fetchFavourites(token))
             dispatch(fetchRecent(token))
             dispatch(fetchRecommended(token))
@@ -53,7 +53,7 @@ function App() {
     }, [])
 
     return (
-        <Router>
+        <Router basename="/Web">
             <div className="App">
                 {!isLoaded ? (
                     <Loader />

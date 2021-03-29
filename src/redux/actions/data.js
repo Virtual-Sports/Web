@@ -47,35 +47,72 @@ export const setWidth = width => ({
 export const fetchData = token => dispatch => {
     dispatch(setLoaded(false))
     getDataFromSeverFunction(token)
+        .then(response => {
+            if (response.status !== 200) {
+                throw Error(response.status)
+            }
+            return response
+        })
         .then(data => data.json())
         .then(body => {
             dispatch(setData(body))
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch(setLoaded(true))
         })
 }
 
 export const fetchFavourites = token => dispatch => {
     fetchGetFavourite(token)
+        .then(response => {
+            if (response.status !== 200) {
+                throw Error(response.status)
+            }
+            return response
+        })
         .then(data => data.json())
         .then(body => {
             dispatch(setFavourites(body))
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            dispatch(setLoaded(true))
+        })
 }
 
 export const fetchRecent = token => dispatch => {
     fetchGetRecent(token)
+        .then(response => {
+            if (response.status !== 200) {
+                throw Error(response.status)
+            }
+            return response
+        })
         .then(data => data.json())
         .then(body => {
             dispatch(setRecent(body))
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            dispatch(setLoaded(true))
+        })
 }
 
 export const fetchRecommended = token => dispatch => {
     fetchGetRecommended(token)
+        .then(response => {
+            if (response.status !== 200) {
+                throw Error(response.status)
+            }
+            return response
+        })
         .then(data => data.json())
         .then(body => {
             dispatch(setRecommended(body))
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            dispatch(setLoaded(true))
+        })
 }

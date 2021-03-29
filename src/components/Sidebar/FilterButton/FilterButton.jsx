@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { sidebarSelector } from '../Sidebar.selector'
 import { ReactComponent as Settings } from '../../../resources/icons/settings.svg'
 import { ReactComponent as Cancel } from '../../../resources/icons/cancel.svg'
+import { sidebar as messages } from '../../../shared/messages'
 
 import {
     setCategory,
@@ -56,17 +57,17 @@ function FilterButton({
                         onClick={onFilterButtonClick}
                     >
                         <Settings />
-                        <span>Фильтры</span>
+                        <span>{messages.filters}</span>
                     </button>
 
                     {(selectedProviders.length > 0 || selectedCategory) && (
-                        <p onClick={resetAll}>Сбросить все фильтры</p>
+                        <p onClick={resetAll}>{messages.resetAllFilters}</p>
                     )}
                 </div>
             ) : (
                 <div className={styles['filters-opened']}>
                     <div>
-                        <span>Фильтры</span>
+                        <span>{messages.filters}</span>
                         <Cancel onClick={cancel} />
                     </div>
 

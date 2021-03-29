@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from './Sidebar.module.css'
 
 import { MOBILE_WIDTH } from '../../shared/constants'
+import { sidebar as messages } from '../../shared/messages'
 
 import {
     setFiltersVisibility,
@@ -91,7 +92,7 @@ function Sidebar() {
                     <hr />
 
                     <div className={styles['providers']}>
-                        <h2>Провайдеры</h2>
+                        <h2>{messages.providers}</h2>
                         <Providers
                             selectedProviders={selectedProviders}
                             onSelectHandler={onSelectHandler}
@@ -105,7 +106,7 @@ function Sidebar() {
                                 className={styles['apply-filters-button']}
                                 onClick={applyFilters}
                             >
-                                Применить
+                                {messages.apply}
                             </button>
                         )}
                 </div>

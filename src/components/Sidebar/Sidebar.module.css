@@ -89,7 +89,7 @@
 .category.selected img {
     opacity: 1;
     filter: invert(0%) sepia(33%) saturate(4592%) hue-rotate(8deg)
-        brightness(105%) contrast(111%);
+        brightness(165%) contrast(111%);
 }
 
 hr {

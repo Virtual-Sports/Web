@@ -44,6 +44,9 @@ function Dice() {
     }
 
     const placeBet = () => {
+        if (bet === null || isLoading) {
+            return
+        }
         setLoading(true)
         setResult(null)
         if (!token) {
@@ -67,24 +70,73 @@ function Dice() {
                 .catch(err => console.log(err))
         }
     }
-    const showHistoryHandler = () => {
+    const showHistoryHandler = e => {
+        e.stopPropagation()
         token !== null && setShowHistory(true)
     }
 
-    const resultImg = () => {
+    const resultImg = win => {
         switch (result) {
             case 0:
-                return <Dice1 className={styles.img} />
+                return (
+                    <Dice1
+                        className={
+                            win
+                                ? `${styles.img} ${styles.green}`
+                                : `${styles.img} ${styles.red}`
+                        }
+                    />
+                )
             case 1:
-                return <Dice2 className={styles.img} />
+                return (
+                    <Dice2
+                        className={
+                            win
+                                ? `${styles.img} ${styles.green}`
+                                : `${styles.img} ${styles.red}`
+                        }
+                    />
+                )
             case 2:
-                return <Dice3 className={styles.img} />
+                return (
+                    <Dice3
+                        className={
+                            win
+                                ? `${styles.img} ${styles.green}`
+                                : `${styles.img} ${styles.red}`
+                        }
+                    />
+                )
             case 3:
-                return <Dice4 className={styles.img} />
+                return (
+                    <Dice4
+                        className={
+                            win
+                                ? `${styles.img} ${styles.green}`
+                                : `${styles.img} ${styles.red}`
+                        }
+                    />
+                )
             case 4:
-                return <Dice5 className={styles.img} />
+                return (
+                    <Dice5
+                        className={
+                            win
+                                ? `${styles.img} ${styles.green}`
+                                : `${styles.img} ${styles.red}`
+                        }
+                    />
+                )
             case 5:
-                return <Dice6 className={styles.img} />
+                return (
+                    <Dice6
+                        className={
+                            win
+                                ? `${styles.img} ${styles.green}`
+                                : `${styles.img} ${styles.red}`
+                        }
+                    />
+                )
             default:
                 return <Dice6 className={styles.img} />
         }
@@ -129,12 +181,14 @@ function Dice() {
         }
     }
 
-    console.log(historyData)
-
     return (
         <div>
             <div className={styles.wrapper}>
-                <HeaderGame title={messages.dice} gameId="original_dice_game" />
+                <HeaderGame
+                    title={messages.dice}
+                    gameId="original_dice_game"
+                    token={token}
+                />
                 <div className={styles.select}>
                     <p>Сделайте ставку</p>
                     <div className={styles.selectRow}>
@@ -269,7 +323,7 @@ function Dice() {
                     </div>
                 </div>
                 {result !== null ? (
-                    resultImg()
+                    resultImg(isBetWin())
                 ) : (
                     <img
                         className={
@@ -281,27 +335,28 @@ function Dice() {
                         title="dice"
                     />
                 )}
-                {result !== null && (
-                    <h1 className={styles.result}>
-                        {isBetWin() ? messages.win : messages.lose}
-                    </h1>
-                )}
-                <div className={styles.buttonWrapper}>
-                    <button
-                        className={styles.button}
-                        onClick={placeBet}
-                        disabled={bet === null || isLoading}
+                <div className={styles.buttonWrapper} onClick={placeBet}>
+                    <p
+                        onClick={bet === null || (isLoading && placeBet)}
+                        className={
+                            bet === null || isLoading
+                                ? `${styles['button']} ${styles.disabled}`
+                                : `${styles['button']} `
+                        }
                     >
                         {messages.bet}
-                    </button>
+                    </p>
                     {token && (
-                        <button
-                            disabled={historyData.length === 0}
-                            className={styles['button']}
-                            onClick={showHistoryHandler}
+                        <p
+                            className={
+                                historyData.length === 0
+                                    ? `${styles['button']} ${styles.disabled}`
+                                    : `${styles['button']} `
+                            }
+                            onClick={e => showHistoryHandler(e)}
                         >
                             {messages.history}
-                        </button>
+                        </p>
                     )}
                 </div>
                 {showHistory && (

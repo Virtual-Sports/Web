@@ -108,17 +108,25 @@
     margin: 0 5px 10px 0;
     font-size: 25px;
     padding: 10px 20px;
-    border: none;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #fff;
     border-radius: 5px;
-}
-
-.button.disable {
+    cursor: pointer;
 }
 
 .buttonWrapper {
+    display: flex;
+    justify-content: center;
     margin-top: auto;
+    margin-bottom: 150px;
+    width: 100%;
 }
-
+.disabled {
+    opacity: 0.5;
+    color: #fff;
+    background-color: #000;
+}
 .history {
     position: absolute;
     background-color: #000;
@@ -130,7 +138,12 @@
     font-size: 16px;
     text-align: center;
 }
-
+.green {
+    fill: green;
+}
+.red {
+    fill: red;
+}
 .history h1 {
     margin: 10px;
 }
@@ -233,5 +246,11 @@
 
     .selectRow input {
         margin: 2px 5px;
+    }
+}
+
+@media (max-width: 330px) {
+    .buttonWrapper {
+        margin-bottom: 50px;
     }
 }

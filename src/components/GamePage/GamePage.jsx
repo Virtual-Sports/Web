@@ -8,18 +8,19 @@ import { gamePageSelector } from './GamePage.selector'
 import HeaderGame from '../Header/HeaderGame'
 import GameDesktop from '../../resources/images/game-screen.png'
 import GameMobile from '../../resources/images/game-screen-mobile.png'
-
+import useToken from '../../shared/hooks/useToken'
 import { MOBILE_WIDTH } from '../../shared/constants'
 
 function GamePage() {
     let history = useHistory()
     const { id } = useParams()
+    const { token } = useToken()
     const { width, allGames } = useSelector(gamePageSelector)
     const game = allGames.find(item => item.id === id)
 
     return (
         <div>
-            <HeaderGame title={game.displayName} gameId={id} />
+            <HeaderGame title={game.displayName} gameId={id} token={token} />
             <div className={styles['frame-container']}>
                 {game ? (
                     <img

@@ -20,16 +20,13 @@ import {
     fetchRemoveFromFavorite,
     fetchAddGameToRecent,
 } from '../../shared/fetchs/fetchs'
-import useToken from '../../shared/hooks/useToken'
 
-const HeaderGame = ({ title = 'Game', gameId }) => {
+const HeaderGame = ({ title = 'Game', gameId, token }) => {
     const dispatch = useDispatch()
     const { favouriteGames } = useSelector(customGamesSelector)
     const [isFav, setIsFav] = useState(
         favouriteGames.findIndex(item => item.id === gameId)
     )
-
-    const { token } = useToken()
 
     const reloadFavourites = () => {
         dispatch(fetchFavourites(token))
@@ -90,4 +87,5 @@ export default HeaderGame
 HeaderGame.propTypes = {
     title: PropTypes.string,
     gameId: PropTypes.string,
+    token: PropTypes.string,
 }
